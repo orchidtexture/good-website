@@ -17,13 +17,13 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 - [x] Set up basic folder structure (`/components`, `/lib`, `/content`, `/types`).
 - [x] Implement a basic layout following mobile-first principles.
 
-## Phase 2: GitHub Content Integration
-- [ ] Define the content schema (Markdown frontmatter).
-- [ ] Set up `octokit` or a fetcher to retrieve content from a target GitHub repo.
-- [ ] Implement a local caching mechanism for development (avoiding API rate limits).
-- [ ] Create a utility to parse Markdown/MDX into structured data.
+## Phase 2: GitHub Content Integration [DONE]
+- [x] Define the content schema (Markdown frontmatter).
+- [x] Set up `octokit` or a fetcher to retrieve content from a target GitHub repo.
+- [x] Implement a local caching mechanism for development (avoiding API rate limits).
+- [x] Create a utility to parse Markdown/MDX into structured data.
 
-## Phase 3: Dynamic Routing & Rendering
+## Phase 3: Dynamic Routing & Rendering [IN PROGRESS]
 - [ ] Create `[slug]` routes for dynamic content delivery.
 - [ ] Use `generateStaticParams` for high-performance SSG.
 - [ ] Implement an MDX renderer with support for custom components.

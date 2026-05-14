@@ -20,7 +20,7 @@ export default function Home() {
             Read the Blog
           </Link>
           <a
-            href="https://github.com"
+            href="https://github.com/orchidtexture/good-website"
             className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-50 dark:ring-zinc-700 dark:hover:bg-zinc-700"
           >
             GitHub Repository

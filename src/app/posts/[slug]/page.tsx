@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { getPostBySlug, getAllPosts } from '@/lib/github'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Metadata } from 'next'
+import Image from 'next/image'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 
 interface PostPageProps {
@@ -35,6 +36,20 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       authors: [post.author],
     },
   }
+}
+
+const components = {
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <span className="block my-8">
+      <Image
+        src={props.src || ''}
+        alt={props.alt || ''}
+        width={800}
+        height={450}
+        className="rounded-lg border border-zinc-200 dark:border-zinc-800"
+      />
+    </span>
+  ),
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -76,8 +91,20 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
         </header>
 
+        {post.image && (
+          <div className="relative aspect-video mb-12 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <Image
+              src={post.image}
+              alt={post.imageAlt || post.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
+
         <div className="prose prose-zinc dark:prose-invert max-w-none">
-          <MDXRemote source={post.content} />
+          <MDXRemote source={post.content} components={components} />
         </div>
       </div>
     </article>

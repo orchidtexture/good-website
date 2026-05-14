@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { getAllPosts } from '@/lib/github'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
 
+export const revalidate = 3600 // revalidate at most every hour
+
 export const metadata = {
   title: 'Blog Posts',
   description: 'Read the latest updates and articles from Good Website.',

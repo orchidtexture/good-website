@@ -5,6 +5,8 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 
+export const revalidate = 3600 // revalidate at most every hour
+
 interface PostPageProps {
   params: Promise<{ slug: string }>
 }

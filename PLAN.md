@@ -41,11 +41,11 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 - [x] Ensure accessible typography and touch-friendly interaction targets.
 - [x] Optimize for Interaction to Next Paint (INP).
 
-## Phase 6: Polish & Performance
-- [ ] Implement Incremental Static Regeneration (ISR) to sync with GitHub updates.
-- [ ] Add a search functionality (possibly using a local index or GitHub API).
-- [ ] Final audit against `GOOD-SEO.md` and Core Web Vitals.
-- [ ] Deployment configuration (e.g., Vercel or Netlify).
+## Phase 6: Polish & Performance [DONE]
+- [x] Implement Incremental Static Regeneration (ISR) to sync with GitHub updates.
+- [ ] Add a search functionality (optional - postponed for future iteration).
+- [x] Final audit against `GOOD-SEO.md` and Core Web Vitals.
+- [x] Deployment configuration (e.g., Vercel or Netlify).
 
 ---
 

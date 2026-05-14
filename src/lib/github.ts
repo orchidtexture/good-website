@@ -15,7 +15,26 @@ const octokit = new Octokit({
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    // 1. Try local file system first (for development)
+    // 1. In production, if we have a token, prefer GitHub to allow ISR to work
+    if (process.env.NODE_ENV === 'production' && process.env.GITHUB_TOKEN) {
+      const { data: fileData } = await octokit.rest.repos.getContent({
+        owner: GITHUB_OWNER,
+        repo: GITHUB_REPO,
+        path: `${GITHUB_PATH}/${slug}.md`,
+      })
+
+      if ('content' in fileData && typeof fileData.content === 'string') {
+        const decodedContent = Buffer.from(fileData.content, 'base64').toString('utf8')
+        const { data, content } = matter(decodedContent)
+        return {
+          ...(data as PostFrontmatter),
+          slug,
+          content,
+        }
+      }
+    }
+
+    // 2. Local file system (for development or if no token provided)
     const localPath = path.join(POSTS_DIRECTORY, `${slug}.md`)
     if (fs.existsSync(localPath)) {
       const fileContents = fs.readFileSync(localPath, 'utf8')
@@ -27,8 +46,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       }
     }
 
-    // 2. Fallback to GitHub (for production/remote sync)
-    // We only do this if GITHUB_TOKEN is present to avoid rate limits
+    // 3. Last ditch effort: Try GitHub even if not in production (if token exists)
     if (process.env.GITHUB_TOKEN) {
       const { data: fileData } = await octokit.rest.repos.getContent({
         owner: GITHUB_OWNER,
@@ -56,24 +74,47 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
-    // In development, read from local directory
+    // 1. Try local file system first
     if (fs.existsSync(POSTS_DIRECTORY)) {
       const files = fs.readdirSync(POSTS_DIRECTORY)
-      const posts = await Promise.all(
-        files
-          .filter((file) => file.endsWith('.md'))
-          .map(async (file) => {
-            const slug = file.replace(/\.md$/, '')
-            return await getPostBySlug(slug)
-          })
-      )
-      return posts
-        .filter((post): post is Post => post !== null)
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      if (files.length > 0) {
+        const posts = await Promise.all(
+          files
+            .filter((file) => file.endsWith('.md'))
+            .map(async (file) => {
+              const slug = file.replace(/\.md$/, '')
+              return await getPostBySlug(slug)
+            })
+        )
+        return posts
+          .filter((post): post is Post => post !== null)
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      }
     }
 
-    // Fallback to GitHub list (simplified for example)
-    // In a real production app, you'd iterate the repo contents
+    // 2. Fallback to GitHub
+    if (process.env.GITHUB_TOKEN) {
+      const { data: files } = await octokit.rest.repos.getContent({
+        owner: GITHUB_OWNER,
+        repo: GITHUB_REPO,
+        path: GITHUB_PATH,
+      })
+
+      if (Array.isArray(files)) {
+        const posts = await Promise.all(
+          files
+            .filter((file) => file.name.endsWith('.md'))
+            .map(async (file) => {
+              const slug = file.name.replace(/\.md$/, '')
+              return await getPostBySlug(slug)
+            })
+        )
+        return posts
+          .filter((post): post is Post => post !== null)
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      }
+    }
+
     return []
   } catch (error) {
     console.error('Error fetching all posts:', error)

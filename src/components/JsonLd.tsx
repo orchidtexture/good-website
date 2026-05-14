@@ -1,16 +1,14 @@
 import { Post } from '@/types/post'
+import { SiteConfig } from '@/types/config'
 
-export function OrganizationJsonLd() {
+export function OrganizationJsonLd({ config }: { config: SiteConfig }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Good Website',
+    name: config.siteName,
     url: 'https://good-website.vercel.app',
-    logo: 'https://good-website.vercel.app/logo.png', // Update with actual logo
-    sameAs: [
-      'https://twitter.com/orchidtexture',
-      'https://github.com/orchidtexture/good-website',
-    ],
+    logo: config.logoUrl ? `https://good-website.vercel.app${config.logoUrl}` : undefined,
+    sameAs: config.socialLinks ? Object.values(config.socialLinks) : [],
   }
 
   return (

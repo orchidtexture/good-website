@@ -13,6 +13,42 @@ const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 })
 
+import { SiteConfig } from '@/types/config'
+
+const CONFIG_PATH = path.join(process.cwd(), 'src/content/config.md')
+const GITHUB_CONFIG_PATH = 'src/content/config.md'
+
+export async function getSiteConfig(): Promise<SiteConfig | null> {
+  try {
+    // 1. Try production GitHub first
+    if (process.env.NODE_ENV === 'production' && process.env.GITHUB_TOKEN) {
+      const { data: fileData } = await octokit.rest.repos.getContent({
+        owner: GITHUB_OWNER,
+        repo: GITHUB_REPO,
+        path: GITHUB_CONFIG_PATH,
+      })
+
+      if ('content' in fileData && typeof fileData.content === 'string') {
+        const decodedContent = Buffer.from(fileData.content, 'base64').toString('utf8')
+        const { data } = matter(decodedContent)
+        return data as SiteConfig
+      }
+    }
+
+    // 2. Local fallback
+    if (fs.existsSync(CONFIG_PATH)) {
+      const fileContents = fs.readFileSync(CONFIG_PATH, 'utf8')
+      const { data } = matter(fileContents)
+      return data as SiteConfig
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error fetching site config:', error)
+    return null
+  }
+}
+
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     // 1. In production, if we have a token, prefer GitHub to allow ISR to work

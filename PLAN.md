@@ -43,9 +43,15 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 
 ## Phase 6: Polish & Performance [DONE]
 - [x] Implement Incremental Static Regeneration (ISR) to sync with GitHub updates.
-- [ ] Add a search functionality (optional - postponed for future iteration).
 - [x] Final audit against `GOOD-SEO.md` and Core Web Vitals.
 - [x] Deployment configuration (e.g., Vercel or Netlify).
+
+## Phase 7: CMS Customization [DONE]
+- [x] Define configuration schema (`src/types/config.ts`).
+- [x] Create a central configuration file (`src/content/config.md`).
+- [x] Implement a `ThemeProvider` to inject CSS variables from the config.
+- [x] Map Tailwind colors to the dynamic CSS variables.
+- [x] Update SEO metadata and site-wide UI to use values from `config.md`.
 
 ---
 

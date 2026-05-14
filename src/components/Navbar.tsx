@@ -9,17 +9,17 @@ const navigation = [
   { name: 'Posts', href: '/posts' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ siteName }: { siteName: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
+    <header className="sticky top-0 z-40 w-full border-b border-zinc-200 bg-site-bg/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-xl">
             <Link href="/" className="hover:opacity-80 transition-opacity">
-              Good Website
+              {siteName}
             </Link>
           </div>
 
@@ -64,7 +64,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="md:hidden border-b border-zinc-200 bg-site-bg dark:border-zinc-800 dark:bg-zinc-950">
           <div className="space-y-1 px-4 pb-3 pt-2">
             {navigation.map((item) => (
               <Link

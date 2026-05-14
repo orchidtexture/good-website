@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
+import { getSiteConfig } from '@/lib/github'
 
 export const revalidate = 3600 // revalidate at most every hour
 
@@ -57,6 +58,8 @@ const components = {
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
+  const config = await getSiteConfig()
+  const baseUrl = config?.baseUrl || 'https://good-website-blond.vercel.app'
 
   if (!post) {
     notFound()
@@ -64,8 +67,9 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <ArticleJsonLd post={post} />
+      <ArticleJsonLd post={post} baseUrl={baseUrl} />
       <BreadcrumbJsonLd
+        baseUrl={baseUrl}
         items={[
           { name: 'Home', item: '/' },
           { name: 'Posts', item: '/posts' },

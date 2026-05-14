@@ -15,6 +15,7 @@ export interface ThemeSettings {
 }
 
 export interface SiteConfig {
+  baseUrl: string
   siteName: string
   siteDescription: string
   logoUrl?: string

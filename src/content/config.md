@@ -1,4 +1,5 @@
 ---
+baseUrl: "https://good-website-blond.vercel.app"
 siteName: "Good Website"
 siteDescription: "A high-performance, SEO-first CMS built with Next.js and GitHub."
 logoUrl: "/logo.png"

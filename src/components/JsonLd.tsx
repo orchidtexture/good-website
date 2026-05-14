@@ -6,8 +6,8 @@ export function OrganizationJsonLd({ config }: { config: SiteConfig }) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: config.siteName,
-    url: 'https://good-website.vercel.app',
-    logo: config.logoUrl ? `https://good-website.vercel.app${config.logoUrl}` : undefined,
+    url: config.baseUrl,
+    logo: config.logoUrl ? `${config.baseUrl}${config.logoUrl}` : undefined,
     sameAs: config.socialLinks ? Object.values(config.socialLinks) : [],
   }
 
@@ -19,7 +19,7 @@ export function OrganizationJsonLd({ config }: { config: SiteConfig }) {
   )
 }
 
-export function ArticleJsonLd({ post }: { post: Post }) {
+export function ArticleJsonLd({ post, baseUrl }: { post: Post; baseUrl: string }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -29,15 +29,15 @@ export function ArticleJsonLd({ post }: { post: Post }) {
       {
         '@type': 'Person',
         name: post.author,
-        url: 'https://good-website.vercel.app', // Update with author profile if available
+        url: baseUrl, // Update with author profile if available
       },
     ],
-    image: post.image ? `https://good-website.vercel.app${post.image}` : undefined,
+    image: post.image ? `${baseUrl}${post.image}` : undefined,
     datePublished: post.date,
     dateModified: post.date, // Assuming modified = published for now
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://good-website.vercel.app/posts/${post.slug}`,
+      '@id': `${baseUrl}/posts/${post.slug}`,
     },
   }
 
@@ -51,8 +51,10 @@ export function ArticleJsonLd({ post }: { post: Post }) {
 
 export function BreadcrumbJsonLd({
   items,
+  baseUrl,
 }: {
   items: { name: string; item: string }[]
+  baseUrl: string
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -61,7 +63,7 @@ export function BreadcrumbJsonLd({
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `https://good-website.vercel.app${item.item}`,
+      item: `${baseUrl}${item.item}`,
     })),
   }
 

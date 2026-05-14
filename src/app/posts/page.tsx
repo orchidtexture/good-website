@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getAllPosts } from '@/lib/github'
+import { getAllPosts, getSiteConfig } from '@/lib/github'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
 
 export const revalidate = 3600 // revalidate at most every hour
@@ -11,10 +11,13 @@ export const metadata = {
 
 export default async function PostsPage() {
   const posts = await getAllPosts()
+  const config = await getSiteConfig()
+  const baseUrl = config?.baseUrl || 'https://good-website-blond.vercel.app'
 
   return (
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
       <BreadcrumbJsonLd
+        baseUrl={baseUrl}
         items={[
           { name: 'Home', item: '/' },
           { name: 'Posts', item: '/posts' },

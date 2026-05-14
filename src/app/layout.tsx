@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const config = await getSiteConfig();
   const siteName = config?.siteName || 'Good Website';
   const siteDescription = config?.siteDescription || 'A high-performance CMS';
+  const baseUrl = config?.baseUrl || 'https://good-website-blond.vercel.app';
 
   return {
     title: {
@@ -26,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       default: `${siteName} - ${siteDescription}`,
     },
     description: siteDescription,
-    metadataBase: new URL('https://good-website.vercel.app'),
+    metadataBase: new URL(baseUrl),
     alternates: {
       canonical: '/',
     },

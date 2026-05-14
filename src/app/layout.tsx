@@ -82,6 +82,7 @@ export default async function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <head>
         {themeStyles && <style dangerouslySetInnerHTML={{ __html: themeStyles }} />}

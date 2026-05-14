@@ -10,17 +10,17 @@ socialLinks:
 theme:
   fontSans: "var(--font-geist-sans)"
   light:
-    primary: "#18181b"        # zinc-900
-    secondary: "#fafafa"      # zinc-50
-    background: "#ffffff"     # white
-    textPrimary: "#09090b"   # zinc-950
-    textSecondary: "#ffffff" # zinc-950
-    accent: "#3f3f46"         # zinc-700
+    primary: "#2E5BFF"      # Electric Blue
+    secondary: "#F1F5F9"    # Slate 100
+    background: "#FFFFFF"
+    textPrimary: "#0F172A"  # Slate 900
+    textSecondary: "#FFFFFF"
+    accent: "#2E5BFF"
   dark:
-    primary: "#fafafa"      # zinc-50
-    secondary: "#18181b"    # zinc-900
-    background: "#09090b"   # zinc-950
-    textPrimary: "#fafafa"  # zinc-50
-    textSecondary: "#09090b"
-    accent: "#d4d4d8"       # zinc-300
+    primary: "#2E5BFF"      # Electric Blue
+    secondary: "#1E293B"    # Slate 800
+    background: "#020617"   # Slate 950
+    textPrimary: "#F8FAFC"  # Slate 50
+    textSecondary: "#FFFFFF"
+    accent: "#2E5BFF"
 ---

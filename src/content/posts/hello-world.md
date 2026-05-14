@@ -4,7 +4,7 @@ description: "Learn how we built this high-performance website using Next.js and
 date: "2024-05-14"
 image: "/images/hello-world.jpg"
 imageAlt: "A clean workspace with a laptop showing code"
-author: "Luis"
+author: "orchidtexture"
 tags: ["nextjs", "tutorial", "cms"]
 category: "Development"
 published: true

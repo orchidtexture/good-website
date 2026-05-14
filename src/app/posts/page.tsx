@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/github'
+import { BreadcrumbJsonLd } from '@/components/JsonLd'
 
 export const metadata = {
   title: 'Blog Posts',
@@ -11,6 +12,12 @@ export default async function PostsPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', item: '/' },
+          { name: 'Posts', item: '/posts' },
+        ]}
+      />
       <div className="max-w-3xl mx-auto">
         <h1 className="mb-12 text-4xl font-extrabold tracking-tight sm:text-5xl">
           Blog Posts

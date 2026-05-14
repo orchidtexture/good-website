@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { getPostBySlug, getAllPosts } from '@/lib/github'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Metadata } from 'next'
+import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 
 interface PostPageProps {
   params: Promise<{ slug: string }>
@@ -46,6 +47,14 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <ArticleJsonLd post={post} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', item: '/' },
+          { name: 'Posts', item: '/posts' },
+          { name: post.title, item: `/posts/${post.slug}` },
+        ]}
+      />
       <div className="max-w-3xl mx-auto">
         <header className="mb-12">
           <time 

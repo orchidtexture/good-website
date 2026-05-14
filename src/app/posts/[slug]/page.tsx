@@ -44,11 +44,11 @@ const components = {
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <span className="block my-8">
       <Image
-        src={props.src || ''}
+        src={(props.src as string) || ''}
         alt={props.alt || ''}
         width={800}
         height={450}
-        className="rounded-lg border border-zinc-200 dark:border-zinc-800"
+        className="rounded-lg border border-accent/20"
       />
     </span>
   ),
@@ -94,9 +94,9 @@ export default async function PostPage({ params }: PostPageProps) {
         </header>
 
         {post.image && (
-          <div className="relative aspect-video mb-12 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+          <div className="relative aspect-video mb-12 overflow-hidden rounded-xl border border-accent/20">
             <Image
-              src={post.image}
+              src={post.image as string}
               alt={post.imageAlt || post.title}
               fill
               className="object-cover"

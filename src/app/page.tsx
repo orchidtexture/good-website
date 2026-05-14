@@ -21,7 +21,7 @@ export default function Home() {
           </Link>
           <a
             href="https://github.com/orchidtexture/good-website"
-            className="rounded-md bg-secondary px-6 py-3 text-sm font-semibold text-text-primary shadow-sm ring-1 ring-inset ring-accent/20 hover:opacity-80 transition-opacity"
+            className="rounded-md bg-secondary px-6 py-3 text-sm font-semibold text-text-secondary shadow-sm ring-1 ring-inset ring-accent/20 hover:opacity-80 transition-opacity"
           >
             GitHub Repository
           </a>
@@ -36,7 +36,7 @@ export default function Home() {
               { title: 'GitHub as CMS', desc: 'Content lives in your repo. No database overhead.' },
               { title: 'Extreme Speed', desc: 'Static generation with ISR for real-time updates.' },
             ].map((feature) => (
-              <li key={feature.title} className="p-6 border border-zinc-200 rounded-xl dark:border-zinc-800">
+              <li key={feature.title} className="p-6 border border-accent/20 rounded-xl">
                 <h3 className="font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm opacity-70">{feature.desc}</p>
               </li>

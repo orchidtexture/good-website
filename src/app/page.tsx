@@ -21,7 +21,7 @@ export default function Home() {
           </Link>
           <a
             href="https://github.com/orchidtexture/good-website"
-            className="rounded-md bg-secondary px-6 py-3 text-sm font-semibold text-text-secondary shadow-sm ring-1 ring-inset ring-accent/20 hover:opacity-80 transition-opacity"
+            className="rounded-md bg-secondary px-6 py-3 text-sm font-semibold text-text-primary shadow-sm ring-1 ring-inset ring-accent/20 hover:opacity-80 transition-opacity"
           >
             GitHub Repository
           </a>

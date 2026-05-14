@@ -3,24 +3,22 @@ import path from 'path'
 import { Octokit } from 'octokit'
 import matter from 'gray-matter'
 import { Post, PostFrontmatter } from '@/types/post'
+import { SiteConfig } from '@/types/config'
 
 const POSTS_DIRECTORY = path.join(process.cwd(), 'src/content/posts')
-const GITHUB_OWNER = 'orchidtexture'
-const GITHUB_REPO = 'good-website'
+const CONFIG_PATH = path.join(process.cwd(), 'src/content/config.md')
+
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'orchidtexture'
+const GITHUB_REPO = process.env.GITHUB_REPO || 'good-website'
 const GITHUB_PATH = 'src/content/posts'
+const GITHUB_CONFIG_PATH = 'src/content/config.md'
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 })
 
-import { SiteConfig } from '@/types/config'
-
-const CONFIG_PATH = path.join(process.cwd(), 'src/content/config.md')
-const GITHUB_CONFIG_PATH = 'src/content/config.md'
-
 export async function getSiteConfig(): Promise<SiteConfig | null> {
   try {
-    // 1. Try production GitHub first
     if (process.env.NODE_ENV === 'production' && process.env.GITHUB_TOKEN) {
       const { data: fileData } = await octokit.rest.repos.getContent({
         owner: GITHUB_OWNER,
@@ -35,8 +33,7 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
       }
     }
 
-    // 2. Local fallback
-    if (fs.existsSync(CONFIG_PATH)) {
+    if (fs.existsSync(POSTS_DIRECTORY)) {
       const fileContents = fs.readFileSync(CONFIG_PATH, 'utf8')
       const { data } = matter(fileContents)
       return data as SiteConfig
@@ -51,7 +48,6 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    // 1. In production, if we have a token, prefer GitHub to allow ISR to work
     if (process.env.NODE_ENV === 'production' && process.env.GITHUB_TOKEN) {
       const { data: fileData } = await octokit.rest.repos.getContent({
         owner: GITHUB_OWNER,
@@ -70,7 +66,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       }
     }
 
-    // 2. Local file system (for development or if no token provided)
     const localPath = path.join(POSTS_DIRECTORY, `${slug}.md`)
     if (fs.existsSync(localPath)) {
       const fileContents = fs.readFileSync(localPath, 'utf8')
@@ -82,7 +77,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       }
     }
 
-    // 3. Last ditch effort: Try GitHub even if not in production (if token exists)
     if (process.env.GITHUB_TOKEN) {
       const { data: fileData } = await octokit.rest.repos.getContent({
         owner: GITHUB_OWNER,
@@ -110,7 +104,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
-    // 1. Try local file system first
     if (fs.existsSync(POSTS_DIRECTORY)) {
       const files = fs.readdirSync(POSTS_DIRECTORY)
       if (files.length > 0) {
@@ -128,7 +121,6 @@ export async function getAllPosts(): Promise<Post[]> {
       }
     }
 
-    // 2. Fallback to GitHub
     if (process.env.GITHUB_TOKEN) {
       const { data: files } = await octokit.rest.repos.getContent({
         owner: GITHUB_OWNER,

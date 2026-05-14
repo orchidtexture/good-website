@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import ThemeToggle from './ThemeToggle'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -14,10 +15,10 @@ export default function Navbar({ siteName }: { siteName: string }) {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-zinc-200 bg-site-bg/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
+    <header className="sticky top-0 z-40 w-full border-b border-accent/20 bg-site-bg/80 backdrop-blur-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl">
+          <div className="flex items-center gap-2 font-bold text-xl text-text-primary">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               {siteName}
             </Link>
@@ -29,22 +30,24 @@ export default function Navbar({ siteName }: { siteName: string }) {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`transition-colors hover:text-zinc-600 dark:hover:text-zinc-300 ${
+                className={`transition-colors hover:opacity-100 ${
                   pathname === item.href
-                    ? 'text-zinc-900 dark:text-zinc-50'
-                    : 'text-zinc-500 dark:text-zinc-400'
+                    ? 'text-primary font-bold'
+                    : 'text-text-primary opacity-70'
                 }`}
               >
                 {item.name}
               </Link>
             ))}
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-500 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
+              className="inline-flex items-center justify-center rounded-md p-2 text-text-primary opacity-70 hover:opacity-100 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all"
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -64,7 +67,7 @@ export default function Navbar({ siteName }: { siteName: string }) {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-b border-zinc-200 bg-site-bg dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="md:hidden border-b border-accent/20 bg-site-bg">
           <div className="space-y-1 px-4 pb-3 pt-2">
             {navigation.map((item) => (
               <Link
@@ -72,8 +75,8 @@ export default function Navbar({ siteName }: { siteName: string }) {
                 href={item.href}
                 className={`block rounded-md px-3 py-2 text-base font-medium ${
                   pathname === item.href
-                    ? 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50'
-                    : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-50'
+                    ? 'bg-primary text-text-secondary'
+                    : 'text-text-primary hover:bg-accent/10'
                 }`}
                 onClick={() => setIsOpen(false)}
               >

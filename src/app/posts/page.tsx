@@ -26,7 +26,7 @@ export default async function PostsPage() {
         </h1>
         
         {posts.length === 0 ? (
-          <p className="text-zinc-600 dark:text-zinc-400">No posts found yet.</p>
+          <p className="opacity-70">No posts found yet.</p>
         ) : (
           <ul className="space-y-12">
             {posts.map((post) => (
@@ -34,7 +34,7 @@ export default async function PostsPage() {
                 <article className="flex flex-col items-start">
                   <time 
                     dateTime={post.date} 
-                    className="mb-2 text-sm text-zinc-500 dark:text-zinc-400"
+                    className="mb-2 text-sm opacity-60"
                   >
                     {new Date(post.date).toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -42,17 +42,17 @@ export default async function PostsPage() {
                       day: 'numeric',
                     })}
                   </time>
-                  <h2 className="text-2xl font-bold mb-3 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                  <h2 className="text-2xl font-bold mb-3 hover:text-primary transition-colors">
                     <Link href={`/posts/${post.slug}`}>
                       {post.title}
                     </Link>
                   </h2>
-                  <p className="text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-3">
+                  <p className="opacity-70 mb-4 line-clamp-3">
                     {post.description}
                   </p>
                   <Link 
                     href={`/posts/${post.slug}`}
-                    className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 hover:underline"
+                    className="text-sm font-semibold text-primary hover:underline"
                   >
                     Read more <span aria-hidden="true">→</span>
                   </Link>

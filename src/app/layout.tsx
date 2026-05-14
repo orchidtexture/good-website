@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
-import ThemeProvider from "@/components/ThemeProvider";
 import { getSiteConfig } from "@/lib/github";
 import "./globals.css";
 
@@ -46,28 +45,63 @@ export default async function RootLayout({
 }>) {
   const config = await getSiteConfig();
 
-  const themeVars = config ? ({
-    '--primary-color': config.theme.primaryColor,
-    '--secondary-color': config.theme.secondaryColor,
-    '--background-color': config.theme.backgroundColor,
-    '--text-color': config.theme.textColor,
-    '--accent-color': config.theme.accentColor,
-    '--font-sans': config.theme.fontSans,
-  } as React.CSSProperties) : {};
+  const themeStyles = config ? `
+    :root {
+      --primary-color: ${config.theme.light.primary};
+      --secondary-color: ${config.theme.light.secondary};
+      --background-color: ${config.theme.light.background};
+      --text-primary-color: ${config.theme.light.textPrimary};
+      --text-secondary-color: ${config.theme.light.textSecondary};
+      --accent-color: ${config.theme.light.accent};
+      --font-sans: ${config.theme.fontSans};
+    }
+    
+    [data-theme='dark'] {
+      --primary-color: ${config.theme.dark.primary};
+      --secondary-color: ${config.theme.dark.secondary};
+      --background-color: ${config.theme.dark.background};
+      --text-primary-color: ${config.theme.dark.textPrimary};
+      --text-secondary-color: ${config.theme.dark.textSecondary};
+      --accent-color: ${config.theme.dark.accent};
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme='light']) {
+        --primary-color: ${config.theme.dark.primary};
+        --secondary-color: ${config.theme.dark.secondary};
+        --background-color: ${config.theme.dark.background};
+        --text-primary-color: ${config.theme.dark.textPrimary};
+        --text-secondary-color: ${config.theme.dark.textSecondary};
+        --accent-color: ${config.theme.dark.accent};
+      }
+    }
+  ` : '';
 
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      style={themeVars}
     >
-      <body className="min-h-full flex flex-col bg-site-bg text-site-text dark:bg-zinc-950 dark:text-zinc-50">
+      <head>
+        {themeStyles && <style dangerouslySetInnerHTML={{ __html: themeStyles }} />}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('theme');
+                if (theme) document.documentElement.setAttribute('data-theme', theme);
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col transition-colors duration-300">
         {config && <OrganizationJsonLd config={config} />}
         <Navbar siteName={config?.siteName || 'Good Website'} />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+        <footer className="border-t border-zinc-200">
           <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="text-center text-sm opacity-60">
               © {new Date().getFullYear()} {config?.siteName || 'Good Website'}. All rights reserved.
             </p>
           </div>

@@ -7,7 +7,7 @@ export default function Home() {
         <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-6">
           High Performance, SEO-First CMS
         </h1>
-        <p className="text-xl text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
+        <p className="text-xl opacity-80 mb-8 leading-relaxed">
           Welcome to Good Website, a Next.js 15+ template optimized for speed, 
           SEO, and developer experience. This project uses GitHub as a headless 
           CMS, delivering blazing-fast static pages.
@@ -15,13 +15,13 @@ export default function Home() {
         <div className="flex gap-4">
           <Link
             href="/posts"
-            className="rounded-md bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="rounded-md bg-primary px-6 py-3 text-sm font-semibold text-text-secondary shadow-sm hover:opacity-90 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             Read the Blog
           </Link>
           <a
             href="https://github.com/orchidtexture/good-website"
-            className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-site-text shadow-sm ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-50 dark:ring-zinc-700 dark:hover:bg-zinc-700"
+            className="rounded-md bg-secondary px-6 py-3 text-sm font-semibold text-text-primary shadow-sm ring-1 ring-inset ring-accent/20 hover:opacity-80 transition-opacity"
           >
             GitHub Repository
           </a>
@@ -38,7 +38,7 @@ export default function Home() {
             ].map((feature) => (
               <li key={feature.title} className="p-6 border border-zinc-200 rounded-xl dark:border-zinc-800">
                 <h3 className="font-semibold mb-2">{feature.title}</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">{feature.desc}</p>
+                <p className="text-sm opacity-70">{feature.desc}</p>
               </li>
             ))}
           </ul>

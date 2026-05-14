@@ -1,11 +1,17 @@
+export interface ThemeColors {
+  primary: string
+  secondary: string
+  background: string
+  textPrimary: string
+  textSecondary: string
+  accent: string
+}
+
 export interface ThemeSettings {
-  primaryColor: string
-  secondaryColor: string
-  backgroundColor: string
-  textColor: string
-  accentColor: string
   fontSans: string
   fontSerif?: string
+  light: ThemeColors
+  dark: ThemeColors
 }
 
 export interface SiteConfig {

@@ -76,7 +76,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <header className="mb-12">
           <time 
             dateTime={post.date} 
-            className="block mb-4 text-sm text-zinc-500 dark:text-zinc-400"
+            className="block mb-4 text-sm opacity-60"
           >
             {new Date(post.date).toLocaleDateString('en-US', {
               year: 'numeric',
@@ -88,7 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
             {post.title}
           </h1>
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-zinc-200 dark:bg-zinc-800" />
+            <div className="h-10 w-10 rounded-full bg-secondary opacity-20" />
             <span className="font-medium">{post.author}</span>
           </div>
         </header>

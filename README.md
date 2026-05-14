@@ -24,6 +24,25 @@ A high-performance, SEO-first CMS built with Next.js 15+ (App Router), TypeScrip
    pnpm dev
    ```
 
+## Customization
+
+All global settings are managed in `src/content/config.md`. 
+
+### Navbar Styles
+You can switch between two different navigation styles:
+
+- **`default`**: A standard full-width sticky header with a bottom border.
+- **`floating`**: A modern, rounded floating pill that centers itself at the top of the page.
+
+To change it, update the `navbarStyle` field:
+```yaml
+# src/content/config.md
+navbarStyle: "floating" # "default" or "floating"
+```
+
+### Theme Colors
+The template supports full color customization for both Light and Dark modes. Edit the `theme` section in `config.md` to match your brand.
+
 ## Environment Variables
 
 | Variable | Description |

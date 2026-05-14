@@ -4,6 +4,7 @@ siteName: "Good Website"
 siteDescription: "A high-performance, SEO-first CMS built with Next.js and GitHub."
 logoUrl: "/logo.png"
 contactEmail: "hello@example.com"
+navbarStyle: "floating"
 socialLinks:
   twitter: "https://twitter.com/orchidtexture"
   github: "https://github.com/orchidtexture/good-website"

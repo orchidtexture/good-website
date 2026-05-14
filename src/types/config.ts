@@ -26,4 +26,5 @@ export interface SiteConfig {
     linkedin?: string
   }
   theme: ThemeSettings
+  navbarStyle?: 'default' | 'floating'
 }

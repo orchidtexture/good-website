@@ -10,14 +10,20 @@ const navigation = [
   { name: 'Posts', href: '/posts' },
 ]
 
-export default function Navbar({ siteName }: { siteName: string }) {
+export default function Navbar({ siteName, style = 'default' }: { siteName: string; style?: 'default' | 'floating' }) {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
+  const isFloating = style === 'floating'
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-accent/20 bg-site-bg/80 backdrop-blur-md">
+    <header className={`z-40 transition-all duration-300 ${
+      isFloating 
+        ? `fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl border border-accent/20 bg-site-bg/80 backdrop-blur-md shadow-lg overflow-hidden ${isOpen ? 'rounded-t-[28px] rounded-b-2xl' : 'rounded-full'}` 
+        : 'sticky top-0 w-full border-b border-accent/20 bg-site-bg/80 backdrop-blur-md'
+    }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className={`flex items-center justify-between ${isFloating ? 'h-14' : 'h-16'}`}>
           <div className="flex items-center gap-2 font-bold text-xl text-text-primary">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               {siteName}
@@ -39,15 +45,17 @@ export default function Navbar({ siteName }: { siteName: string }) {
                 {item.name}
               </Link>
             ))}
-            <ThemeToggle />
+            <ThemeToggle className={isFloating ? 'rounded-full' : 'rounded-lg'} />
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle />
+            <ThemeToggle className={isFloating ? 'rounded-full' : 'rounded-lg'} />
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-text-primary opacity-70 hover:opacity-100 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all"
+              className={`inline-flex items-center justify-center p-2 text-text-primary opacity-70 hover:opacity-100 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all ${
+                isFloating ? 'rounded-full' : 'rounded-md'
+              }`}
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -66,14 +74,20 @@ export default function Navbar({ siteName }: { siteName: string }) {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden border-b border-accent/20 bg-site-bg">
-          <div className="space-y-1 px-4 pb-3 pt-2">
+      <div className={`md:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${
+        isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+      }`}>
+        <div className="overflow-hidden">
+          <div className={`px-4 pb-3 pt-2 space-y-1 ${
+            isFloating ? 'border-t border-accent/20' : 'border-b border-accent/20'
+          }`}>
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block rounded-md px-3 py-2 text-base font-medium ${
+                className={`block px-3 py-2 text-base font-medium transition-colors ${
+                  isFloating ? 'rounded-full' : 'rounded-md'
+                } ${
                   pathname === item.href
                     ? 'bg-primary text-text-secondary'
                     : 'text-text-primary hover:bg-accent/10'
@@ -85,7 +99,7 @@ export default function Navbar({ siteName }: { siteName: string }) {
             ))}
           </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }

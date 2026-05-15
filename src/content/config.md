@@ -1,7 +1,7 @@
 ---
 baseUrl: "https://www.goodwebsite.dev"
 siteName: "Good Website"
-siteDescription: "A high-performance, SEO-first CMS built with Next.js and GitHub."
+siteDescription: "A high-performance, SEO-first CMS built for AI Coding Agents."
 contactEmail: "hello@example.com"
 socialLinks:
   twitter: "https://twitter.com/orchidtexture"

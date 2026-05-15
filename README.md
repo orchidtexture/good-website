@@ -3,7 +3,7 @@
 A high-performance, SEO-first CMS built with Next.js 15+ (App Router), TypeScript, and Tailwind CSS 4, using GitHub as the data store.
 
 ## Features
-- **GitHub as CMS**: Content lives in your repository as Markdown/MDX.
+- **GitHub as CMS**: Content lives in your repository as Free-form HTML with YAML frontmatter.
 - **Extreme Speed**: Static generation (SSG) with Incremental Static Regeneration (ISR).
 - **SEO-First**: Automated JSON-LD, Sitemaps, Robots.txt, and Meta Tags.
 - **Customizable**: Change colors, fonts, and site info from a single `config.md` file.
@@ -39,6 +39,15 @@ Agents should read `AGENTS.md` for specific instructions on how to maintain the 
 ### Global Settings
 Site-wide data and brand colors are managed in `src/content/config.md`.
 
+## Content & Blog Posts (Code-as-Content)
+
+This template uses a **"Code-as-Content"** model for blog posts. Instead of being limited by Markdown, each post is a free-form `.html` file.
+
+- **Infinite Flexibility**: Use Tailwind classes, custom grids, and complex HTML structures directly inside your posts.
+- **Agent-Ready**: Simply ask your agent to "Create a new post about [Topic] with a custom designed hero section" and it will generate the optimized HTML for you.
+- **Location**: Posts are stored in `src/content/posts/`.
+- **Format**: Every post requires a YAML frontmatter block for metadata (title, date, description).
+
 ## Environment Variables
 
 | Variable | Description |
@@ -54,7 +63,7 @@ Deploy to **Vercel** with one click:
 - Set the Build Command to `pnpm build`.
 
 ## Project Structure
-- `/src/content/posts`: Your blog posts (Markdown).
+- `/src/content/posts`: Your blog posts (HTML with YAML frontmatter).
 - `/src/content/config.md`: Global site configuration and theme.
 - `/src/lib/github.ts`: The logic that fetches and parses your content.
 - `/src/components`: Reusable UI components.

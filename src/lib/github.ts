@@ -19,7 +19,15 @@ const octokit = new Octokit({
 
 export async function getSiteConfig(): Promise<SiteConfig | null> {
   try {
-    if (process.env.NODE_ENV === 'production' && process.env.GITHUB_TOKEN) {
+    // 1. Try Local first (Faster for dev)
+    if (fs.existsSync(CONFIG_PATH)) {
+      const fileContents = fs.readFileSync(CONFIG_PATH, 'utf8')
+      const { data } = matter(fileContents)
+      return data as SiteConfig
+    }
+
+    // 2. Fallback to GitHub
+    if (process.env.GITHUB_TOKEN) {
       const { data: fileData } = await octokit.rest.repos.getContent({
         owner: GITHUB_OWNER,
         repo: GITHUB_REPO,
@@ -33,12 +41,6 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
       }
     }
 
-    if (fs.existsSync(POSTS_DIRECTORY)) {
-      const fileContents = fs.readFileSync(CONFIG_PATH, 'utf8')
-      const { data } = matter(fileContents)
-      return data as SiteConfig
-    }
-
     return null
   } catch (error) {
     console.error('Error fetching site config:', error)
@@ -48,49 +50,44 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    if (process.env.NODE_ENV === 'production' && process.env.GITHUB_TOKEN) {
-      const { data: fileData } = await octokit.rest.repos.getContent({
-        owner: GITHUB_OWNER,
-        repo: GITHUB_REPO,
-        path: `${GITHUB_PATH}/${slug}.md`,
-      })
-
-      if ('content' in fileData && typeof fileData.content === 'string') {
-        const decodedContent = Buffer.from(fileData.content, 'base64').toString('utf8')
-        const { data, content } = matter(decodedContent)
-        return {
-          ...(data as PostFrontmatter),
-          slug,
-          content,
+    // 1. Try Local
+    const extensions = ['.html', '.md']
+    if (fs.existsSync(POSTS_DIRECTORY)) {
+      for (const ext of extensions) {
+        const p = path.join(POSTS_DIRECTORY, `${slug}${ext}`)
+        if (fs.existsSync(p)) {
+          const fileContents = fs.readFileSync(p, 'utf8')
+          const { data, content } = matter(fileContents)
+          return {
+            ...(data as PostFrontmatter),
+            slug,
+            content,
+          }
         }
       }
     }
 
-    const localPath = path.join(POSTS_DIRECTORY, `${slug}.md`)
-    if (fs.existsSync(localPath)) {
-      const fileContents = fs.readFileSync(localPath, 'utf8')
-      const { data, content } = matter(fileContents)
-      return {
-        ...(data as PostFrontmatter),
-        slug,
-        content,
-      }
-    }
-
+    // 2. Try GitHub
     if (process.env.GITHUB_TOKEN) {
-      const { data: fileData } = await octokit.rest.repos.getContent({
-        owner: GITHUB_OWNER,
-        repo: GITHUB_REPO,
-        path: `${GITHUB_PATH}/${slug}.md`,
-      })
+      for (const ext of extensions) {
+        try {
+          const { data: fileData } = await octokit.rest.repos.getContent({
+            owner: GITHUB_OWNER,
+            repo: GITHUB_REPO,
+            path: `${GITHUB_PATH}/${slug}${ext}`,
+          })
 
-      if ('content' in fileData && typeof fileData.content === 'string') {
-        const decodedContent = Buffer.from(fileData.content, 'base64').toString('utf8')
-        const { data, content } = matter(decodedContent)
-        return {
-          ...(data as PostFrontmatter),
-          slug,
-          content,
+          if ('content' in fileData && typeof fileData.content === 'string') {
+            const decodedContent = Buffer.from(fileData.content, 'base64').toString('utf8')
+            const { data, content } = matter(decodedContent)
+            return {
+              ...(data as PostFrontmatter),
+              slug,
+              content,
+            }
+          }
+        } catch (e) {
+          continue
         }
       }
     }
@@ -104,24 +101,24 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
+    let posts: Post[] = []
+
+    // 1. Try Local
     if (fs.existsSync(POSTS_DIRECTORY)) {
       const files = fs.readdirSync(POSTS_DIRECTORY)
-      if (files.length > 0) {
-        const posts = await Promise.all(
-          files
-            .filter((file) => file.endsWith('.md'))
-            .map(async (file) => {
-              const slug = file.replace(/\.md$/, '')
-              return await getPostBySlug(slug)
-            })
-        )
-        return posts
-          .filter((post): post is Post => post !== null)
-          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      }
+      const localPosts = await Promise.all(
+        files
+          .filter((file) => file.endsWith('.md') || file.endsWith('.html'))
+          .map(async (file) => {
+            const slug = file.replace(/\.(md|html)$/, '')
+            return await getPostBySlug(slug)
+          })
+      )
+      posts = localPosts.filter((post): post is Post => post !== null)
     }
 
-    if (process.env.GITHUB_TOKEN) {
+    // 2. If no local posts found and token exists, try GitHub
+    if (posts.length === 0 && process.env.GITHUB_TOKEN) {
       const { data: files } = await octokit.rest.repos.getContent({
         owner: GITHUB_OWNER,
         repo: GITHUB_REPO,
@@ -129,21 +126,19 @@ export async function getAllPosts(): Promise<Post[]> {
       })
 
       if (Array.isArray(files)) {
-        const posts = await Promise.all(
+        const githubPosts = await Promise.all(
           files
-            .filter((file) => file.name.endsWith('.md'))
+            .filter((file) => file.name.endsWith('.md') || file.name.endsWith('.html'))
             .map(async (file) => {
-              const slug = file.name.replace(/\.md$/, '')
+              const slug = file.name.replace(/\.(md|html)$/, '')
               return await getPostBySlug(slug)
             })
         )
-        return posts
-          .filter((post): post is Post => post !== null)
-          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        posts = githubPosts.filter((post): post is Post => post !== null)
       }
     }
 
-    return []
+    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   } catch (error) {
     console.error('Error fetching all posts:', error)
     return []

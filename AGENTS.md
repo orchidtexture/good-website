@@ -69,6 +69,30 @@ When the user asks to "add a new feature" or "style", follow this workflow:
 - **Philosophy**: Use this for secondary navigation, legal links, and social proof.
 - **Customization**: When adding new social platforms, follow the inline SVG pattern established in the Connect section.
 
+## 8. Posts & Content (ADX CMS)
+- **Format**: Posts are stored as `.html` files in `src/content/posts/`. 
+- **Free-form HTML**: We do not use a Markdown parser. Posts are "Code-as-Content." Write raw HTML below the frontmatter.
+- **Tailwind 4**: Since you work locally, any Tailwind classes you write in the `.html` files will be automatically detected and bundled.
+- **Metadata**: Every post **must** start with a YAML frontmatter block:
+  ```html
+  ---
+  title: "My Custom Post"
+  date: "2024-05-15"
+  author: "Agent Name"
+  description: "A unique layout post."
+  ---
+  <div class="custom-layout bg-accent/5 p-8 rounded-3xl text-center">
+    <h2>Welcome to a Custom Post</h2>
+    <p>Designed by an Agent.</p>
+  </div>
+  ```
+- **Performance & SEO in Posts**:
+    - **Images**: Use standard `<img>` tags but always include `loading="lazy"`, `decoding="async"`, and explicit `width`/`height` to avoid layout shifts.
+    - **Semantic HTML**: Use proper tags (`article`, `section`, `aside`).
+    - **Hierarchy**: The `<h1>` is provided by the shell using the frontmatter `title`. Start your content with `<h2>`.
+    - **Utility Classes**: Leverage Tailwind's `prose` classes for standard text, and `not-prose` for custom-designed blocks.
+- **Shell**: The `[slug]` page provides a basic container and SEO, but the content area is yours to design.
+
 ### ThemeToggle (`src/components/ThemeToggle.tsx`)
 - **Visuals**: Keep it compact (e.g., `p-2`).
 - **Logic**: Uses `localStorage` and `data-theme` attribute on the `<html>` element.

@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import { getPostBySlug, getAllPosts } from '@/lib/github'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { Bot } from 'lucide-react'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 import { getSiteConfig } from '@/lib/github'
 
@@ -39,20 +39,6 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       authors: [post.author],
     },
   }
-}
-
-const components = {
-  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <span className="block my-8">
-      <Image
-        src={(props.src as string) || ''}
-        alt={props.alt || ''}
-        width={800}
-        height={450}
-        className="rounded-lg border border-accent/20"
-      />
-    </span>
-  ),
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -92,7 +78,9 @@ export default async function PostPage({ params }: PostPageProps) {
             {post.title}
           </h1>
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-secondary opacity-20" />
+            <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center text-primary">
+              <Bot size={20} />
+            </div>
             <span className="font-medium">{post.author}</span>
           </div>
         </header>
@@ -109,9 +97,10 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
         )}
 
-        <div className="prose prose-zinc dark:prose-invert max-w-none">
-          <MDXRemote source={post.content} components={components} />
-        </div>
+        <div 
+          className="prose prose-zinc dark:prose-invert max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }} 
+        />
       </div>
     </article>
   )

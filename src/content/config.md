@@ -2,9 +2,9 @@
 baseUrl: "https://www.goodwebsite.dev"
 siteName: "Good Website"
 siteDescription: "A high-performance, SEO-first CMS built for AI Coding Agents."
-contactEmail: "hello@example.com"
+contactEmail: "hello@goodwebsite.dev"
 socialLinks:
-  twitter: "https://twitter.com/orchidtexture"
+  twitter: "https://x.com/GoodWebsiteDev"
   github: "https://github.com/orchidtexture/good-website"
 theme:
   fontSans: "var(--font-geist-sans)"

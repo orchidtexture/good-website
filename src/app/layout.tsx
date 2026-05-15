@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { getSiteConfig } from "@/lib/github";
 import "./globals.css";
 
@@ -101,13 +102,7 @@ export default async function RootLayout({
         {config && <OrganizationJsonLd config={config} />}
         <Navbar />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-zinc-200">
-          <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-sm opacity-60">
-              © {new Date().getFullYear()} {config?.siteName || 'Good Website'}. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

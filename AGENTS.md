@@ -64,6 +64,11 @@ When the user asks to "add a new feature" or "style", follow this workflow:
 - **SEO**: Ensure the `<h1>` is inside the Hero and contains the most important site keywords.
 - **Responsive**: Use `py-12 sm:py-20 lg:py-28` to maintain impact across devices.
 
+### Footer (`src/components/Footer.tsx`)
+- **Structure**: Server Component. Fetches config for social links and contact info.
+- **Philosophy**: Use this for secondary navigation, legal links, and social proof.
+- **Customization**: When adding new social platforms, follow the inline SVG pattern established in the Connect section.
+
 ### ThemeToggle (`src/components/ThemeToggle.tsx`)
 - **Visuals**: Keep it compact (e.g., `p-2`).
 - **Logic**: Uses `localStorage` and `data-theme` attribute on the `<html>` element.

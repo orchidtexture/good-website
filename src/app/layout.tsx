@@ -99,7 +99,7 @@ export default async function RootLayout({
       </head>
       <body className="min-h-full flex flex-col transition-colors duration-300">
         {config && <OrganizationJsonLd config={config} />}
-        <Navbar siteName={config?.siteName || 'Good Website'} />
+        <Navbar />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-zinc-200">
           <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">

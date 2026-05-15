@@ -44,3 +44,19 @@ When the user asks to "add a new feature" or "style", follow this workflow:
 - Use kebab-case for everything else.
 - Use the `@/` alias for absolute imports.
 - Maintain a clean `types/` directory for shared interfaces.
+
+## 6. Component-Specific Guidelines
+
+### Navbar (`src/components/Navbar.tsx` & `NavbarClient.tsx`)
+- **Structure**: `Navbar.tsx` is a Server Component that fetches config. `NavbarClient.tsx` handles state and interactivity.
+- **Brand Name**: Hardcoded in `NavbarClient.tsx`. AI Agents should modify the `<span>` text directly to match the user's requested UI branding.
+- **Logo**: Uses `config.logoUrl` if available. If modifying, ensure the brand text is handled (either hidden or styled next to the logo).
+- **Sticky vs Floating**: To make it floating, apply `fixed`, `top-4`, `left-1/2`, `-translate-x-1/2`, and `rounded-full` to the `<header>` in `NavbarClient.tsx`.
+
+### ThemeToggle (`src/components/ThemeToggle.tsx`)
+- **Visuals**: Keep it compact (e.g., `p-2`).
+- **Logic**: Uses `localStorage` and `data-theme` attribute on the `<html>` element.
+
+### JsonLd (`src/components/JsonLd.tsx`)
+- **Purpose**: Strictly for SEO. Do not add visual elements here.
+- **Automation**: If adding new content types, ensure a corresponding JSON-LD component is created and added to the relevant layout/page.

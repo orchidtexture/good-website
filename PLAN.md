@@ -5,7 +5,7 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 ## Core Principles
 - **Agent-Optimized (ADX)**: The codebase is structured to be "legible" and "writable" by AI coding agents (Pi, Claude Code, etc.). 
 - **SEO as a First-Class Citizen**: Every decision prioritizes search engine visibility and Core Web Vitals (following `GOOD-SEO.md`).
-- **Config-Driven**: Centralized site settings and styles in `config.md` allow agents to rebrand the site in seconds.
+- **Config for Data, Code for Style**: Use `config.md` for site-wide data. Use components directly for styling to allow agents maximum creative freedom.
 - **Extreme Speed**: Static generation and optimized assets to ensure < 2.5s LCP.
 - **Agent Instruction Layer**: Built-in documentation and rules to guide agents in extending the site without breaking performance.
 
@@ -45,9 +45,9 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 - [x] Implement dynamic CSS variables from the config for themes.
 
 ## Phase 7: Agent-Developer Experience (ADX) [IN PROGRESS]
-- [ ] **Agent Instruction Layer**: Refine `AGENTS.md` with precise rules for component creation and styling.
-- [ ] **Component Scaffolding**: Create a library of agent-friendly components that follow strict accessibility and SEO standards.
-- [ ] **Type-Safe Extensions**: Ensure types are exhaustive so agents can discover valid options (e.g., `navbarStyle`).
+- [x] **Agent Instruction Layer**: Refine `AGENTS.md` with precise rules for component creation, styling, and customization philosophy.
+- [ ] **Component Scaffolding**: Create a library of agent-friendly components (Navbar, Hero, Posts) that follow strict accessibility and SEO standards.
+- [x] **Logic-over-Config**: Decouple UI logic from configuration files to empower agents to write cleaner, more direct code.
 - [ ] **Optimization Rules**: Enforce performance/SEO checks that agents must pass.
 - [ ] **Deployment Automation**: Streamline the "clone to live" pipeline for agent-led workflows.
 

@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const config = await getSiteConfig();
   const siteName = config?.siteName || 'Good Website';
   const siteDescription = config?.siteDescription || 'A high-performance CMS';
-  const baseUrl = config?.baseUrl || 'https://good-website-blond.vercel.app';
+  const baseUrl = config?.baseUrl || 'https://goodwebsite.dev';
 
   return {
     title: {

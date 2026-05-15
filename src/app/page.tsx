@@ -1,34 +1,12 @@
-import Link from "next/link";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <Hero />
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-6">
-          The Agent-First CMS Template
-        </h1>
-        <p className="text-xl opacity-80 mb-8 leading-relaxed">
-          A high-performance, SEO-first Next.js template designed for <b>Agent-Developer Experience (ADX)</b>. Optimized for Pi, Claude Code, and Cursor to help you build and customize your site in seconds.
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <Link
-            href="/posts"
-            className="rounded-md bg-primary px-6 py-3 text-sm font-semibold text-text-secondary shadow-sm hover:opacity-90 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            Read the Blog
-          </Link>
-          <a
-            href="https://github.com/orchidtexture/good-website"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md bg-secondary px-6 py-3 text-sm font-semibold text-text-primary shadow-sm ring-1 ring-inset ring-accent/20 hover:opacity-80 transition-opacity"
-          >
-            GitHub Repository
-          </a>
-        </div>
-
-        <section className="mt-20">
-          <h2 className="text-2xl font-bold mb-8">Built for Speed. Optimized for Agents.</h2>
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-8 text-center">Built for Speed. Optimized for Agents.</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {[
               { 

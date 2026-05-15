@@ -1,13 +1,13 @@
-# Development Plan: GitHub-backed CMS
+# Development Plan: Agent-Optimized GitHub CMS
 
-This document outlines the step-by-step development of a high-performance, SEO-first CMS built with Next.js and TypeScript, using GitHub as the primary data store.
+This document outlines the step-by-step development of a high-performance, SEO-first CMS built with Next.js and TypeScript, designed specifically for **Agent-Developer Experience (ADX)**.
 
 ## Core Principles
-- **SEO as a First-Class Citizen**: Every decision will prioritize search engine visibility and Core Web Vitals (following `GOOD-SEO.md`).
-- **Mobile-First**: Design and functionality will be optimized for mobile users first.
-- **GitHub as Database**: Content (Markdown/MDX) lives in a GitHub repository. No traditional DB or separate backend.
+- **Agent-Optimized (ADX)**: The codebase is structured to be "legible" and "writable" by AI coding agents (Pi, Claude Code, etc.). 
+- **SEO as a First-Class Citizen**: Every decision prioritizes search engine visibility and Core Web Vitals (following `GOOD-SEO.md`).
+- **Config-Driven**: Centralized site settings and styles in `config.md` allow agents to rebrand the site in seconds.
 - **Extreme Speed**: Static generation and optimized assets to ensure < 2.5s LCP.
-- **Step-by-Step**: Incremental development with full control over each component.
+- **Agent Instruction Layer**: Built-in documentation and rules to guide agents in extending the site without breaking performance.
 
 ---
 
@@ -19,39 +19,37 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 
 ## Phase 2: GitHub Content Integration [DONE]
 - [x] Define the content schema (Markdown frontmatter).
-- [x] Set up `octokit` or a fetcher to retrieve content from a target GitHub repo.
-- [x] Implement a local caching mechanism for development (avoiding API rate limits).
-- [x] Create a utility to parse Markdown/MDX into structured data.
+- [x] Set up `octokit` to retrieve content from GitHub.
+- [x] Implement local caching for development.
+- [x] Create a utility to parse Markdown into structured data.
 
 ## Phase 3: Dynamic Routing & Rendering [DONE]
 - [x] Create `[slug]` routes for dynamic content delivery.
 - [x] Use `generateStaticParams` for high-performance SSG.
-- [x] Implement an MDX renderer with support for custom components.
-- [x] Ensure proper heading hierarchy (`H1` -> `H2` -> `H3`) as per `GOOD-SEO.md`.
+- [x] Implement proper heading hierarchy for SEO.
 
 ## Phase 4: Advanced SEO & Metadata [DONE]
-- [x] Build a robust `Metadata` generator (Title, Meta Description, OpenGraph, Twitter).
+- [x] Build a robust `Metadata` generator.
 - [x] Implement `rel="canonical"` and `robots` meta tags.
-- [x] Automate JSON-LD structured data (Article, Breadcrumb, Organization).
-- [x] Set up `sitemap.ts` and `robots.ts` dynamic generators.
+- [x] Automate JSON-LD structured data.
+- [x] Set up `sitemap.ts` and `robots.ts` generators.
 
 ## Phase 5: Mobile-First UI/UX [DONE]
-- [x] Design a responsive navigation system (hamburger menu for mobile, standard for desktop).
-- [x] Implement image optimization using `next/image` with required `width`/`height` and `alt` text.
-- [x] Ensure accessible typography and touch-friendly interaction targets.
-- [x] Optimize for Interaction to Next Paint (INP).
+- [x] Design a responsive navigation system.
+- [x] Implement image optimization using `next/image`.
+- [x] Ensure accessible typography.
 
-## Phase 6: Polish & Performance [DONE]
-- [x] Implement Incremental Static Regeneration (ISR) to sync with GitHub updates.
-- [x] Final audit against `GOOD-SEO.md` and Core Web Vitals.
-- [x] Deployment configuration (e.g., Vercel or Netlify).
-
-## Phase 7: CMS Customization [DONE]
+## Phase 6: CMS Customization [DONE]
 - [x] Define configuration schema (`src/types/config.ts`).
 - [x] Create a central configuration file (`src/content/config.md`).
-- [x] Implement a `ThemeProvider` to inject CSS variables from the config.
-- [x] Map Tailwind colors to the dynamic CSS variables.
-- [x] Update SEO metadata and site-wide UI to use values from `config.md`.
+- [x] Implement dynamic CSS variables from the config for themes.
+
+## Phase 7: Agent-Developer Experience (ADX) [IN PROGRESS]
+- [ ] **Agent Instruction Layer**: Refine `AGENTS.md` with precise rules for component creation and styling.
+- [ ] **Component Scaffolding**: Create a library of agent-friendly components that follow strict accessibility and SEO standards.
+- [ ] **Type-Safe Extensions**: Ensure types are exhaustive so agents can discover valid options (e.g., `navbarStyle`).
+- [ ] **Optimization Rules**: Enforce performance/SEO checks that agents must pass.
+- [ ] **Deployment Automation**: Streamline the "clone to live" pipeline for agent-led workflows.
 
 ---
 

@@ -24,24 +24,20 @@ A high-performance, SEO-first CMS built with Next.js 15+ (App Router), TypeScrip
    pnpm dev
    ```
 
-## Customization
+## Customization & Agent Workflow
 
-All global settings are managed in `src/content/config.md`. 
+This template is optimized for **Agent-Developer Experience (ADX)**. Instead of complex, limited configuration flags, we provide lean, high-performance default components that are designed to be easily modified by AI coding agents.
 
-### Navbar Styles
-You can switch between two different navigation styles:
+### For Humans
+1. **Clone the repo**.
+2. **Fire up your Agent** (Pi, Claude Code, Cursor, etc.).
+3. **Ask for what you want**: "Make the navbar floating and rounded," "Add a newsletter section," "Change the blog layout to a grid."
 
-- **`default`**: A standard full-width sticky header with a bottom border.
-- **`floating`**: A modern, rounded floating pill that centers itself at the top of the page.
+### For Agents
+Agents should read `AGENTS.md` for specific instructions on how to maintain the site's performance and SEO while fulfilling user requests.
 
-To change it, update the `navbarStyle` field:
-```yaml
-# src/content/config.md
-navbarStyle: "floating" # "default" or "floating"
-```
-
-### Theme Colors
-The template supports full color customization for both Light and Dark modes. Edit the `theme` section in `config.md` to match your brand.
+### Global Settings
+Site-wide data and brand colors are managed in `src/content/config.md`.
 
 ## Environment Variables
 

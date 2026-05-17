@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { OrganizationJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getSiteConfig } from "@/lib/github";
@@ -19,13 +18,14 @@ const geistMono = Geist_Mono({
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getSiteConfig();
   const siteName = config?.siteName || 'Good Website';
-  const siteDescription = config?.siteDescription || 'A high-performance CMS';
+  const titleTag = config?.titleTag || 'SEO-First CMS for AI Agents';
+  const siteDescription = "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow.";
   const baseUrl = config?.baseUrl || 'https://goodwebsite.dev';
 
   return {
     title: {
       template: `%s | ${siteName}`,
-      default: `${siteName} - ${siteDescription}`,
+      default: `${siteName}: ${titleTag}`,
     },
     description: siteDescription,
     metadataBase: new URL(baseUrl),
@@ -99,7 +99,6 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col transition-colors duration-300">
-        {config && <OrganizationJsonLd config={config} />}
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -1,11 +1,22 @@
 ---
-baseUrl: "https://www.goodwebsite.dev"
+baseUrl: "https://goodwebsite.dev"
 siteName: "Good Website"
-siteDescription: "A high-performance, SEO-first CMS built for AI Coding Agents."
+siteType: "Organization"
+titleTag: "SEO-First CMS for AI Agents"
+siteDescription: "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow."
 contactEmail: "hello@goodwebsite.dev"
 socialLinks:
   twitter: "https://x.com/GoodWebsiteDev"
   github: "https://github.com/orchidtexture/good-website"
+schema:
+  organizationName: "Good Website"
+  foundingDate: "2026"
+  address:
+    streetAddress: "1-1 Chiyoda"
+    addressLocality: "Chiyoda-ku"
+    addressRegion: "Tokyo"
+    postalCode: "100-8111"
+    addressCountry: "JP"
 theme:
   fontSans: "var(--font-geist-sans)"
   light:

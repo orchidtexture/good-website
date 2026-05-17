@@ -46,10 +46,14 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 
 ## Phase 7: Agent-Developer Experience (ADX) [IN PROGRESS]
 - [x] **Agent Instruction Layer**: Refine `AGENTS.md` with precise rules for component creation, styling, and customization philosophy.
-- [ ] **Component Scaffolding**: Create a library of agent-friendly components (Navbar, Hero, Posts) that follow strict accessibility and SEO standards.
+- [x] **Component Scaffolding**: Create a library of agent-friendly components (Navbar, Hero, Footer, Posts) that follow strict accessibility and SEO standards.
 - [x] **Logic-over-Config**: Decouple UI logic from configuration files to empower agents to write cleaner, more direct code.
 - [ ] **Optimization Rules**: Enforce performance/SEO checks that agents must pass.
 - [ ] **Deployment Automation**: Streamline the "clone to live" pipeline for agent-led workflows.
+
+## Phase 8: Advanced Agentic SEO & Schema [DONE]
+- [x] **Per-Page Schema Injection**: Implement a robust pattern for individual pages and posts to inject unique JSON-LD blocks via `CustomJsonLd`.
+- [x] **Pi Schema Skill**: Develop a Pi Skill (`pi-schema`) that can generate, validate, and suggest schema improvements based on `config.md` and page content.
 
 ---
 

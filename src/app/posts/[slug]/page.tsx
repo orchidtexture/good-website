@@ -45,7 +45,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
   const config = await getSiteConfig()
-  const baseUrl = config?.baseUrl || 'https://good-website-blond.vercel.app'
+  const baseUrl = config?.baseUrl || 'https://goodwebsite.dev'
 
   if (!post) {
     notFound()
@@ -53,7 +53,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <ArticleJsonLd post={post} baseUrl={baseUrl} />
+      {config && <ArticleJsonLd post={post} config={config} />}
       <BreadcrumbJsonLd
         baseUrl={baseUrl}
         items={[

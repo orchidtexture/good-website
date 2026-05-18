@@ -54,6 +54,7 @@ This document outlines the step-by-step development of a high-performance, SEO-f
 ## Phase 8: Advanced Agentic SEO & Schema [DONE]
 - [x] **Per-Page Schema Injection**: Implement a robust pattern for individual pages and posts to inject unique JSON-LD blocks via `CustomJsonLd`.
 - [x] **Pi Schema Skill**: Develop a Pi Skill (`pi-schema`) that can generate, validate, and suggest schema improvements based on `config.md` and page content.
+- [ ] **Article Schema Generator**: Implement a programmatic article schema generator in the `pi-schema` skill to deterministically generate valid schemas for the blog posts
 
 ---
 

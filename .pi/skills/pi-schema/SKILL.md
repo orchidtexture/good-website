@@ -35,10 +35,11 @@ When building or updating schemas, use the following AI-and-SEO optimized fields
 ### B. Article / BlogPosting Schema (E-E-A-T & Freshness)
 * **Goal:** Maximize content citations in AI Overviews and answer engines.
 * **Critical Fields:**
-  * `author`: Must be an object of type `Person` containing `jobTitle` and `worksFor` (credential building).
-  * `dateModified`: Prioritize showing content freshness; AI engines downgrade stale data.
-  * `wordCount`: Tells LLMs about the deep context/depth of the file.
-  * `speakable`: Explicitly declare parts of the article optimized for voice assistant synthesis.
+  * `author`: **Can be an object of type `Person` or `Organization`**. To build credentials and help Google understand who the author is, **strongly consider using the `url` or `sameAs` properties** to link to an identifying web page, such as a social media profile, an "about me" page, or an organization's homepage. **Do not include a job title in the `author.name` property**; the name field must only contain the author's name, and `jobTitle` should be used as a separate property if you want to include it. Be sure to include all authors in their own separate fields.
+  * `dateModified`: Provides more accurate date information to Google. **It must be formatted in ISO 8601 format**. You should **prioritize including timezone information**; otherwise, it will default to Googlebot's timezone.
+  * `datePublished`: **The date and time the article was first published**. Like `dateModified`, this must use the ISO 8601 format and should include timezone information.
+  * `headline`: **The title of the article**. This should be concise, as excessively long titles may be truncated on some devices.
+  * `image`: **A URL to a crawlable and indexable image that represents the article** (avoid using generic logos or captions). For the best results, **provide multiple high-resolution images** (minimum of 50K pixels) in 16x9, 4x3, and 1x1 aspect ratios.
 
 ### C. SoftwareApplication / Product Schema (Feature Tables & Pricing Matrix)
 * **Goal:** Ensure product lands in AI-generated comparison tables and budget-focused queries (e.g., "tools under $30/mo").

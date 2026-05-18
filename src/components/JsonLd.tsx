@@ -46,8 +46,10 @@ export function CustomJsonLd({ schema }: { schema: Record<string, any> }) {
  * ArticleJsonLd component
  * Specifically for blog posts.
  */
-export function ArticleJsonLd({ post, baseUrl }: { post: Post; baseUrl: string }) {
+export function ArticleJsonLd({ post, config }: { post: Post; config: SiteConfig }) {
+  const baseUrl = config.baseUrl
   const wordCount = post.content.split(/\s+/).length
+  const isoDate = new Date(post.date).toISOString()
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -62,15 +64,24 @@ export function ArticleJsonLd({ post, baseUrl }: { post: Post; baseUrl: string }
         url: baseUrl, 
       },
     ],
-    image: post.image ? `${baseUrl}${post.image}` : undefined,
-    datePublished: post.date,
-    dateModified: post.date, 
+    image: post.image ? [
+      `${baseUrl}${post.image}`
+    ] : undefined,
+    datePublished: isoDate,
+    dateModified: isoDate, 
     wordCount: wordCount,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${baseUrl}/posts/${post.slug}`,
     },
-    publisher: { '@id': `${baseUrl}/#organization` }
+    publisher: {
+      '@type': 'Organization',
+      name: config.schema?.organizationName || config.siteName,
+      logo: config.logoUrl ? {
+        '@type': 'ImageObject',
+        url: `${baseUrl}${config.logoUrl}`
+      } : undefined
+    }
   }
 
   return (

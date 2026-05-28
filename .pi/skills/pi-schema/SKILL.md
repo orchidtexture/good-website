@@ -1,3 +1,8 @@
+---
+name: pi-schema
+description: Advanced Schema Markup Generator for JSON-LD, optimizing for Google Rich Results and AI Knowledge Graphs.
+---
+
 # Agent Skill: Advanced Schema Markup Generator (JSON-LD)
 
 ## 1. Purpose & Objectives

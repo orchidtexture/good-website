@@ -143,7 +143,7 @@ export default async function Home() {
             </div>
             <div className="p-6 border border-accent/10 rounded-xl">
               <h4 className="font-bold mb-2">Pi Schema</h4>
-              <p className="text-xs opacity-70">Semantic JSON-LD injection for Google Rich Results and AI Knowledge Graphs.</p>
+              <p className="text-xs opacity-70">Semantic JSON-LD injection for Google Rich Results using the <code className="bg-accent/10 px-1 rounded text-primary text-[10px]">inject-schema</code> command.</p>
             </div>
             <div className="p-6 border border-accent/10 rounded-xl">
               <h4 className="font-bold mb-2">Plan & Verify</h4>

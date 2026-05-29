@@ -5,7 +5,7 @@ description: Audit an existing page against its GPSS specification in layout.md,
 
 # Verify Layout Skill
 
-This skill provides instructions for auditing an existing page against its "GPSS" (Global Page Structural Specification) found in `layout.md`. Use this when the user asks to `/verify_page <slug>`.
+This skill provides instructions for auditing an existing page against its "GPSS" (Global Page Structural Specification) found in `layout.md`. Use this when the user invoques the skill with a `<slug>`.
 
 ## 1. Audit Process
 - **Locate Files**: 

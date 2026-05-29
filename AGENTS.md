@@ -103,7 +103,7 @@ When the user asks to "add a new feature" or "style", follow this workflow:
   // Correct
   <SmartJapaneseText><h1>直感的なデザインで、未来を創る</h1></SmartJapaneseText>
   
-  // Also supports custom tags
+  // Also supports custom tags (recommended for clean HTML)
   <SmartJapaneseText as="h2" className="text-xl">革新的な技術</SmartJapaneseText>
   ```
 
@@ -116,6 +116,7 @@ When the user asks to "add a new feature" or "style", follow this workflow:
 - **OrganizationJsonLd**: Use this component on specific pages (Home, About) to define the organization. Avoid duplicating it sitewide to prevent SEO penalties.
 - **CustomJsonLd**: Use this component to inject specific schema markups (FAQ, Service, SoftwareApplication, etc.) into any page manually.
 - **Customization**: 
-    - AI Agents should use the **pi-schema** skill (`.pi/skills/pi-schema/SKILL.md`) to generate validated, page-specific JSON-LD blocks.
+    - AI Agents should use the **pi-schema** skill (`.pi/skills/pi-schema/SKILL.md`) to generate validated, page-specific JSON-LD blocks via the `inject-schema <page_path> <schema_type>` command.
+    - AI Agents should use the **pi-seo** skill (`.pi/skills/pi-seo/SKILL.md`) to audit page health against `GOOD-SEO.md`.
     - Always pull base data (URLs, names) from `config.md` to maintain consistency.
 - **Automation**: Every page route should ideally include its relevant JSON-LD.

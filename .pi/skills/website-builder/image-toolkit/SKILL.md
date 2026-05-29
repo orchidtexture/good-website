@@ -11,7 +11,7 @@ This toolkit provides a collection of tools and workflows for managing, optimizi
 
 | Command | Description | Usage |
 | :--- | :--- | :--- |
-| `convert-to-webp` | Converts an image to WebP using `sharp`. | `node utils/scripts/convert-to-webp.mjs <path>` |
+| `convert-to-webp <path>` | Converts an image to WebP using `sharp`. | `node utils/scripts/convert-to-webp.mjs <path>` |
 
 ## Tools
 

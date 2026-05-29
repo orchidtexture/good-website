@@ -42,11 +42,12 @@ This project includes specialized Pi Skills to automate common tasks. You can tr
 
 | Skill | Description | Usage / Command |
 | :--- | :--- | :--- |
-| **Image Toolkit** | Optimize images (WebP conversion) for performance. | `node utils/scripts/convert-to-webp.mjs <path>` |
-| **Pi Schema** | Generate and inject advanced JSON-LD for SEO. | `inject-schema <page_path> <schema_type>` |
-| **Plan Page** | Blueprint and scaffold new pages following ADX principles. | `/create_page <name>` |
-| **Generate Layout** | Analyze a page and generate a `layout.md` (GPSS) spec. | `generate-layout` |
-| **Verify Layout** | Audit a page against its `layout.md` (GPSS) specification. | `verify-layout` |
+| **Image Toolkit** | Optimize images (WebP conversion) for performance. | `image-toolkit convert-to-webp <path>` |
+| **Pi Schema** | Generate and inject advanced JSON-LD for SEO. | `pi-schema inject-schema <page_path> <schema_type>` |
+| **Pi Seo** | Audit and optimize pages based on `GOOD-SEO.md`. | `pi-seo audit-page <path>` `pi-seo audit-page` |
+| **Plan Page** | Blueprint and scaffold new pages following ADX principles. | `plan-page <name>` |
+| **Generate Layout** | Analyze a page and generate a `layout.md` (GPSS) spec. | `generate-layout <path>` |
+| **Verify Layout** | Audit a page against its `layout.md` (GPSS) specification. | `verify-layout <slug>` |
 
 ### UI Component Library
 Built with **Tailwind CSS 4** and optimized for **ADX**. Use these components to build your pages:
@@ -58,7 +59,7 @@ Built with **Tailwind CSS 4** and optimized for **ADX**. Use these components to
   ```
 - **`SmartJapaneseText`**: Essential for Japanese typography. Prevents awkward line breaks.
   ```tsx
-  <SmartJapaneseText><h1>日本語のタイトル</h1></SmartJapaneseText>
+  <SmartJapaneseText as="h1">日本語のタイトル</SmartJapaneseText>
   ```
 - **`JsonLd`**: Centralized schema injection. Includes `OrganizationJsonLd`, `ArticleJsonLd`, `BreadcrumbJsonLd`, and `CustomJsonLd`.
 

@@ -5,7 +5,7 @@ description: Analyzes a page's source code and generates a standard layout.md (G
 
 # Generate Layout Skill
 
-This skill allows you to reverse-engineer a `layout.md` file from an existing page's source code. Use this when the user asks to `/generate_layout <path>`.
+This skill allows you to reverse-engineer a `layout.md` file from an existing page's source code. Use this when the user invoques the skill with a `<path>`.
 
 ## 1. Input Analysis
 - **Target File**: Locate and read the source code at `<path>` (usually a `page.tsx` or a raw HTML dump).

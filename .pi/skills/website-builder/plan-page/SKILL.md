@@ -5,7 +5,7 @@ description: Instructions for creating new pages in the website following ADX pr
 
 # Plan Page Creation Skill
 
-This skill provides instructions for creating new plan pages in the website. When the user asks to `/create_page <name>`, follow this protocol.
+This skill provides instructions for creating new plan pages in the website. When the user invoques the skill with a  `<name>`, follow this protocol.
 
 ## 1. Discovery & Analysis
 - **Identify Page Details**: Determine the intended slug (kebab-case) and display name from the input `<name>`.
@@ -24,7 +24,7 @@ This skill provides instructions for creating new plan pages in the website. Whe
 3. **Paths**: Use `@/` alias for imports. Use root-relative paths for internal links.
 4. **SEO**: Implement `generateMetadata` using data from the `seo_metadata` block in `layout.md`.
 
-## 4. Execution Flow for `/create_page`
+## 4. Execution Flow
 When triggered:
 1. Read `layout.md`.
 2. Extract SEO metadata and section content.

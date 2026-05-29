@@ -93,6 +93,20 @@ When the user asks to "add a new feature" or "style", follow this workflow:
     - **Utility Classes**: Leverage Tailwind's `prose` classes for standard text, and `not-prose` for custom-designed blocks.
 - **Shell**: The `[slug]` page provides a basic container and SEO, but the content area is yours to design.
 
+### SmartJapaneseText (`src/components/SmartJapaneseText.tsx`)
+- **Purpose**: Prevents awkward line breaks in Japanese text by using BudouX to inject `<wbr />` tags at semantic boundaries.
+- **Requirement**: Whenever Japanese text (Kanji, Hiragana, Katakana) is present in **headers** (H1-H6) or **short UI texts** (buttons, cards), you **MUST** wrap the text in the `SmartJapaneseText` component.
+- **Usage**:
+  ```tsx
+  import { SmartJapaneseText } from "@/components/SmartJapaneseText";
+
+  // Correct
+  <SmartJapaneseText><h1>直感的なデザインで、未来を創る</h1></SmartJapaneseText>
+  
+  // Also supports custom tags
+  <SmartJapaneseText as="h2" className="text-xl">革新的な技術</SmartJapaneseText>
+  ```
+
 ### ThemeToggle (`src/components/ThemeToggle.tsx`)
 - **Visuals**: Keep it compact (e.g., `p-2`).
 - **Logic**: Uses `localStorage` and `data-theme` attribute on the `<html>` element.

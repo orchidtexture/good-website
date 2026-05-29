@@ -4,6 +4,13 @@ import Button from "@/components/Button";
 import { OrganizationJsonLd, CustomJsonLd } from "@/components/JsonLd";
 import { getSiteConfig } from "@/lib/github";
 import { Wrench, Zap, Search, Layout } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const faqItems = [
   {

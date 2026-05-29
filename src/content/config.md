@@ -2,7 +2,7 @@
 baseUrl: "https://goodwebsite.dev"
 siteName: "Good Website"
 siteType: "Organization"
-titleTag: "SEO-First CMS for AI Agents & Rapid Deployment"
+titleTag: "SEO-First CMS for AI Agents & Rapid Web Deployment"
 siteDescription: "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow."
 contactEmail: "hello@goodwebsite.dev"
 socialLinks:

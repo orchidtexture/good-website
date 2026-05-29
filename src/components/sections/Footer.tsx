@@ -88,6 +88,7 @@ export default async function Footer() {
             © {currentYear} {siteName}. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs opacity-60">
+            <Link href="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
             <Link href="/sitemap.xml" className="hover:opacity-100 transition-opacity">Sitemap</Link>
             <Link href="/robots.txt" className="hover:opacity-100 transition-opacity">Robots</Link>
           </div>

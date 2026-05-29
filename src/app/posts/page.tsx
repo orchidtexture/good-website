@@ -8,6 +8,9 @@ export const revalidate = 3600 // revalidate at most every hour
 export const metadata = {
   title: 'Blog Posts',
   description: 'Read the latest updates and articles from Good Website.',
+  alternates: {
+    canonical: "/posts",
+  },
 }
 
 export default async function PostsPage() {

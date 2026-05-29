@@ -1,4 +1,4 @@
-# GitHub CMS Template
+# The Good Website Template
 
 A high-performance, SEO-first CMS built with Next.js 15+ (App Router), TypeScript, and Tailwind CSS 4, using GitHub as the data store.
 
@@ -35,6 +35,15 @@ This template is optimized for **Agent-Developer Experience (ADX)**. Instead of 
 
 ### For Agents
 Agents should read `AGENTS.md` for specific instructions on how to maintain the site's performance and SEO while fulfilling user requests.
+
+### Agent Skills
+This project includes specialized Pi Skills to automate common tasks:
+
+- **Image Toolkit**: Optimize images (WebP conversion) for performance.
+- **Pi Schema**: Generate advanced JSON-LD for SEO.
+- **Plan Page (experimental)**: Blueprint new pages following ADX principles.
+- **Generate Layout (experimental)**: Analyze and document page layouts (GPSS).
+- **Verify Layout (experimental)**: Audit pages against their layout specifications.
 
 ### Global Settings
 Site-wide data and brand colors are managed in `src/content/config.md`.

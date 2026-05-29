@@ -45,7 +45,7 @@ export default async function Home() {
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <p>
               Traditional CMS platforms are built for humans clicking through complex dashboards. 
-              <strong>Good Website</strong> is different. It is built for the new era of development where AI agents like Pi, Claude Code, and Cursor are your primary collaborators. By optimizing the codebase for &quot;Agent-Developer Experience&quot; (ADX), we enable these tools to understand your site&apos;s structure deeply and make precise, high-quality modifications without the usual overhead.
+              <strong> Good Website </strong> is different. It is built for the new era of development where AI agents like Pi, Claude Code, and Cursor are your primary collaborators. By optimizing the codebase for &quot;Agent-Developer Experience&quot; (ADX), we enable these tools to understand your site&apos;s structure deeply and make precise, high-quality modifications without the usual overhead.
             </p>
             <p>
               Our &quot;Code-as-Content&quot; approach means your blog posts aren&apos;t just text—they are mini-applications. Want a custom calculator in your latest post? Or a dynamic data visualization? An agent can write that HTML and Tailwind code directly into the post file, giving you a level of flexibility that standard Markdown-based systems simply can&apos;t match.

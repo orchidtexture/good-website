@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Sun, Moon } from 'lucide-react'
+import Button from './Button'
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<string | null>(null)
@@ -22,12 +23,14 @@ export default function ThemeToggle() {
   if (!theme) return <div className="w-9 h-9" /> // Avoid hydration mismatch
 
   return (
-    <button
+    <Button
+      variant="ghost"
+      size="sm"
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-colors text-text-primary"
       aria-label="Toggle theme"
+      className="p-2"
     >
       {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-    </button>
+    </Button>
   )
 }

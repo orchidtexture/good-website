@@ -1,6 +1,6 @@
 import { getSiteConfig } from "@/lib/github";
 import Link from "next/link";
-import Button from "./Button";
+import Button from "../Button";
 
 /**
  * Footer component (Server Component)

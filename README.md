@@ -4,6 +4,7 @@ A high-performance, SEO-first CMS built with Next.js 15+ (App Router), TypeScrip
 
 ## Features
 - **GitHub as CMS**: Content lives in your repository as Free-form HTML with YAML frontmatter.
+- **FAQ Section**: Accordion-based FAQ component with automatic JSON-LD schema generation.
 - **Extreme Speed**: Static generation (SSG) with Incremental Static Regeneration (ISR).
 - **SEO-First**: Automated JSON-LD, Sitemaps, Robots.txt, and Meta Tags.
 - **Customizable**: Change colors, fonts, and site info from a single `config.md` file.

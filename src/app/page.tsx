@@ -1,6 +1,26 @@
-import Hero from "@/components/Hero";
+import Hero from "@/components/sections/Hero";
+import FAQ from "@/components/sections/FAQ";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 import { getSiteConfig } from "@/lib/github";
+
+const faqItems = [
+  {
+    question: "What is an Agent-First CMS?",
+    answer: "It is a CMS optimized for Agent-Developer Experience (ADX). The codebase is structured so AI agents like Pi, Claude Code, or Cursor can easily read, modify, and extend the site without the overhead of complex dashboards or proprietary APIs."
+  },
+  {
+    question: "What does 'Code-as-Content' mean?",
+    answer: "Instead of being restricted to standard Markdown, your posts are free-form HTML files. This allows agents to craft unique layouts, interactive components, and complex designs directly within your content files."
+  },
+  {
+    question: "How is this different from a standard Next.js template?",
+    answer: "While it uses modern Next.js 15+ features, its primary difference is the ADX layer. We provide specific instruction files (AGENTS.md) and lean components that are meant to be 'rewritten' by AI, rather than 'configured' through flags."
+  },
+  {
+    question: "Is it really SEO-perfect?",
+    answer: "Yes. Every page automatically implements JSON-LD schema (via our pi-schema skill), follows a strict heading hierarchy, and achieves top-tier Lighthouse scores for SEO and Accessibility."
+  }
+];
 
 export default async function Home() {
   const config = await getSiteConfig();
@@ -86,6 +106,8 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        <FAQ items={faqItems} />
       </div>
     </div>
   );

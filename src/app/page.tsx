@@ -1,12 +1,56 @@
-import Hero from "@/components/Hero";
-import { OrganizationJsonLd } from "@/components/JsonLd";
+import Hero from "@/components/sections/Hero";
+import FAQ from "@/components/sections/FAQ";
+import { OrganizationJsonLd, CustomJsonLd } from "@/components/JsonLd";
 import { getSiteConfig } from "@/lib/github";
+
+const faqItems = [
+  {
+    question: "What is an Agent-First CMS?",
+    answer: "It is a CMS optimized for Agent-Developer Experience (ADX). The codebase is structured so AI agents like Pi, Claude Code, or Cursor can easily read, modify, and extend the site without the overhead of complex dashboards or proprietary APIs."
+  },
+  {
+    question: "What does 'Code-as-Content' mean?",
+    answer: "Instead of being restricted to standard Markdown, your posts are free-form HTML files. This allows agents to craft unique layouts, interactive components, and complex designs directly within your content files."
+  },
+  {
+    question: "How is this different from a standard Next.js template?",
+    answer: "While it uses modern Next.js 15+ features, its primary difference is the ADX layer. We provide specific instruction files (AGENTS.md) and lean components that are meant to be 'rewritten' by AI, rather than 'configured' through flags."
+  },
+  {
+    question: "Is it really SEO-perfect?",
+    answer: "Yes. Every page automatically implements JSON-LD schema (via our pi-schema skill), follows a strict heading hierarchy, and achieves top-tier Lighthouse scores for SEO and Accessibility."
+  }
+];
 
 export default async function Home() {
   const config = await getSiteConfig();
   return (
     <div className="container mx-auto pb-8 px-4 sm:px-6 lg:px-8">
       {config && <OrganizationJsonLd config={config} />}
+      {config && (
+        <CustomJsonLd
+          schema={{
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": config.siteName,
+            "description": config.siteDescription,
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Node.js, Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Code-as-Content workflow",
+              "SEO-First architecture",
+              "Next.js 15+",
+              "Tailwind CSS 4",
+              "ADX (Agent-Developer Experience)"
+            ]
+          }}
+        />
+      )}
       <Hero />
       <div className="max-w-3xl mx-auto">
         <section className="mt-12">
@@ -45,7 +89,7 @@ export default async function Home() {
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <p>
               Traditional CMS platforms are built for humans clicking through complex dashboards. 
-              <strong>Good Website</strong> is different. It is built for the new era of development where AI agents like Pi, Claude Code, and Cursor are your primary collaborators. By optimizing the codebase for &quot;Agent-Developer Experience&quot; (ADX), we enable these tools to understand your site&apos;s structure deeply and make precise, high-quality modifications without the usual overhead.
+              <strong> Good Website </strong> is different. It is built for the new era of development where AI agents like Pi, Claude Code, and Cursor are your primary collaborators. By optimizing the codebase for &quot;Agent-Developer Experience&quot; (ADX), we enable these tools to understand your site&apos;s structure deeply and make precise, high-quality modifications without the usual overhead.
             </p>
             <p>
               Our &quot;Code-as-Content&quot; approach means your blog posts aren&apos;t just text—they are mini-applications. Want a custom calculator in your latest post? Or a dynamic data visualization? An agent can write that HTML and Tailwind code directly into the post file, giving you a level of flexibility that standard Markdown-based systems simply can&apos;t match.
@@ -86,6 +130,8 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        <FAQ items={faqItems} />
       </div>
     </div>
   );

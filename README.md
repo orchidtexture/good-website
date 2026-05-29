@@ -1,9 +1,10 @@
-# GitHub CMS Template
+# The Good Website Template
 
 A high-performance, SEO-first CMS built with Next.js 15+ (App Router), TypeScript, and Tailwind CSS 4, using GitHub as the data store.
 
 ## Features
 - **GitHub as CMS**: Content lives in your repository as Free-form HTML with YAML frontmatter.
+- **FAQ Section**: Accordion-based FAQ component with automatic JSON-LD schema generation.
 - **Extreme Speed**: Static generation (SSG) with Incremental Static Regeneration (ISR).
 - **SEO-First**: Automated JSON-LD, Sitemaps, Robots.txt, and Meta Tags.
 - **Customizable**: Change colors, fonts, and site info from a single `config.md` file.
@@ -36,6 +37,36 @@ This template is optimized for **Agent-Developer Experience (ADX)**. Instead of 
 ### For Agents
 Agents should read `AGENTS.md` for specific instructions on how to maintain the site's performance and SEO while fulfilling user requests.
 
+### Agent Skills
+This project includes specialized Pi Skills to automate common tasks. You can trigger these via your agent:
+
+| Skill | Description | Usage / Command |
+| :--- | :--- | :--- |
+| **Image Toolkit** | Optimize images (WebP conversion) for performance. | `node utils/scripts/convert-to-webp.mjs <path>` |
+| **Pi Schema** | Generate and inject advanced JSON-LD for SEO. | `inject-schema <page_path> <schema_type>` |
+| **Plan Page** | Blueprint and scaffold new pages following ADX principles. | `/create_page <name>` |
+| **Generate Layout** | Analyze a page and generate a `layout.md` (GPSS) spec. | `generate-layout` |
+| **Verify Layout** | Audit a page against its `layout.md` (GPSS) specification. | `verify-layout` |
+
+### UI Component Library
+Built with **Tailwind CSS 4** and optimized for **ADX**. Use these components to build your pages:
+
+#### Core Components
+- **`Button`**: Versatile button/link component with variants (`primary`, `accent`, `line`, `outline`, `ghost`) and sizes.
+  ```tsx
+  <Button href="/path" variant="primary">Click Me</Button>
+  ```
+- **`SmartJapaneseText`**: Essential for Japanese typography. Prevents awkward line breaks.
+  ```tsx
+  <SmartJapaneseText><h1>日本語のタイトル</h1></SmartJapaneseText>
+  ```
+- **`JsonLd`**: Centralized schema injection. Includes `OrganizationJsonLd`, `ArticleJsonLd`, `BreadcrumbJsonLd`, and `CustomJsonLd`.
+
+#### Sections
+- **`Hero`**: The standard high-impact landing section.
+- **`FAQ`**: Interactive accordion section that **self-injects** `FAQPage` schema.
+- **`Navbar` / `Footer`**: Global navigation and footer, configurable via `config.md`.
+
 ### Global Settings
 Site-wide data and brand colors are managed in `src/content/config.md`.
 
@@ -63,7 +94,11 @@ Deploy to **Vercel** with one click:
 - Set the Build Command to `pnpm build`.
 
 ## Project Structure
+- `/src/app`: Next.js App Router pages and routes.
+- `/src/components`: Reusable UI components.
+  - `/sections`: Large page sections (Hero, FAQ, etc.).
 - `/src/content/posts`: Your blog posts (HTML with YAML frontmatter).
 - `/src/content/config.md`: Global site configuration and theme.
 - `/src/lib/github.ts`: The logic that fetches and parses your content.
-- `/src/components`: Reusable UI components.
+- `/utils/scripts`: Developer utility scripts (e.g., image conversion).
+- `/.pi/skills`: Custom AI Agent skills for project automation.

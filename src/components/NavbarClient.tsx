@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import ThemeToggle from './ThemeToggle'
+import Button from './Button'
 import { SiteConfig } from '@/types/config'
 
 const navigation = [
@@ -88,12 +89,13 @@ export default function NavbarClient({ config }: { config: SiteConfig | null }) 
               </a>
             )}
             <ThemeToggle />
-            <button
-              type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-text-primary opacity-70 hover:opacity-100 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all"
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => setIsOpen(!isOpen)}
+              aria-label="Open main menu"
+              className="p-2"
             >
-              <span className="sr-only">Open main menu</span>
               {isOpen ? (
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -103,7 +105,7 @@ export default function NavbarClient({ config }: { config: SiteConfig | null }) 
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
               )}
-            </button>
+            </Button>
           </div>
         </div>
       </div>

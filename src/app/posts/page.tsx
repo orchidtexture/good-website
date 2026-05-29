@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getAllPosts, getSiteConfig } from '@/lib/github'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
+import Button from '@/components/Button'
 
 export const revalidate = 3600 // revalidate at most every hour
 
@@ -53,12 +54,14 @@ export default async function PostsPage() {
                   <p className="opacity-70 mb-4 line-clamp-3">
                     {post.description}
                   </p>
-                  <Link 
+                  <Button 
                     href={`/posts/${post.slug}`}
-                    className="text-sm font-semibold text-primary hover:underline"
+                    variant="ghost"
+                    size="sm"
+                    className="group-hover:text-primary -ml-3"
                   >
                     Read more <span aria-hidden="true">→</span>
-                  </Link>
+                  </Button>
                 </article>
               </li>
             ))}

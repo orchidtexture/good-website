@@ -1,7 +1,9 @@
 import Hero from "@/components/sections/Hero";
 import FAQ from "@/components/sections/FAQ";
+import Button from "@/components/Button";
 import { OrganizationJsonLd, CustomJsonLd } from "@/components/JsonLd";
 import { getSiteConfig } from "@/lib/github";
+import { Wrench, Zap, Search, Layout } from "lucide-react";
 
 const faqItems = [
   {
@@ -61,22 +63,27 @@ export default async function Home() {
             {[
               { 
                 title: 'Code-as-Content', 
-                desc: 'Write raw HTML directly in your posts. No Markdown limits—just infinite design freedom for your Agent to craft unique landing pages.' 
+                desc: 'Write raw HTML directly in your posts. No Markdown limits—just infinite design freedom for your Agent to craft unique landing pages.',
+                icon: <Layout className="text-primary" size={24} />
               },
               { 
                 title: 'Agent-Ready (ADX)', 
-                desc: 'Clean, modular components with strict instruction layers (ADX) that enable AI agents to extend and rebrand your site in seconds.' 
+                desc: 'Clean, modular components with strict instruction layers (ADX) that enable AI agents to extend and rebrand your site in seconds.',
+                icon: <Zap className="text-primary" size={24} />
               },
               { 
                 title: 'SEO-Perfect', 
-                desc: 'Automated JSON-LD, semantic HTML5, and dynamic metadata are baked into the core to ensure your site ranks high and loads fast.' 
+                desc: 'Automated JSON-LD, semantic HTML5, and dynamic metadata are baked into the core to ensure your site ranks high and loads fast.',
+                icon: <Search className="text-primary" size={24} />
               },
               { 
-                title: 'Extreme Performance', 
-                desc: 'Harness the power of Next.js 15+ and Tailwind CSS 4 to achieve near-perfect Lighthouse scores and instant Interaction to Next Paint (INP).' 
+                title: 'Automation Skills', 
+                desc: 'Includes specialized Pi Skills for image optimization (WebP), layout verification, and automated schema injection.',
+                icon: <Wrench className="text-primary" size={24} />
               },
             ].map((feature) => (
               <div key={feature.title} className="p-6 border border-accent/20 rounded-xl bg-accent/5">
+                <div className="mb-4">{feature.icon}</div>
                 <h3 className="font-semibold text-lg mb-2 text-text-primary">{feature.title}</h3>
                 <p className="text-sm opacity-70 leading-relaxed">{feature.desc}</p>
               </div>
@@ -99,18 +106,50 @@ export default async function Home() {
 
         <section className="mt-20 p-8 border border-accent/20 rounded-2xl bg-accent/5">
           <h2 className="text-xl font-bold mb-2 text-text-primary uppercase tracking-tight">Step 1: Customize your site with an Agent</h2>
-          <p className="text-sm opacity-80 mb-4 italic">&quot;Make the navbar floating and rounded, and add a minimalist newsletter section to the footer.&quot;</p>
-          <p className="text-sm opacity-70 leading-relaxed">
-            Directly modify components in <code className="bg-accent/10 px-1 rounded text-primary text-xs">src/components/</code>. Our <strong>AGENTS.md</strong> instruction layer ensures that any AI agent you use adheres to strict performance and SEO rules in <strong>AGENTS.md</strong>, maintaining your <span className="text-primary font-bold">95+ Lighthouse score</span> even as your site grows.
-          </p>
+          <p className="text-sm opacity-80 mb-6 italic">&quot;Make the navbar floating and rounded, and add a minimalist newsletter section to the footer.&quot;</p>
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex-1">
+              <p className="text-sm opacity-70 leading-relaxed mb-4">
+                Directly modify components in <code className="bg-accent/10 px-1 rounded text-primary text-xs">src/components/</code>. Our <strong>AGENTS.md</strong> instruction layer ensures that any AI agent you use adheres to strict performance and SEO rules.
+              </p>
+              <Button href="https://github.com/orchidtexture/good-website" variant="outline" size="sm" external>
+                View AGENTS.md
+              </Button>
+            </div>
+          </div>
         </section>
 
         <section className="mt-8 p-8 border border-primary/20 rounded-2xl bg-primary/5">
           <h2 className="text-xl font-bold mb-2 text-primary uppercase tracking-tight">Step 2: Create rich content with an Agent</h2>
-          <p className="text-sm opacity-80 mb-4 italic">&quot;Create a new post about the future of AI. Use a 2-column feature grid for the main points and a subtle bg-accent/5 rounded hero section for the intro.&quot;</p>
-          <p className="text-sm opacity-70 leading-relaxed">
-            Agents generate optimized <code className="bg-accent/10 px-1 rounded text-primary text-xs">.html</code> files in your posts directory. With <strong>Code-as-Content</strong>, you bypass the limitations of Markdown, allowing your agent to design bespoke layouts for every single article you publish.
-          </p>
+          <p className="text-sm opacity-80 mb-6 italic">&quot;Create a new post about the future of AI. Use a 2-column feature grid for the main points and a subtle bg-accent/5 rounded hero section for the intro.&quot;</p>
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex-1">
+              <p className="text-sm opacity-70 leading-relaxed mb-4">
+                Agents generate optimized <code className="bg-accent/10 px-1 rounded text-primary text-xs">.html</code> files in your posts directory. With <strong>Code-as-Content</strong>, you bypass the limitations of Markdown.
+              </p>
+              <Button href="/posts" variant="primary" size="sm">
+                Explore Blog
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-20">
+          <h2 className="text-3xl font-bold mb-8 text-center text-text-primary">Advanced Agent Skills</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 border border-accent/10 rounded-xl">
+              <h4 className="font-bold mb-2">Image Toolkit</h4>
+              <p className="text-xs opacity-70">Automated WebP conversion and optimization for perfect LCP.</p>
+            </div>
+            <div className="p-6 border border-accent/10 rounded-xl">
+              <h4 className="font-bold mb-2">Pi Schema</h4>
+              <p className="text-xs opacity-70">Semantic JSON-LD injection for Google Rich Results and AI Knowledge Graphs.</p>
+            </div>
+            <div className="p-6 border border-accent/10 rounded-xl">
+              <h4 className="font-bold mb-2">Plan & Verify</h4>
+              <p className="text-xs opacity-70">Automated page scaffolding and layout auditing based on GPSS specs.</p>
+            </div>
+          </div>
         </section>
 
         <section className="mt-20 mb-20">

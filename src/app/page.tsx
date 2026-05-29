@@ -145,15 +145,15 @@ export default async function Home() {
           <h2 className="text-3xl font-bold mb-8 text-center text-text-primary">Advanced Agent Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 border border-accent/10 rounded-xl">
-              <h4 className="font-bold mb-2">Image Toolkit</h4>
+              <h3 className="font-bold mb-2">Image Toolkit</h3>
               <p className="text-xs opacity-70">Automated WebP conversion and optimization for perfect LCP.</p>
             </div>
             <div className="p-6 border border-accent/10 rounded-xl">
-              <h4 className="font-bold mb-2">Pi Schema</h4>
+              <h3 className="font-bold mb-2">Pi Schema</h3>
               <p className="text-xs opacity-70">Semantic JSON-LD injection for Google Rich Results using the <code className="bg-accent/10 px-1 rounded text-primary text-[10px]">inject-schema</code> command.</p>
             </div>
             <div className="p-6 border border-accent/10 rounded-xl">
-              <h4 className="font-bold mb-2">Plan & Verify</h4>
+              <h3 className="font-bold mb-2">Plan & Verify</h3>
               <p className="text-xs opacity-70">Automated page scaffolding and layout auditing based on GPSS specs.</p>
             </div>
           </div>

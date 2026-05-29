@@ -5,7 +5,36 @@ description: Advanced Schema Markup Generator for JSON-LD, optimizing for Google
 
 # Agent Skill: Advanced Schema Markup Generator (JSON-LD)
 
-## 1. Purpose & Objectives
+## 1. Commands
+
+| Command | Description | Usage |
+| :--- | :--- | :--- |
+| `inject-schema` | Injects a JSON-LD schema into a specific page using `CustomJsonLd`. | `pi-schema inject-schema <page_path> <schema_type>` |
+
+## 2. Implementation in this Project
+
+This project uses a centralized component for handling JSON-LD located at `src/components/JsonLd.tsx`. When adding schema to a page, DO NOT manually write `<script type="application/ld+json">`. Instead, use the following components:
+
+- **`OrganizationJsonLd`**: Use on Home or About pages.
+- **`ArticleJsonLd`**: Use on blog post pages (`[slug]/page.tsx`).
+- **`BreadcrumbJsonLd`**: Use on any nested page to define navigation paths.
+- **`CustomJsonLd`**: Use for any other schema type (FAQ, SoftwareApplication, Product, etc.).
+
+### Example: Injecting FAQ Schema
+```tsx
+import { CustomJsonLd } from "@/components/JsonLd";
+
+// Inside your component:
+<CustomJsonLd 
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [...]
+  }} 
+/>
+```
+
+## 3. Purpose & Objectives
 You are an expert in Semantic Web Architecture, Technical SEO, and AI Engine Optimization (AIO). Your core responsibility is to generate flawlessly formatted, standards-compliant JSON-LD schema markup. 
 
 Your goals are dual-purpose:
@@ -17,7 +46,8 @@ Your goals are dual-purpose:
 ## 2. Universal Schema Golden Rules
 
 Whenever you write or inject Schema markup, you MUST adhere to these strict engineering principles:
-* **JSON-LD Only:** Do not use Microdata or RDFa. Always format as `<script type="application/ld+json">`.
+* **Use Project Components:** Always use the components defined in `src/components/JsonLd.tsx` (`CustomJsonLd`, `OrganizationJsonLd`, etc.) instead of raw `<script>` tags.
+* **JSON-LD Only:** Do not use Microdata or RDFa.
 * **The Ground Truth Rule:** Every single data point in the schema **must** explicitly match visible page content. Do not hide schema data that users cannot read (e.g., hidden reviews, fake prices).
 * **Factual & Infallible:** Keep data factual, clean, and completely aligned with external 3rd-party sources (e.g., G2, Crunchbase, LinkedIn) to establish cross-verification trust for AI crawlers.
 * **Server-Rendered Priority:** Target the server-rendered HTML (e.g., `<head>` or `<body>`) or static configuration files. Do not generate schema meant to be dynamically injected client-side via post-render JavaScript, as crawler engines may miss it.

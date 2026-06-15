@@ -60,9 +60,14 @@ export default async function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-accent/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm opacity-60">
-            © {currentYear} {siteName}. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <p className="text-sm opacity-60">
+              © {currentYear} {siteName}. All rights reserved.
+            </p>
+            <p className="text-sm opacity-80">
+              Developed by <a href="https://tasuku.io" target="_blank" rel="noopener noreferrer" className="text-primary font-bold hover:underline transition-all">tasuku</a> in Japan.
+            </p>
+          </div>
           <div className="flex gap-6 text-xs opacity-60">
             <Link href="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
             <Link href="/sitemap.xml" className="hover:opacity-100 transition-opacity">Sitemap</Link>

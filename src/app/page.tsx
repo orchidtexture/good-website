@@ -33,33 +33,14 @@ const faqItems = [
 
 export default async function Home() {
   const config = await getSiteConfig();
+  const homeRoute = config?.routes["/"];
+
   return (
     <div className="container mx-auto pb-8 px-4 sm:px-6 lg:px-8">
       {config && <OrganizationJsonLd config={config} />}
-      {config && (
-        <CustomJsonLd
-          schema={{
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": config.siteName,
-            "description": config.siteDescription,
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Node.js, Web Browser",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Code-as-Content workflow",
-              "SEO-First architecture",
-              "Next.js 15+",
-              "Tailwind CSS 4",
-              "ADX (Agent-Developer Experience)"
-            ]
-          }}
-        />
-      )}
+      {homeRoute?.schemas?.map((schema, index) => (
+        <CustomJsonLd key={index} schema={schema} />
+      ))}
       <Hero />
       <div className="max-w-3xl mx-auto">
         <section className="mt-12">

@@ -8,17 +8,22 @@ import { SiteConfig } from '@/types/config'
 export function OrganizationJsonLd({ config }: { config: SiteConfig }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${config.baseUrl}/#organization`,
-    name: config.schema?.organizationName || config.siteName,
-    url: config.baseUrl,
-    logo: config.logoUrl ? `${config.baseUrl}${config.logoUrl}` : undefined,
-    sameAs: config.socialLinks ? Object.values(config.socialLinks) : [],
-    foundingDate: config.schema?.foundingDate,
-    address: config.schema?.address ? {
+    '@type': config.global_fallback.schema_defaults.business_type,
+    '@id': `${config.site_config.base_url}/#organization`,
+    name: config.global_fallback.schema_defaults.legal_name || config.site_config.site_name,
+    url: config.site_config.base_url,
+    logo: config.global_fallback.logo_url ? `${config.site_config.base_url}${config.global_fallback.logo_url}` : undefined,
+    foundingDate: config.global_fallback.schema_defaults.founding_date,
+    address: {
       '@type': 'PostalAddress',
-      ...config.schema.address
-    } : undefined,
+      streetAddress: config.global_fallback.schema_defaults.street_address,
+      addressLocality: config.global_fallback.schema_defaults.address_locality,
+      addressRegion: config.global_fallback.schema_defaults.address_region,
+      postalCode: config.global_fallback.schema_defaults.postal_code,
+      addressCountry: config.global_fallback.schema_defaults.address_country
+    },
+    telephone: config.global_fallback.schema_defaults.telephone,
+    priceRange: config.global_fallback.schema_defaults.price_range
   }
 
   return (
@@ -47,7 +52,7 @@ export function CustomJsonLd({ schema }: { schema: Record<string, any> }) {
  * Specifically for blog posts.
  */
 export function ArticleJsonLd({ post, config }: { post: Post; config: SiteConfig }) {
-  const baseUrl = config.baseUrl
+  const baseUrl = config.site_config.base_url
   const wordCount = post.content.split(/\s+/).length
   const isoDate = new Date(post.date).toISOString()
 
@@ -76,10 +81,10 @@ export function ArticleJsonLd({ post, config }: { post: Post; config: SiteConfig
     },
     publisher: {
       '@type': 'Organization',
-      name: config.schema?.organizationName || config.siteName,
-      logo: config.logoUrl ? {
+      name: config.global_fallback.schema_defaults.legal_name || config.site_config.site_name,
+      logo: config.global_fallback.logo_url ? {
         '@type': 'ImageObject',
-        url: `${baseUrl}${config.logoUrl}`
+        url: `${baseUrl}${config.global_fallback.logo_url}`
       } : undefined
     }
   }

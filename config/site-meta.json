@@ -1,0 +1,85 @@
+{
+  "site_config": {
+    "base_url": "https://goodwebsite.dev",
+    "site_name": "Good Website",
+    "title_template": "%s | Good Website",
+    "default_locale": "en_US",
+    "contact_email": "hello@goodwebsite.dev",
+    "theme": {
+      "font_sans": "var(--font-geist-sans)",
+      "colors": {
+        "primary": "#2E5BFF",
+        "secondary": "#F1F5F9",
+        "background": "#FFFFFF",
+        "text_primary": "#0F172A",
+        "text_secondary": "#FFFFFF",
+        "accent": "#2E5BFF",
+        "border": "#E2E8F0"
+      },
+      "dark_colors": {
+        "primary": "#2E5BFF",
+        "secondary": "#1E293B",
+        "background": "#020617",
+        "text_primary": "#F8FAFC",
+        "text_secondary": "#FFFFFF",
+        "accent": "#2E5BFF",
+        "border": "#1E293B"
+      }
+    }
+  },
+  "global_fallback": {
+    "title": "Good Website: SEO-First CMS for AI Agents & Rapid Web Deployment",
+    "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow.",
+    "og_image": "/images/og-card.png",
+    "logo_url": "/next.svg",
+    "robots": "index, follow",
+    "schema_defaults": {
+      "business_type": "Organization",
+      "price_range": "$",
+      "telephone": "",
+      "founding_date": "2026",
+      "legal_name": "Good Website",
+      "postal_code": "100-8111",
+      "address_country": "JP",
+      "address_region": "Tokyo",
+      "address_locality": "Chiyoda-ku",
+      "street_address": "1-1 Chiyoda"
+    }
+  },
+  "routes": {
+    "/": {
+      "title": "Good Website: SEO-First CMS for AI Agents & Rapid Web Deployment",
+      "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow.",
+      "keywords": [
+        "CMS",
+        "Next.js",
+        "AI Agents",
+        "ADX",
+        "SEO"
+      ],
+      "og_type": "website",
+      "schemas": [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Good Website",
+          "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents.",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Node.js, Web Browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Code-as-Content workflow",
+            "SEO-First architecture",
+            "Next.js 15+",
+            "Tailwind CSS 4",
+            "ADX (Agent-Developer Experience)"
+          ]
+        }
+      ]
+    }
+  }
+}

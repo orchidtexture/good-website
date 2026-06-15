@@ -16,7 +16,7 @@ export const metadata = {
 export default async function PostsPage() {
   const posts = await getAllPosts()
   const config = await getSiteConfig()
-  const baseUrl = config?.baseUrl || 'https://good-website-blond.vercel.app'
+  const baseUrl = config?.site_config.base_url || 'https://goodwebsite.dev'
 
   return (
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -28,7 +28,7 @@ export default async function PostsPage() {
         ]}
       />
       <div className="max-w-3xl mx-auto">
-        <h1 className="mb-12 text-4xl font-extrabold tracking-tight sm:text-5xl">
+        <h1 className="mb-12 text-4xl font-extrabold tracking-tight sm:text-5xl text-text-primary">
           Blog Posts
         </h1>
         
@@ -49,7 +49,7 @@ export default async function PostsPage() {
                       day: 'numeric',
                     })}
                   </time>
-                  <h2 className="text-2xl font-bold mb-3 hover:text-primary transition-colors">
+                  <h2 className="text-2xl font-bold mb-3 hover:text-primary transition-colors text-text-primary">
                     <Link href={`/posts/${post.slug}`}>
                       {post.title}
                     </Link>

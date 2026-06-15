@@ -17,15 +17,18 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getSiteConfig();
-  const siteName = config?.siteName || 'Good Website';
-  const titleTag = config?.titleTag || 'SEO-First CMS for AI Agents';
-  const siteDescription = "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow.";
-  const baseUrl = config?.baseUrl || 'https://goodwebsite.dev';
+  if (!config) return {};
+  
+  const siteName = config.site_config.site_name;
+  const titleTemplate = config.site_config.title_template;
+  const defaultTitle = config.global_fallback.title;
+  const siteDescription = config.global_fallback.description;
+  const baseUrl = config.site_config.base_url;
 
   return {
     title: {
-      template: `%s | ${siteName}`,
-      default: `${siteName}: ${titleTag}`,
+      template: titleTemplate,
+      default: defaultTitle,
     },
     description: siteDescription,
     metadataBase: new URL(baseUrl),
@@ -46,39 +49,42 @@ export default async function RootLayout({
 
   const themeStyles = config ? `
     :root {
-      --primary-color: ${config.theme.light.primary};
-      --secondary-color: ${config.theme.light.secondary};
-      --background-color: ${config.theme.light.background};
-      --text-primary-color: ${config.theme.light.textPrimary};
-      --text-secondary-color: ${config.theme.light.textSecondary};
-      --accent-color: ${config.theme.light.accent};
-      --font-sans: ${config.theme.fontSans};
+      --primary-color: ${config.site_config.theme.colors.primary};
+      --secondary-color: ${config.site_config.theme.colors.secondary};
+      --background-color: ${config.site_config.theme.colors.background};
+      --text-primary-color: ${config.site_config.theme.colors.text_primary};
+      --text-secondary-color: ${config.site_config.theme.colors.text_secondary};
+      --accent-color: ${config.site_config.theme.colors.accent};
+      --border-color: ${config.site_config.theme.colors.border};
+      --font-sans: ${config.site_config.theme.font_sans};
     }
     
     [data-theme='dark'] {
-      --primary-color: ${config.theme.dark.primary};
-      --secondary-color: ${config.theme.dark.secondary};
-      --background-color: ${config.theme.dark.background};
-      --text-primary-color: ${config.theme.dark.textPrimary};
-      --text-secondary-color: ${config.theme.dark.textSecondary};
-      --accent-color: ${config.theme.dark.accent};
+      --primary-color: ${config.site_config.theme.dark_colors.primary};
+      --secondary-color: ${config.site_config.theme.dark_colors.secondary};
+      --background-color: ${config.site_config.theme.dark_colors.background};
+      --text-primary-color: ${config.site_config.theme.dark_colors.text_primary};
+      --text-secondary-color: ${config.site_config.theme.dark_colors.text_secondary};
+      --accent-color: ${config.site_config.theme.dark_colors.accent};
+      --border-color: ${config.site_config.theme.dark_colors.border};
     }
 
     @media (prefers-color-scheme: dark) {
       html:not([data-theme='light']) {
-        --primary-color: ${config.theme.dark.primary};
-        --secondary-color: ${config.theme.dark.secondary};
-        --background-color: ${config.theme.dark.background};
-        --text-primary-color: ${config.theme.dark.textPrimary};
-        --text-secondary-color: ${config.theme.dark.textSecondary};
-        --accent-color: ${config.theme.dark.accent};
+        --primary-color: ${config.site_config.theme.dark_colors.primary};
+        --secondary-color: ${config.site_config.theme.dark_colors.secondary};
+        --background-color: ${config.site_config.theme.dark_colors.background};
+        --text-primary-color: ${config.site_config.theme.dark_colors.text_primary};
+        --text-secondary-color: ${config.site_config.theme.dark_colors.text_secondary};
+        --accent-color: ${config.site_config.theme.dark_colors.accent};
+        --border-color: ${config.site_config.theme.dark_colors.border};
       }
     }
   ` : '';
 
   return (
     <html
-      lang="en"
+      lang={config?.site_config.default_locale.split('_')[0] || "ja"}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >

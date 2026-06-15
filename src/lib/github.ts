@@ -6,12 +6,12 @@ import { Post, PostFrontmatter } from '@/types/post'
 import { SiteConfig } from '@/types/config'
 
 const POSTS_DIRECTORY = path.join(process.cwd(), 'src/content/posts')
-const CONFIG_PATH = path.join(process.cwd(), 'src/content/config.md')
+const CONFIG_PATH = path.join(process.cwd(), 'config/site-meta.json')
 
 const GITHUB_OWNER = process.env.GITHUB_OWNER || 'orchidtexture'
 const GITHUB_REPO = process.env.GITHUB_REPO || 'good-website'
 const GITHUB_PATH = 'src/content/posts'
-const GITHUB_CONFIG_PATH = 'src/content/config.md'
+const GITHUB_CONFIG_PATH = 'config/site-meta.json'
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
@@ -22,8 +22,7 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
     // 1. Try Local first (Faster for dev)
     if (fs.existsSync(CONFIG_PATH)) {
       const fileContents = fs.readFileSync(CONFIG_PATH, 'utf8')
-      const { data } = matter(fileContents)
-      return data as SiteConfig
+      return JSON.parse(fileContents) as SiteConfig
     }
 
     // 2. Fallback to GitHub
@@ -36,8 +35,7 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
 
       if ('content' in fileData && typeof fileData.content === 'string') {
         const decodedContent = Buffer.from(fileData.content, 'base64').toString('utf8')
-        const { data } = matter(decodedContent)
-        return data as SiteConfig
+        return JSON.parse(decodedContent) as SiteConfig
       }
     }
 

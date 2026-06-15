@@ -4,7 +4,7 @@ import { getAllPosts, getSiteConfig } from '@/lib/github'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts()
   const config = await getSiteConfig()
-  const baseUrl = config?.baseUrl || 'https://good-website-blond.vercel.app'
+  const baseUrl = config?.site_config.base_url || 'https://goodwebsite.dev'
 
   const postUrls = posts.map((post) => ({
     url: `${baseUrl}/posts/${post.slug}`,

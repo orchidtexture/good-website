@@ -45,7 +45,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
   const config = await getSiteConfig()
-  const baseUrl = config?.baseUrl || 'https://goodwebsite.dev'
+  const baseUrl = config?.site_config.base_url || 'https://goodwebsite.dev'
 
   if (!post) {
     notFound()
@@ -74,7 +74,7 @@ export default async function PostPage({ params }: PostPageProps) {
               day: 'numeric',
             })}
           </time>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl mb-6 text-text-primary">
             {post.title}
           </h1>
           <div className="flex items-center gap-3">

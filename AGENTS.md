@@ -11,7 +11,7 @@ You are an AI coding agent tasked with maintaining and extending this CMS. This 
 ## 1. Customization Philosophy
 - **Direct Modification**: Do not look for "style toggles" in a config file for UI changes. Instead, edit the component files directly in `src/components/`.
 - **Lean Defaults**: The starting components are minimal and "clean." Your job is to transform them into the unique vision the user has, using the established design system.
-- **Config for Data, Code for Style**: Use `config.md` for site-wide data (names, emails, basic brand colors). Use the React components themselves for layout and stylistic logic.
+- **Config for Data, Code for Style**: Use `config/site-meta.json` for site-wide data (names, emails, basic brand colors). Use the React components themselves for layout and stylistic logic.
 
 ## 2. Component Creation & Architecture
 - **Server First**: Always default to Server Components. Only use `'use client'` when browser interactivity (state, effects, events) is strictly required.
@@ -24,7 +24,7 @@ You are an AI coding agent tasked with maintaining and extending this CMS. This 
     - `primary`, `secondary`, `accent`, `site-bg`, `text-primary`, `text-secondary`.
     - Example: `className="bg-primary text-text-secondary"`
 - **Consistency**: Match the border radius and shadow patterns already established in the project (e.g., `rounded-xl`, `shadow-sm`).
-- **Dynamic Customization**: When creating a new component style, check if it should be configurable via `config.md`. If yes, add it to `SiteConfig` type first.
+- **Dynamic Customization**: When creating a new component style, check if it should be configurable via `config/site-meta.json`. If yes, add it to `SiteConfig` type first.
 
 ## 3. SEO & Performance
 - **Headings**: Ensure every page has exactly one `<h1>`. Follow a strict hierarchy (`H1 > H2 > H3`).
@@ -35,7 +35,7 @@ You are an AI coding agent tasked with maintaining and extending this CMS. This 
 ## 4. Extension Protocol
 When the user asks to "add a new feature" or "style", follow this workflow:
 1.  **Type Check**: Update `src/types/config.ts` if the feature requires a new configuration field.
-2.  **Config Update**: Add the default value to `src/content/config.md`.
+2.  **Config Update**: Add the default value to `config/site-meta.json`.
 3.  **Implementation**: Build the component/logic, ensuring it reads from the config.
 4.  **Documentation**: Update the `Customization` section in `README.md` so future agents/users know how to use it.
 
@@ -113,10 +113,11 @@ When the user asks to "add a new feature" or "style", follow this workflow:
 
 ### JsonLd (`src/components/JsonLd.tsx`)
 - **Purpose**: Strictly for SEO. Do not add visual elements here.
-- **OrganizationJsonLd**: Use this component on specific pages (Home, About) to define the organization. Avoid duplicating it sitewide to prevent SEO penalties.
+
 - **CustomJsonLd**: Use this component to inject specific schema markups (FAQ, Service, SoftwareApplication, etc.) into any page manually.
+- **RouteJsonLd**: Automatically injects schemas defined in `site-meta.json` for a specific route.
 - **Customization**: 
     - AI Agents should use the **pi-schema** skill (`.pi/skills/pi-schema/SKILL.md`) to generate validated, page-specific JSON-LD blocks via the `inject-schema <page_path> <schema_type>` command.
     - AI Agents should use the **pi-seo** skill (`.pi/skills/pi-seo/SKILL.md`) to audit page health against `GOOD-SEO.md`.
-    - Always pull base data (URLs, names) from `config.md` to maintain consistency.
+    - Always pull base data (URLs, names) from `config/site-meta.json` to maintain consistency.
 - **Automation**: Every page route should ideally include its relevant JSON-LD.

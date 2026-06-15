@@ -1,44 +1,14 @@
 import { Post } from '@/types/post'
-import { SiteConfig } from '@/types/config'
+import siteMetaImport from '../../config/site-meta.json'
+import { SeoMetaConfig, RouteConfig, SchemaConfig } from '@/types/seo-meta'
 
-/**
- * OrganizationJsonLd component
- * Use this on the Homepage or About page to define the brand.
- */
-export function OrganizationJsonLd({ config }: { config: SiteConfig }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': config.global_fallback.schema_defaults.business_type,
-    '@id': `${config.site_config.base_url}/#organization`,
-    name: config.global_fallback.schema_defaults.legal_name || config.site_config.site_name,
-    url: config.site_config.base_url,
-    logo: config.global_fallback.logo_url ? `${config.site_config.base_url}${config.global_fallback.logo_url}` : undefined,
-    foundingDate: config.global_fallback.schema_defaults.founding_date,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: config.global_fallback.schema_defaults.street_address,
-      addressLocality: config.global_fallback.schema_defaults.address_locality,
-      addressRegion: config.global_fallback.schema_defaults.address_region,
-      postalCode: config.global_fallback.schema_defaults.postal_code,
-      addressCountry: config.global_fallback.schema_defaults.address_country
-    },
-    telephone: config.global_fallback.schema_defaults.telephone,
-    priceRange: config.global_fallback.schema_defaults.price_range
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  )
-}
+const siteMeta = siteMetaImport as unknown as SeoMetaConfig;
 
 /**
  * CustomJsonLd component
  * Allows injecting any custom Schema.org object (FAQ, HowTo, etc).
  */
-export function CustomJsonLd({ schema }: { schema: Record<string, any> }) {
+export function CustomJsonLd({ schema }: { schema: Record<string, unknown> }) {
   return (
     <script
       type="application/ld+json"
@@ -51,8 +21,8 @@ export function CustomJsonLd({ schema }: { schema: Record<string, any> }) {
  * ArticleJsonLd component
  * Specifically for blog posts.
  */
-export function ArticleJsonLd({ post, config }: { post: Post; config: SiteConfig }) {
-  const baseUrl = config.site_config.base_url
+export function ArticleJsonLd({ post }: { post: Post }) {
+  const baseUrl = siteMeta.site_config.base_url
   const wordCount = post.content.split(/\s+/).length
   const isoDate = new Date(post.date).toISOString()
 
@@ -81,11 +51,11 @@ export function ArticleJsonLd({ post, config }: { post: Post; config: SiteConfig
     },
     publisher: {
       '@type': 'Organization',
-      name: config.global_fallback.schema_defaults.legal_name || config.site_config.site_name,
-      logo: config.global_fallback.logo_url ? {
+      name: siteMeta.site_config.site_name,
+      logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}${config.global_fallback.logo_url}`
-      } : undefined
+        url: `${baseUrl}${siteMeta.global_fallback.logo_url}`
+      }
     }
   }
 
@@ -102,11 +72,10 @@ export function ArticleJsonLd({ post, config }: { post: Post; config: SiteConfig
  */
 export function BreadcrumbJsonLd({
   items,
-  baseUrl,
 }: {
   items: { name: string; item: string }[]
-  baseUrl: string
 }) {
+  const baseUrl = siteMeta.site_config.base_url;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -114,7 +83,7 @@ export function BreadcrumbJsonLd({
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `${baseUrl}${item.item}`,
+      item: item.item.startsWith('http') ? item.item : `${baseUrl}${item.item}`,
     })),
   }
 
@@ -124,4 +93,33 @@ export function BreadcrumbJsonLd({
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   )
+}
+
+/**
+ * RouteJsonLd component
+ * Automatically injects schemas defined in site-meta.json for a specific route.
+ */
+export function RouteJsonLd({ path }: { path: string }) {
+  const route: RouteConfig | undefined = siteMeta.routes[path];
+  
+  if (!route || !route.schemas) return null;
+
+  return (
+    <>
+      {route.schemas.map((schema: SchemaConfig, index: number) => {
+        const jsonLd = {
+          '@context': 'https://schema.org',
+          '@type': schema.type,
+          ...schema.properties
+        };
+        return (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        );
+      })}
+    </>
+  );
 }

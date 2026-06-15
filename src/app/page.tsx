@@ -1,8 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import FAQ from "@/components/sections/FAQ";
 import Button from "@/components/Button";
-import { OrganizationJsonLd, CustomJsonLd } from "@/components/JsonLd";
-import { getSiteConfig } from "@/lib/github";
+import { RouteJsonLd } from "@/components/JsonLd";
 import { Wrench, Zap, Search, Layout } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -32,15 +31,10 @@ const faqItems = [
 ];
 
 export default async function Home() {
-  const config = await getSiteConfig();
-  const homeRoute = config?.routes["/"];
 
   return (
     <div className="container mx-auto pb-8 px-4 sm:px-6 lg:px-8">
-      {config && <OrganizationJsonLd config={config} />}
-      {homeRoute?.schemas?.map((schema, index) => (
-        <CustomJsonLd key={index} schema={schema} />
-      ))}
+      <RouteJsonLd path="/" />
       <Hero />
       <div className="max-w-3xl mx-auto">
         <section className="mt-12">

@@ -2,16 +2,63 @@ export interface ThemeColors {
   primary: string
   secondary: string
   background: string
+  textPrimary: string
+  textSecondary: string
+  accent: string
+  border: string
+}
+
+export interface SiteConfig {
+  baseUrl: string
+  siteName: string
+  siteType: string
+  titleTag: string
+  titleTemplate: string
+  siteDescription: string
+  ogImage: string
+  logoUrl: string
+  contactEmail: string
+  notifyEmail?: string
+  adminEmail?: string
+  contactPhone?: string
+  contactPhoneSecondary?: string
+  lineUrl?: string
+  videoCallUrl?: string
+  defaultLocale: string
+  theme: {
+    fontSans: string
+    light: ThemeColors
+    dark: ThemeColors
+  }
+  schema: {
+    organizationName: string
+    legalName: string
+    foundingDate: string
+    address: {
+      streetAddress: string
+      addressLocality: string
+      addressRegion: string
+      postalCode: string
+      addressCountry: string
+    }
+  }
+  routes: Record<string, RouteConfig>
+}
+
+export interface RawThemeColors {
+  primary: string
+  secondary: string
+  background: string
   text_primary: string
   text_secondary: string
   accent: string
   border: string
 }
 
-export interface ThemeSettings {
+export interface RawThemeSettings {
   font_sans: string
-  colors: ThemeColors
-  dark_colors: ThemeColors
+  colors: RawThemeColors
+  dark_colors: RawThemeColors
 }
 
 export interface SiteConfigBase {
@@ -25,7 +72,7 @@ export interface SiteConfigBase {
   contact_phone_secondary?: string
   line_url?: string
   video_call_url?: string
-  theme: ThemeSettings
+  theme: RawThemeSettings
 }
 
 export interface SchemaDefaults {
@@ -34,7 +81,7 @@ export interface SchemaDefaults {
   telephone: string
   founding_date: string
   legal_name: string
-  postal_code: string
+  postal_code?: string
   address_country: string
   address_region: string
   address_locality: string
@@ -67,6 +114,3 @@ export interface SiteMeta {
   global_fallback: GlobalFallback
   routes: Record<string, RouteConfig>
 }
-
-// Keep SiteConfig for backward compatibility where possible, but it might need migration
-export type SiteConfig = SiteMeta

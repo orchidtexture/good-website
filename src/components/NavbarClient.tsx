@@ -17,8 +17,8 @@ export default function NavbarClient({ config }: { config: SiteConfig | null }) 
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
-  const siteName = config?.site_config.site_name || 'Good Website'
-  const logoUrl = config?.global_fallback.logo_url
+  const siteName = config?.siteName || 'Good Website'
+  const logoUrl = config?.logoUrl
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-accent/20 bg-site-bg/80 backdrop-blur-md transition-all duration-300">

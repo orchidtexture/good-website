@@ -2,22 +2,25 @@ import { getSiteConfig } from "@/lib/github";
 import { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Privacy Policy and terms of service.",
-  alternates: {
-    canonical: "/privacy",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getSiteConfig();
+  const route = config?.routes['/privacy'];
+
+  return {
+    title: route?.title || "Privacy Policy",
+    description: route?.description || "Privacy Policy and terms of service.",
+    alternates: {
+      canonical: "/privacy",
+    },
+  };
+}
 
 export default async function PrivacyPage() {
   const config = await getSiteConfig();
-  const baseUrl = config?.site_config.base_url || "https://goodwebsite.dev";
 
   return (
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
       <BreadcrumbJsonLd
-        baseUrl={baseUrl}
         items={[
           { name: "Home", item: "/" },
           { name: "Privacy Policy", item: "/privacy" },
@@ -38,7 +41,7 @@ export default async function PrivacyPage() {
         </p>
         <h2>Contact Us</h2>
         <p>
-          If you have any questions about this Privacy Policy, please contact us at {config?.site_config.contact_email || "hello@goodwebsite.dev"}.
+          If you have any questions about this Privacy Policy, please contact us at {config?.contactEmail || "hello@goodwebsite.dev"}.
         </p>
       </div>
     </div>

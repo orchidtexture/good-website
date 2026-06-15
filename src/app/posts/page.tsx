@@ -3,25 +3,36 @@ import { getAllPosts, getSiteConfig } from '@/lib/github'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import Button from '@/components/Button'
 
+import { Metadata } from 'next'
+
 export const revalidate = 3600 // revalidate at most every hour
 
-export const metadata = {
-  title: 'Blog Posts',
-  description: 'Read the latest updates and articles from Good Website.',
-  alternates: {
-    canonical: "/posts",
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getSiteConfig()
+  const route = config?.routes['/posts']
+  
+  return {
+    title: route?.title || 'Blog Posts',
+    description: route?.description || 'Read the latest updates and articles.',
+    alternates: {
+      canonical: "/posts",
+    },
+    openGraph: {
+      title: route?.title || 'Blog Posts',
+      description: route?.description || 'Read the latest updates and articles.',
+      type: 'website',
+    },
+  }
 }
 
 export default async function PostsPage() {
   const posts = await getAllPosts()
   const config = await getSiteConfig()
-  const baseUrl = config?.site_config.base_url || 'https://goodwebsite.dev'
+  const route = config?.routes['/posts']
 
   return (
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
       <BreadcrumbJsonLd
-        baseUrl={baseUrl}
         items={[
           { name: 'Home', item: '/' },
           { name: 'Posts', item: '/posts' },
@@ -29,7 +40,7 @@ export default async function PostsPage() {
       />
       <div className="max-w-3xl mx-auto">
         <h1 className="mb-12 text-4xl font-extrabold tracking-tight sm:text-5xl text-text-primary">
-          Blog Posts
+          {route?.title || 'Blog Posts'}
         </h1>
         
         {posts.length === 0 ? (
@@ -61,7 +72,7 @@ export default async function PostsPage() {
                     href={`/posts/${post.slug}`}
                     variant="ghost"
                     size="sm"
-                    className="group-hover:text-primary -ml-3"
+                    className="text-sm font-semibold text-primary hover:underline"
                   >
                     Read more <span aria-hidden="true">→</span>
                   </Button>

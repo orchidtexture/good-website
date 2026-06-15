@@ -60,26 +60,47 @@
       "og_type": "website",
       "schemas": [
         {
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Good Website",
-          "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents.",
-          "applicationCategory": "DeveloperApplication",
-          "operatingSystem": "Node.js, Web Browser",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "featureList": [
-            "Code-as-Content workflow",
-            "SEO-First architecture",
-            "Next.js 15+",
-            "Tailwind CSS 4",
-            "ADX (Agent-Developer Experience)"
-          ]
+          "type": "SoftwareApplication",
+          "properties": {
+            "name": "Good Website",
+            "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents.",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Node.js, Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Code-as-Content workflow",
+              "SEO-First architecture",
+              "Next.js 15+",
+              "Tailwind CSS 4",
+              "ADX (Agent-Developer Experience)"
+            ]
+          }
         }
       ]
+    },
+    "/posts": {
+      "title": "Blog Posts | Good Website",
+      "description": "Read the latest updates and articles from Good Website.",
+      "keywords": [
+        "Blog",
+        "Updates",
+        "AI Agents",
+        "Web Development"
+      ],
+      "og_type": "website"
+    },
+    "/privacy": {
+      "title": "Privacy Policy | Good Website",
+      "description": "Privacy Policy and terms of service for Good Website.",
+      "keywords": [
+        "Privacy Policy",
+        "Terms of Service"
+      ],
+      "og_type": "website"
     }
   }
 }

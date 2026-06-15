@@ -4,7 +4,6 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { Bot } from 'lucide-react'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
-import { getSiteConfig } from '@/lib/github'
 
 export const revalidate = 3600 // revalidate at most every hour
 
@@ -44,8 +43,6 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  const config = await getSiteConfig()
-  const baseUrl = config?.site_config.base_url || 'https://goodwebsite.dev'
 
   if (!post) {
     notFound()
@@ -53,9 +50,8 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      {config && <ArticleJsonLd post={post} config={config} />}
+      { <ArticleJsonLd post={post} />}
       <BreadcrumbJsonLd
-        baseUrl={baseUrl}
         items={[
           { name: 'Home', item: '/' },
           { name: 'Posts', item: '/posts' },
@@ -90,8 +86,10 @@ export default async function PostPage({ params }: PostPageProps) {
             <Image
               src={post.image as string}
               alt={post.imageAlt || post.title}
-              fill
-              className="object-cover"
+              width={768}
+              height={432}
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="w-full h-full object-cover"
               priority
             />
           </div>

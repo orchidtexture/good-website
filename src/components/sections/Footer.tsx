@@ -10,8 +10,8 @@ import Button from "../Button";
  */
 export default async function Footer() {
   const config = await getSiteConfig();
-  const siteName = config?.site_config.site_name || 'Good Website';
-  const siteDescription = config?.global_fallback.description;
+  const siteName = config?.siteName || 'Good Website';
+  const siteDescription = config?.siteDescription;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -38,9 +38,9 @@ export default async function Footer() {
               <li>
                 <Link href="/posts" className="opacity-70 hover:opacity-100 hover:text-primary transition-all">Blog Posts</Link>
               </li>
-              {config?.site_config.contact_email && (
+              {config?.contactEmail && (
                 <li>
-                  <a href={`mailto:${config.site_config.contact_email}`} className="opacity-70 hover:opacity-100 hover:text-primary transition-all">
+                  <a href={`mailto:${config.contactEmail}`} className="opacity-70 hover:opacity-100 hover:text-primary transition-all">
                     Contact
                   </a>
                 </li>
@@ -52,8 +52,8 @@ export default async function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-text-primary uppercase tracking-wider text-xs">Connect</h3>
             <div className="flex gap-2 text-sm opacity-70">
-              {config?.site_config.contact_phone_secondary && (
-                <p>Tel: {config.site_config.contact_phone_secondary}</p>
+              {config?.contactPhoneSecondary && (
+                <p>Tel: {config.contactPhoneSecondary}</p>
               )}
             </div>
           </div>

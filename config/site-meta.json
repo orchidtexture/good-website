@@ -31,7 +31,7 @@
     "title": "Good Website: SEO-First CMS for AI Agents & Rapid Web Deployment",
     "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow.",
     "og_image": "/images/og-card.png",
-    "logo_url": "/next.svg",
+    "logo_url": "/images/good_website_logo.svg",
     "robots": "index, follow",
     "schema_defaults": {
       "business_type": "Organization",

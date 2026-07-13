@@ -91,7 +91,7 @@ export default async function Home() {
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="ml-4 text-xs text-slate-400 font-mono">cursor - agent-prompt</div>
+              <div className="ml-4 text-xs text-slate-400 font-mono">Pi - agent-prompt</div>
             </div>
             <div className="p-6 font-mono text-sm text-slate-300 leading-relaxed">
               <p className="text-blue-400">User:</p>

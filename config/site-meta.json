@@ -28,8 +28,8 @@
     }
   },
   "global_fallback": {
-    "title": "Good Website: SEO-First CMS for AI Agents & Rapid Web Deployment",
-    "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow.",
+    "title": "SEO Website Builder & Next.js CMS Template | Good Website",
+    "description": "Good Website is an SEO-first, AI agent CMS template. Built on Next.js, it empowers developers and technical marketers to generate and deploy fast, search-ready websites.",
     "og_image": "/images/og-card.png",
     "logo_url": "/images/good_website_logo.svg",
     "robots": "index, follow",
@@ -48,14 +48,14 @@
   },
   "routes": {
     "/": {
-      "title": "Good Website: SEO-First CMS for AI Agents & Rapid Web Deployment",
-      "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents. Build and customize your site in seconds with a Code-as-Content workflow.",
+      "title": "SEO Website Builder & Next.js CMS Template | Good Website",
+      "description": "Good Website is an SEO-first, AI agent CMS template. Built on Next.js, it empowers developers and technical marketers to generate and deploy fast, search-ready websites.",
       "keywords": [
-        "CMS",
-        "Next.js",
-        "AI Agents",
-        "ADX",
-        "SEO"
+        "seo website builder",
+        "nextjs cms template",
+        "ai cms platform",
+        "seo optimized nextjs cms",
+        "code content cms platform"
       ],
       "og_type": "website",
       "schemas": [

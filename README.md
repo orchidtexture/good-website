@@ -61,7 +61,7 @@ Built with **Tailwind CSS 4** and optimized for **ADX**. Use these components to
   ```tsx
   <SmartJapaneseText as="h1">日本語のタイトル</SmartJapaneseText>
   ```
-- **`JsonLd`**: Centralized schema injection. Includes `OrganizationJsonLd`, `ArticleJsonLd`, `BreadcrumbJsonLd`, and `CustomJsonLd`.
+- **`JsonLd`**: Centralized schema injection. Includes `GlobalJsonLd`, `ArticleJsonLd`, `BreadcrumbJsonLd`, and `CustomJsonLd`.
 
 #### Sections
 - **`Hero`**: The standard high-impact landing section.

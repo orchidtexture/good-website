@@ -4,7 +4,7 @@
     "site_name": "Good Website",
     "title_template": "%s | Good Website",
     "default_locale": "en_US",
-    "contact_email": "hello@goodwebsite.dev",
+    "contact_email": "inquiries@tasuku.io",
     "theme": {
       "font_sans": "var(--font-geist-sans)",
       "colors": {
@@ -34,16 +34,27 @@
     "logo_url": "/images/good_website_logo.svg",
     "robots": "index, follow",
     "schema_defaults": {
-      "business_type": "Organization",
-      "price_range": "$",
-      "telephone": "",
-      "founding_date": "2026",
-      "legal_name": "Good Website",
-      "postal_code": "100-8111",
-      "address_country": "JP",
-      "address_region": "Tokyo",
-      "address_locality": "Chiyoda-ku",
-      "street_address": "1-1 Chiyoda"
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Good Website",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "browserRequirements": "Requires Node.js 18 or higher. Compatible with modern web browsers.",
+      "softwareVersion": "1.0.0",
+      "downloadUrl": "https://github.com/orchidtexture/good-website",
+      "license": "https://opensource.org",
+      "author": {
+        "@type": "Organization",
+        "name": "Tasuku Studio, Inc.",
+        "url": "https://tasuku.io"
+      },
+      "featureList": [
+        "Code-as-Content workflow",
+        "SEO-First architecture",
+        "Next.js 15+",
+        "Tailwind CSS 4",
+        "ADX (Agent-Developer Experience)"
+      ]
     }
   },
   "routes": {
@@ -57,30 +68,7 @@
         "seo optimized nextjs cms",
         "code content cms platform"
       ],
-      "og_type": "website",
-      "schemas": [
-        {
-          "type": "SoftwareApplication",
-          "properties": {
-            "name": "Good Website",
-            "description": "The ultimate high-performance, SEO-first CMS template designed for AI Coding Agents.",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Node.js, Web Browser",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Code-as-Content workflow",
-              "SEO-First architecture",
-              "Next.js 15+",
-              "Tailwind CSS 4",
-              "ADX (Agent-Developer Experience)"
-            ]
-          }
-        }
-      ]
+      "og_type": "website"
     },
     "/posts": {
       "title": "Blog Posts | Good Website",

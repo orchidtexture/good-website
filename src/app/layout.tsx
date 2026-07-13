@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
+import { GlobalJsonLd } from "@/components/JsonLd";
 import { getSiteConfig } from "@/lib/github";
 import "./globals.css";
 
@@ -102,6 +103,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col transition-colors duration-300">
+        <GlobalJsonLd />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

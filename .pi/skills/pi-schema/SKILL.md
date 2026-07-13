@@ -15,7 +15,7 @@ description: Advanced Schema Markup Generator for JSON-LD, optimizing for Google
 
 This project uses a centralized component for handling JSON-LD located at `src/components/JsonLd.tsx`. When adding schema to a page, DO NOT manually write `<script type="application/ld+json">`. Instead, use the following components:
 
-- **`OrganizationJsonLd`**: Use on Home or About pages.
+- **`GlobalJsonLd`**: Renders the global fallback schema defined in `site-meta.json`.
 - **`ArticleJsonLd`**: Use on blog post pages (`[slug]/page.tsx`).
 - **`BreadcrumbJsonLd`**: Use on any nested page to define navigation paths.
 - **`CustomJsonLd`**: Use for any other schema type (FAQ, SoftwareApplication, Product, etc.).
@@ -46,7 +46,7 @@ Your goals are dual-purpose:
 ## 2. Universal Schema Golden Rules
 
 Whenever you write or inject Schema markup, you MUST adhere to these strict engineering principles:
-* **Use Project Components:** Always use the components defined in `src/components/JsonLd.tsx` (`CustomJsonLd`, `OrganizationJsonLd`, etc.) instead of raw `<script>` tags.
+* **Use Project Components:** Always use the components defined in `src/components/JsonLd.tsx` (`CustomJsonLd`, `GlobalJsonLd`, etc.) instead of raw `<script>` tags.
 * **JSON-LD Only:** Do not use Microdata or RDFa.
 * **The Ground Truth Rule:** Every single data point in the schema **must** explicitly match visible page content. Do not hide schema data that users cannot read (e.g., hidden reviews, fake prices).
 * **Factual & Infallible:** Keep data factual, clean, and completely aligned with external 3rd-party sources (e.g., G2, Crunchbase, LinkedIn) to establish cross-verification trust for AI crawlers.

@@ -5,6 +5,19 @@ import { SeoMetaConfig, RouteConfig, SchemaConfig } from '@/types/seo-meta'
 const siteMeta = siteMetaImport as unknown as SeoMetaConfig;
 
 /**
+ * GlobalJsonLd component
+ * Renders the global fallback schema from site-meta.json.
+ */
+export function GlobalJsonLd() {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(siteMeta.global_fallback.schema_defaults) }}
+    />
+  )
+}
+
+/**
  * CustomJsonLd component
  * Allows injecting any custom Schema.org object (FAQ, HowTo, etc).
  */

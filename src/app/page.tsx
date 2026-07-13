@@ -1,7 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import FAQ from "@/components/sections/FAQ";
 import Button from "@/components/Button";
-import { RouteJsonLd } from "@/components/JsonLd";
+import { RouteJsonLd, CustomJsonLd } from "@/components/JsonLd";
 import { 
   Bot, 
   Search, 

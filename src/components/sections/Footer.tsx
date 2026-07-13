@@ -49,14 +49,14 @@ export default async function Footer() {
           </div>
 
           {/* Social section */}
-          <div>
+          {/* <div>
             <h3 className="font-semibold mb-4 text-text-primary uppercase tracking-wider text-xs">Connect</h3>
             <div className="flex gap-2 text-sm opacity-70">
               {config?.contactPhoneSecondary && (
                 <p>Tel: {config.contactPhoneSecondary}</p>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-12 pt-8 border-t border-accent/10 flex flex-col md:flex-row justify-between items-center gap-4">

@@ -7,18 +7,21 @@ import { usePathname } from 'next/navigation'
 import ThemeToggle from './ThemeToggle'
 import Button from './Button'
 import { SiteConfig } from '@/types/config'
+import { Locale } from '@/dictionaries'
 
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Posts', href: '/posts' },
-]
+// ... (navigation structure will need to be dynamic or passed)
 
-export default function NavbarClient({ config }: { config: SiteConfig | null }) {
+export default function NavbarClient({ config, lang }: { config: SiteConfig | null, lang: Locale }) {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
   const siteName = config?.siteName || 'Good Website'
   const logoUrl = config?.logoUrl
+
+  const navigation = [
+    { name: 'Home', href: `/${lang}` },
+    { name: 'Posts', href: `/${lang}/posts` },
+  ]
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-accent/20 bg-site-bg/80 backdrop-blur-md transition-all duration-300">

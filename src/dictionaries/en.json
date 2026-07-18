@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog"
+  },
+  "home": {
+    "title": "Build and ship websites with AI agents",
+    "subtitle": "Traditional CMS interfaces slow down development..."
+  }
+}

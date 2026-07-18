@@ -1,6 +1,7 @@
 import { getSiteConfig } from "@/lib/github";
 import Link from "next/link";
 import Button from "../Button";
+import { Locale } from "@/dictionaries";
 
 /**
  * Footer component (Server Component)
@@ -8,8 +9,8 @@ import Button from "../Button";
  * Agents: Modify the layout, social links, and extra navigation directly here.
  * Use config/site-meta.json for global data like contact_email.
  */
-export default async function Footer() {
-  const config = await getSiteConfig();
+export default async function Footer({ lang }: { lang: Locale }) {
+  const config = await getSiteConfig(lang);
   const siteName = config?.siteName || 'Good Website';
   const siteDescription = config?.siteDescription;
   const currentYear = new Date().getFullYear();
@@ -20,7 +21,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
           {/* Brand section */}
           <div className="space-y-4">
-            <Link href="/" className="font-bold text-xl text-text-primary hover:opacity-80 transition-opacity">
+            <Link href={`/${lang}`} className="font-bold text-xl text-text-primary hover:opacity-80 transition-opacity">
               {siteName}
             </Link>
             <p className="text-sm opacity-70 leading-relaxed max-w-xs">
@@ -33,10 +34,10 @@ export default async function Footer() {
             <h3 className="font-semibold mb-4 text-text-primary uppercase tracking-wider text-xs">Navigation</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="opacity-70 hover:opacity-100 hover:text-primary transition-all">Home</Link>
+                <Link href={`/${lang}`} className="opacity-70 hover:opacity-100 hover:text-primary transition-all">Home</Link>
               </li>
               <li>
-                <Link href="/posts" className="opacity-70 hover:opacity-100 hover:text-primary transition-all">Blog Posts</Link>
+                <Link href={`/${lang}/posts`} className="opacity-70 hover:opacity-100 hover:text-primary transition-all">Blog Posts</Link>
               </li>
               {config?.contactEmail && (
                 <li>
@@ -69,7 +70,7 @@ export default async function Footer() {
             </p>
           </div>
           <div className="flex gap-6 text-xs opacity-60">
-            <Link href="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
+            <Link href={`/${lang}/privacy`} className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
             <Link href="/sitemap.xml" className="hover:opacity-100 transition-opacity">Sitemap</Link>
             <Link href="/robots.txt" className="hover:opacity-100 transition-opacity">Robots</Link>
           </div>

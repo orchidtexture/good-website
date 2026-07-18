@@ -1,0 +1,94 @@
+{
+  "site_config": {
+    "base_url": "https://goodwebsite.dev",
+    "site_name": "Good Website",
+    "title_template": "%s | Good Website",
+    "default_locale": "en_US",
+    "contact_email": "inquiries@tasuku.io",
+    "theme": {
+      "font_sans": "var(--font-geist-sans)",
+      "colors": {
+        "primary": "#2E5BFF",
+        "secondary": "#F1F5F9",
+        "background": "#FFFFFF",
+        "text_primary": "#0F172A",
+        "text_secondary": "#FFFFFF",
+        "accent": "#2E5BFF",
+        "border": "#E2E8F0"
+      },
+      "dark_colors": {
+        "primary": "#2E5BFF",
+        "secondary": "#1E293B",
+        "background": "#020617",
+        "text_primary": "#F8FAFC",
+        "text_secondary": "#FFFFFF",
+        "accent": "#2E5BFF",
+        "border": "#1E293B"
+      }
+    }
+  },
+  "global_fallback": {
+    "title": "SEO Website Builder & Next.js CMS Template | Good Website",
+    "description": "Good Website is an SEO-first, AI agent CMS template. Built on Next.js, it empowers developers and technical marketers to generate and deploy fast, search-ready websites.",
+    "og_image": "/images/og-card.png",
+    "logo_url": "/images/good_website_logo.svg",
+    "robots": "index, follow",
+    "schema_defaults": {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Good Website",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "browserRequirements": "Requires Node.js 18 or higher. Compatible with modern web browsers.",
+      "softwareVersion": "1.0.0",
+      "downloadUrl": "https://github.com/orchidtexture/good-website",
+      "license": "https://opensource.org",
+      "author": {
+        "@type": "Organization",
+        "name": "Tasuku Studio, Inc.",
+        "url": "https://tasuku.io"
+      },
+      "featureList": [
+        "Code-as-Content workflow",
+        "SEO-First architecture",
+        "Next.js 15+",
+        "Tailwind CSS 4",
+        "ADX (Agent-Developer Experience)"
+      ]
+    }
+  },
+  "routes": {
+    "/": {
+      "title": "SEO Website Builder & Next.js CMS Template | Good Website",
+      "description": "Good Website is an SEO-first, AI agent CMS template. Built on Next.js, it empowers developers and technical marketers to generate and deploy fast, search-ready websites.",
+      "keywords": [
+        "seo website builder",
+        "nextjs cms template",
+        "ai cms platform",
+        "seo optimized nextjs cms",
+        "code content cms platform"
+      ],
+      "og_type": "website"
+    },
+    "/posts": {
+      "title": "Blog Posts | Good Website",
+      "description": "Read the latest updates and articles from Good Website.",
+      "keywords": [
+        "Blog",
+        "Updates",
+        "AI Agents",
+        "Web Development"
+      ],
+      "og_type": "website"
+    },
+    "/privacy": {
+      "title": "Privacy Policy | Good Website",
+      "description": "Privacy Policy and terms of service for Good Website.",
+      "keywords": [
+        "Privacy Policy",
+        "Terms of Service"
+      ],
+      "og_type": "website"
+    }
+  }
+}

@@ -16,12 +16,22 @@ import {
   XCircle
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getDictionary, Locale } from "@/dictionaries";
+import { getSiteConfig } from "@/lib/github";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "/",
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang as Locale;
+  const config = await getSiteConfig(lang);
+  
+  return {
+    title: config?.titleTag,
+    description: config?.siteDescription,
+    alternates: {
+      canonical: "/",
+    },
+  };
+}
 
 const faqItems = [
   {
@@ -58,11 +68,13 @@ const faqItems = [
   }
 ];
 
-export default async function Home() {
+export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
   return (
     <div className="container mx-auto pb-8 px-4 sm:px-6 lg:px-8">
       <RouteJsonLd path="/" />
-      <Hero />
+      <Hero dict={dict} />
       
       <div className="max-w-4xl mx-auto space-y-32">
         {/* Section 1: AI Agents */}

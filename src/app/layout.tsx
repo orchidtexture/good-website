@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/sections/Footer";
 import { GlobalJsonLd } from "@/components/JsonLd";
+import { headers } from "next/headers";
+import { Locale } from "@/dictionaries";
 import { getSiteConfig } from "@/lib/github";
 import "./globals.css";
 
@@ -16,37 +16,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const config = await getSiteConfig();
-  if (!config) return {};
-  
-  const siteName = config.siteName;
-  const titleTemplate = config.titleTemplate;
-  const defaultTitle = config.titleTag;
-  const siteDescription = config.siteDescription;
-  const baseUrl = config.baseUrl;
-
-  return {
-    title: {
-      template: titleTemplate,
-      default: defaultTitle,
-    },
-    description: siteDescription,
-    metadataBase: new URL(baseUrl),
-    robots: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-    },
-  };
-}
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const config = await getSiteConfig();
+  const headerList = await headers();
+  const lang = (headerList.get('x-lang') as Locale) || 'ja';
+  const config = await getSiteConfig(lang);
 
   const themeStyles = config ? `
     :root {
@@ -85,7 +62,7 @@ export default async function RootLayout({
 
   return (
     <html
-      lang={config?.defaultLocale.split('_')[0] || "ja"}
+      lang={lang}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
@@ -104,9 +81,7 @@ export default async function RootLayout({
       </head>
       <body className="min-h-full flex flex-col transition-colors duration-300">
         <GlobalJsonLd />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

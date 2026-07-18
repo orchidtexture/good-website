@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "blog": "Blog"
+  },
+  "home": {
+    "title": "Construya y publique sitios web con agentes de IA",
+    "subtitle": "Las interfaces CMS tradicionales..."
+  }
+}

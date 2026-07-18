@@ -5,25 +5,27 @@ import matter from 'gray-matter'
 import { Post, PostFrontmatter } from '@/types/post'
 import { SiteConfig, SiteMeta, RawThemeColors, ThemeColors } from '@/types/config'
 
+import { Locale } from '@/dictionaries'
+
 const POSTS_DIRECTORY = path.join(process.cwd(), 'src/content/posts')
-const SITE_META_PATH = path.join(process.cwd(), 'config/site-meta.json')
 
 const GITHUB_OWNER = process.env.GITHUB_OWNER || 'orchidtexture'
 const GITHUB_REPO = process.env.GITHUB_REPO || 'good-website'
 const GITHUB_PATH = 'src/content/posts'
-const GITHUB_SITE_META_PATH = 'config/site-meta.json'
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 })
 
-export async function getSiteConfig(): Promise<SiteConfig | null> {
+export async function getSiteConfig(lang: Locale = 'ja'): Promise<SiteConfig | null> {
   try {
     let rawData: SiteMeta | null = null
+    const siteMetaPath = path.join(process.cwd(), `config/site-meta.${lang}.json`)
+    const githubSiteMetaPath = `config/site-meta.${lang}.json`
 
     // 1. Try Local first (Faster for dev)
-    if (fs.existsSync(SITE_META_PATH)) {
-      const fileContents = fs.readFileSync(SITE_META_PATH, 'utf8')
+    if (fs.existsSync(siteMetaPath)) {
+      const fileContents = fs.readFileSync(siteMetaPath, 'utf8')
       rawData = JSON.parse(fileContents) as SiteMeta
     }
     // 2. Fallback to GitHub
@@ -32,7 +34,7 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
         const { data: fileData } = await octokit.rest.repos.getContent({
           owner: GITHUB_OWNER,
           repo: GITHUB_REPO,
-          path: GITHUB_SITE_META_PATH,
+          path: githubSiteMetaPath,
         })
 
         if ('content' in fileData && typeof fileData.content === 'string') {
@@ -103,13 +105,14 @@ export async function getSiteConfig(): Promise<SiteConfig | null> {
   }
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+export async function getPostBySlug(slug: string, lang: Locale = 'ja'): Promise<Post | null> {
   try {
+    const langPostsDir = path.join(POSTS_DIRECTORY, lang)
     // 1. Try Local
     const extensions = ['.html', '.md']
-    if (fs.existsSync(POSTS_DIRECTORY)) {
+    if (fs.existsSync(langPostsDir)) {
       for (const ext of extensions) {
-        const p = path.join(POSTS_DIRECTORY, `${slug}${ext}`)
+        const p = path.join(langPostsDir, `${slug}${ext}`)
         if (fs.existsSync(p)) {
           const fileContents = fs.readFileSync(p, 'utf8')
           const { data, content } = matter(fileContents)
@@ -129,7 +132,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
           const { data: fileData } = await octokit.rest.repos.getContent({
             owner: GITHUB_OWNER,
             repo: GITHUB_REPO,
-            path: `${GITHUB_PATH}/${slug}${ext}`,
+            path: `${GITHUB_PATH}/${lang}/${slug}${ext}`,
           })
 
           if ('content' in fileData && typeof fileData.content === 'string') {
@@ -154,19 +157,20 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   }
 }
 
-export async function getAllPosts(): Promise<Post[]> {
+export async function getAllPosts(lang: Locale = 'ja'): Promise<Post[]> {
   try {
     let posts: Post[] = []
+    const langPostsDir = path.join(POSTS_DIRECTORY, lang)
 
     // 1. Try Local
-    if (fs.existsSync(POSTS_DIRECTORY)) {
-      const files = fs.readdirSync(POSTS_DIRECTORY)
+    if (fs.existsSync(langPostsDir)) {
+      const files = fs.readdirSync(langPostsDir)
       const localPosts = await Promise.all(
         files
           .filter((file) => file.endsWith('.md') || file.endsWith('.html'))
           .map(async (file) => {
             const slug = file.replace(/\.(md|html)$/, '')
-            return await getPostBySlug(slug)
+            return await getPostBySlug(slug, lang)
           })
       )
       posts = localPosts.filter((post): post is Post => post !== null)
@@ -178,7 +182,7 @@ export async function getAllPosts(): Promise<Post[]> {
         const { data: files } = await octokit.rest.repos.getContent({
           owner: GITHUB_OWNER,
           repo: GITHUB_REPO,
-          path: GITHUB_PATH,
+          path: `${GITHUB_PATH}/${lang}`,
         })
 
         if (Array.isArray(files)) {
@@ -187,7 +191,7 @@ export async function getAllPosts(): Promise<Post[]> {
               .filter((file) => file.name.endsWith('.md') || file.name.endsWith('.html'))
               .map(async (file) => {
                 const slug = file.name.replace(/\.(md|html)$/, '')
-                return await getPostBySlug(slug)
+                return await getPostBySlug(slug, lang)
               })
           )
           posts = githubPosts.filter((post): post is Post => post !== null)

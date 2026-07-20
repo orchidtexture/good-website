@@ -1,3 +1,4 @@
+import { SmartJapaneseText } from "@/components/SmartJapaneseText";
 import { Dictionary } from "@/dictionaries";
 import Button from "@/components/Button";
 
@@ -14,7 +15,7 @@ export default function Hero({ dict }: HeroProps) {
           Agent First Architecture
         </div>
         <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-6 text-text-primary">
-          {dict.home.title}
+          <SmartJapaneseText>{dict.home.title}</SmartJapaneseText>
         </h1>
         <p className="text-xl opacity-80 mb-10 leading-relaxed max-w-2xl mx-auto">
           {dict.home.subtitle}

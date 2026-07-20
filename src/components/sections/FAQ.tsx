@@ -1,5 +1,6 @@
 import { HelpCircle } from 'lucide-react';
 import { CustomJsonLd } from '../JsonLd';
+import { SmartJapaneseText } from '../SmartJapaneseText';
 
 interface FAQItem {
   question: string;
@@ -42,14 +43,14 @@ export default function FAQSection({
       <div className="container mx-auto px-4 max-w-3xl">
         <h2 className="text-3xl font-black text-center mb-12 flex items-center justify-center gap-3 text-text-primary">
           <HelpCircle className="text-primary" size={32} />
-          <span>{title}</span>
+          <SmartJapaneseText as="span">{title}</SmartJapaneseText>
         </h2>
         <div className="space-y-4">
           {items.map((item, i) => (
             <div key={i} className="bg-site-bg p-6 rounded-2xl shadow-sm border border-accent/10">
               <h3 className="font-black text-lg mb-3 flex gap-3 text-text-primary">
                 <span className="text-primary shrink-0">Q.</span>
-                <span>{item.question}</span>
+                <SmartJapaneseText as="span">{item.question}</SmartJapaneseText>
               </h3>
               <div className="flex gap-3 text-text-primary/70 leading-relaxed">
                 <span className="font-bold text-accent shrink-0">A.</span>

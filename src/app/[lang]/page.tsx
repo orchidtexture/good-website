@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import FAQ from "@/components/sections/FAQ";
 import Button from "@/components/Button";
+import { SmartJapaneseText } from "@/components/SmartJapaneseText";
 import { RouteJsonLd } from "@/components/JsonLd";
 import { 
   Bot, 
@@ -48,11 +49,11 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="flex-1 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
               <Bot size={16} />
-              <span>{dict.home.agent_experience}</span>
+              <SmartJapaneseText as="span">{dict.home.agent_experience}</SmartJapaneseText>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary leading-tight">
+            <SmartJapaneseText as="h2" className="text-3xl sm:text-4xl font-bold text-text-primary leading-tight">
               {dict.home.section1.title}
-            </h2>
+            </SmartJapaneseText>
             <div className="text-lg opacity-80 leading-relaxed space-y-4">
               <p>
                 {dict.home.section1.p1}
@@ -88,11 +89,11 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
               <Search size={16} />
-              <span>{dict.home.section2.badge}</span>
+              <SmartJapaneseText as="span">{dict.home.section2.badge}</SmartJapaneseText>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">
+            <SmartJapaneseText as="h2" className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">
               {dict.home.section2.title}
-            </h2>
+            </SmartJapaneseText>
             <p className="text-lg opacity-80">
               {dict.home.section2.subtitle}
             </p>
@@ -125,7 +126,7 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
                 <div className="mb-4 bg-background w-12 h-12 rounded-xl flex items-center justify-center shadow-sm">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-text-primary mb-2">{feature.title}</h3>
+                <SmartJapaneseText as="h3" className="text-xl font-semibold text-text-primary mb-2">{feature.title}</SmartJapaneseText>
                 <p className="opacity-80 leading-relaxed">{feature.desc}</p>
               </div>
             ))}
@@ -139,9 +140,9 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-black opacity-10 blur-3xl"></div>
           
           <div className="relative p-10 sm:p-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+            <SmartJapaneseText as="h2" className="text-3xl sm:text-4xl font-bold mb-6">
               {dict.home.section3.title}
-            </h2>
+            </SmartJapaneseText>
             <div className="text-lg opacity-90 space-y-4">
               <p dangerouslySetInnerHTML={{ __html: dict.home.section3.p1 }} />
               <p>
@@ -161,11 +162,11 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
               <Workflow size={16} />
-              <span>{dict.home.section4.badge}</span>
+              <SmartJapaneseText as="span">{dict.home.section4.badge}</SmartJapaneseText>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">
+            <SmartJapaneseText as="h2" className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">
               {dict.home.section4.title}
-            </h2>
+            </SmartJapaneseText>
             <p className="text-lg opacity-80" dangerouslySetInnerHTML={{ __html: dict.home.section4.subtitle }} />
           </div>
 
@@ -175,7 +176,7 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
                 <div className="text-4xl font-black text-primary/40 absolute top-4 right-4 select-none">
                   {i + 1}
                 </div>
-                <h3 className="text-xl font-bold text-text-primary mb-3 mt-4">{s.title}</h3>
+                <SmartJapaneseText as="h3" className="text-xl font-bold text-text-primary mb-3 mt-4">{s.title}</SmartJapaneseText>
                 <p className="text-sm opacity-80 leading-relaxed">{s.desc}</p>
               </div>
             ))}
@@ -184,9 +185,9 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
 
         {/* Section 5: Comparison */}
         <section>
-          <h2 className="text-3xl font-bold mb-10 text-center text-text-primary">
+          <SmartJapaneseText as="h2" className="text-3xl font-bold mb-10 text-center text-text-primary">
             {dict.home.section5.title}
-          </h2>
+          </SmartJapaneseText>
           <div className="overflow-x-auto bg-background rounded-3xl border border-accent/20 shadow-sm">
             <table className="min-w-full text-left border-collapse">
               <thead>
@@ -216,14 +217,14 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="p-8 rounded-3xl border border-green-500/20 bg-green-500/5">
             <div className="flex items-center gap-3 mb-6 text-green-600 dark:text-green-500">
               <CheckCircle2 size={28} />
-              <h3 className="text-2xl font-bold">{dict.home.section6.pros.title}</h3>
+              <SmartJapaneseText as="h3" className="text-2xl font-bold">{dict.home.section6.pros.title}</SmartJapaneseText>
             </div>
             <p className="text-lg opacity-90 leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: dict.home.section6.pros.desc }} />
           </div>
           <div className="p-8 rounded-3xl border border-red-500/20 bg-red-500/5">
             <div className="flex items-center gap-3 mb-6 text-red-600 dark:text-red-500">
               <XCircle size={28} />
-              <h3 className="text-2xl font-bold">{dict.home.section6.cons.title}</h3>
+              <SmartJapaneseText as="h3" className="text-2xl font-bold">{dict.home.section6.cons.title}</SmartJapaneseText>
             </div>
             <p className="text-lg opacity-90 leading-relaxed mb-6">
               {dict.home.section6.cons.desc}
@@ -234,9 +235,9 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
         {/* Section 7: How to get started */}
         <section className="bg-slate-900 rounded-3xl overflow-hidden shadow-xl border border-slate-800 flex flex-col md:flex-row">
           <div className="p-8 md:p-12 flex-1 text-slate-100 flex flex-col justify-center">
-            <h2 className="text-3xl font-bold mb-6 text-white">
+            <SmartJapaneseText as="h2" className="text-3xl font-bold mb-6 text-white">
               {dict.home.section7.title}
-            </h2>
+            </SmartJapaneseText>
             <ol className="space-y-5 text-slate-300">
               {dict.home.section7.steps.map((step, i) => (
                   <li key={i} className="flex gap-3">
@@ -270,9 +271,9 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
 
         {/* CTA */}
         <section className="pb-24 pt-10 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-text-primary">
+          <SmartJapaneseText as="h2" className="text-3xl sm:text-4xl font-bold mb-8 text-text-primary">
             {dict.home.cta.title}
-          </h2>
+          </SmartJapaneseText>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
               href="https://github.com/orchidtexture/good-website" 

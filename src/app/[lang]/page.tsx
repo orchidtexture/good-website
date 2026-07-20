@@ -1,7 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import FAQ from "@/components/sections/FAQ";
 import Button from "@/components/Button";
-import { RouteJsonLd, CustomJsonLd } from "@/components/JsonLd";
+import { RouteJsonLd } from "@/components/JsonLd";
 import { 
   Bot, 
   Search, 
@@ -33,40 +33,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-const faqItems = [
-  {
-    question: "What is an AI CMS platform?",
-    answer: "An AI CMS platform is a content management system designed specifically to be operated, extended, and maintained by AI agents like Claude, Pi, or Cursor, rather than just humans clicking through a dashboard."
-  },
-  {
-    question: "Is this a Next.js CMS template?",
-    answer: "Yes. Good Website is an SEO optimized Next.js CMS template using the latest App Router, React Server Components, and Tailwind CSS. It is built to be a code-first foundation for your site."
-  },
-  {
-    question: "How does it improve SEO?",
-    answer: "It bakes technical SEO into the architecture. It automatically implements JSON-LD schema, metadata, canonical tags, and semantic HTML5, ensuring your site is search-ready by default."
-  },
-  {
-    question: "Can I use Claude, Pi, or Cursor?",
-    answer: "Absolutely. The repository includes strict AGENTS.md instruction layers so your preferred AI agent understands exactly how to generate components, modify layouts, and create content."
-  },
-  {
-    question: "Do I need to code?",
-    answer: "You should be comfortable with a code editor, git, and basic deployment concepts. While AI agents write the code, this is a developer-centric product where you own and review the source code."
-  },
-  {
-    question: "Can I customize the content model and design?",
-    answer: "Yes, infinitely. Because it uses a Code-as-Content model, you aren't restricted by predefined dashboard fields. You can ask an agent to build custom React components right into your posts."
-  },
-  {
-    question: "Does it replace an SEO tool?",
-    answer: "It replaces the need for technical SEO plugins and manual schema formatting by automating best practices, but you still need to research keywords and plan your content strategy."
-  },
-  {
-    question: "Who should not use it?",
-    answer: "If you are looking for a purely visual drag-and-drop editor without touching code, or a turnkey hosted solution where you don't manage a GitHub repository, a traditional no-code website builder is a better fit."
-  }
-];
 
 export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
   const { lang } = await params;
@@ -82,17 +48,17 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="flex-1 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
               <Bot size={16} />
-              <span>Agent-Developer Experience</span>
+              <span>{dict.home.agent_experience}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-text-primary leading-tight">
-              Build and ship websites with AI agents
+              {dict.home.section1.title}
             </h2>
             <div className="text-lg opacity-80 leading-relaxed space-y-4">
               <p>
-                Traditional CMS interfaces slow down development by separating the content from the code. By using Good Website, a purpose-built <strong>ai agent cms template</strong>, you invite Claude, Pi, and Cursor directly into your project. 
+                {dict.home.section1.p1}
               </p>
               <p>
-                Our strict Agent-Developer Experience (ADX) instructions ensure that when you prompt an agent to build a new feature or layout, it interacts safely with your Next.js components and configuration. The agent generates the code, but you maintain the ability to review, test, and deploy every change securely.
+                {dict.home.section1.p2}
               </p>
             </div>
           </div>
@@ -103,16 +69,16 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="ml-4 text-xs text-slate-400 font-mono">Pi - agent-prompt</div>
+              <div className="ml-4 text-xs text-slate-400 font-mono">{dict.home.section1.agent_name}</div>
             </div>
             <div className="p-6 font-mono text-sm text-slate-300 leading-relaxed">
-              <p className="text-blue-400">User:</p>
-              <p className="mb-4 text-slate-100">Make the navbar floating and rounded, and add a minimalist newsletter section.</p>
-              <p className="text-purple-400">Agent:</p>
-              <p>Reading <span className="text-amber-300">AGENTS.md</span>...</p>
-              <p>Updating <span className="text-green-300">src/components/Navbar.tsx</span></p>
-              <p>Creating <span className="text-green-300">src/components/Newsletter.tsx</span></p>
-              <p className="mt-4 text-slate-100">Done! I have applied the custom theme variables and verified mobile responsiveness.</p>
+              <p className="text-blue-400">{dict.home.section1.user_label}</p>
+              <p className="mb-4 text-slate-100">{dict.home.section1.user_prompt}</p>
+              <p className="text-purple-400">{dict.home.section1.agent_label}</p>
+              <p>{dict.home.section1.agent_action1} <span className="text-amber-300">AGENTS.md</span></p>
+              <p>{dict.home.section1.agent_action2} <span className="text-green-300">src/components/Navbar.tsx</span></p>
+              <p>{dict.home.section1.agent_action3} <span className="text-green-300">src/components/Newsletter.tsx</span></p>
+              <p className="mt-4 text-slate-100">{dict.home.section1.agent_response}</p>
             </div>
           </div>
         </section>
@@ -122,13 +88,13 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
               <Search size={16} />
-              <span>Perfect Lighthouse Scores</span>
+              <span>{dict.home.section2.badge}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">
-              SEO is built into the publishing foundation
+              {dict.home.section2.title}
             </h2>
             <p className="text-lg opacity-80">
-              When looking for the best website platforms for SEO, you need more than a generic checklist. Good Website bakes technical SEO directly into the architecture.
+              {dict.home.section2.subtitle}
             </p>
           </div>
           
@@ -136,23 +102,23 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
             {[
               {
                 icon: <FileJson className="text-primary" size={24} />,
-                title: "Automated Metadata",
-                desc: "Dynamic title tags, descriptions, and Open Graph data generated for every route."
+                title: dict.home.section2.features[0].title,
+                desc: dict.home.section2.features[0].desc
               },
               {
                 icon: <Code2 className="text-primary" size={24} />,
-                title: "Structured Data",
-                desc: "Built-in JSON-LD schema injection for rich Google results."
+                title: dict.home.section2.features[1].title,
+                desc: dict.home.section2.features[1].desc
               },
               {
                 icon: <Zap className="text-primary" size={24} />,
-                title: "Core Web Vitals",
-                desc: "Optimized image handling, zero layout shift, and server-first rendering to ensure lightning-fast LCP."
+                title: dict.home.section2.features[2].title,
+                desc: dict.home.section2.features[2].desc
               },
               {
                 icon: <Layout className="text-primary" size={24} />,
-                title: "Semantic HTML5",
-                desc: "Strict heading hierarchies and accessible markup by default."
+                title: dict.home.section2.features[3].title,
+                desc: dict.home.section2.features[3].desc
               }
             ].map((feature, i) => (
               <div key={i} className="p-6 rounded-2xl border border-accent/20 bg-accent/5 hover:bg-accent/10 transition-colors">
@@ -174,19 +140,17 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           
           <div className="relative p-10 sm:p-16 text-center max-w-3xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-              A Next.js CMS template for code-first teams
+              {dict.home.section3.title}
             </h2>
             <div className="text-lg opacity-90 space-y-4">
+              <p dangerouslySetInnerHTML={{ __html: dict.home.section3.p1 }} />
               <p>
-                We have created an <strong className="font-semibold text-white">seo optimized nextjs cms</strong> that hands ownership back to the developer. Built on Next.js 15+ with the App Router, React Server Components, and Tailwind CSS, this template is entirely extensible. 
-              </p>
-              <p>
-                Because it is a code-first repository, you do not rent your customization from a SaaS dashboard. You own the component logic, the deployment model, and the entire content lifecycle. It is the ultimate Next.js CMS template for teams that want speed without sacrificing technical control.
+                {dict.home.section3.p2}
               </p>
             </div>
             <div className="mt-8 flex justify-center">
               <Button href="https://github.com/orchidtexture/good-website" variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-white/30" external>
-                View Architecture
+                {dict.home.section3.cta}
               </Button>
             </div>
           </div>
@@ -197,26 +161,19 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
               <Workflow size={16} />
-              <span>Developer Control</span>
+              <span>{dict.home.section4.badge}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">
-              Code-as-Content and the AI CMS workflow
+              {dict.home.section4.title}
             </h2>
-            <p className="text-lg opacity-80">
-              As a true <strong className="font-semibold">code content cms platform</strong>, we bypass the limitations of generic Markdown. Blog posts and pages are free-form HTML files powered by Tailwind utilities. This means your posts aren&apos;t just text—they are mini-applications.
-            </p>
+            <p className="text-lg opacity-80" dangerouslySetInnerHTML={{ __html: dict.home.section4.subtitle }} />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { step: "1", title: "Prompt", desc: "Ask the agent: 'Create a pricing comparison post using a 3-column feature grid.'" },
-              { step: "2", title: "Review", desc: "The agent generates standard HTML directly in your src/content/posts folder." },
-              { step: "3", title: "Validate", desc: "Automated tools check schema and formatting for perfect SEO scores." },
-              { step: "4", title: "Deploy", desc: "Commit to git and deploy seamlessly via Vercel or Netlify." }
-            ].map((s, i) => (
-              <div key={i} className="relative p-6 rounded-2xl border border-accent/20 bg-background shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-4xl font-black text-primary/10 absolute top-4 right-4 select-none">
-                  {s.step}
+            {dict.home.section4.steps.map((s, i) => (
+              <div key={i} className="relative p-6 rounded-2xl border border-accent/40 bg-background shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-4xl font-black text-primary/40 absolute top-4 right-4 select-none">
+                  {i + 1}
                 </div>
                 <h3 className="text-xl font-bold text-text-primary mb-3 mt-4">{s.title}</h3>
                 <p className="text-sm opacity-80 leading-relaxed">{s.desc}</p>
@@ -228,62 +185,27 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
         {/* Section 5: Comparison */}
         <section>
           <h2 className="text-3xl font-bold mb-10 text-center text-text-primary">
-            Why Good Website instead of a traditional CMS or drag-and-drop builder
+            {dict.home.section5.title}
           </h2>
           <div className="overflow-x-auto bg-background rounded-3xl border border-accent/20 shadow-sm">
             <table className="min-w-full text-left border-collapse">
               <thead>
                 <tr>
-                  <th className="py-5 px-6 font-semibold text-text-primary border-b border-accent/20 w-1/3">Capability</th>
-                  <th className="py-5 px-6 font-bold text-primary border-b border-accent/20 bg-primary/5 w-1/3 text-lg">Good Website</th>
-                  <th className="py-5 px-6 font-semibold text-text-primary opacity-60 border-b border-accent/20 w-1/3">Traditional Builders</th>
+                  {dict.home.section5.table.headers.map((header, i) => (
+                    <th key={i} className={`py-5 px-6 font-semibold border-b border-accent/20 w-1/3 ${i === 0 ? "text-text-primary" : i === 1 ? "text-primary bg-primary/5 text-lg" : "text-text-primary opacity-60"}`}>
+                        {header}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody className="text-[15px]">
-                <tr className="border-b border-accent/10">
-                  <td className="py-4 px-6 font-medium">Code Ownership</td>
-                  <td className="py-4 px-6 bg-primary/5 font-semibold text-primary">
-                    <div className="flex items-center gap-2">
-                      <Check size={18} /> <span>100% (GitHub repo)</span>
-                    </div>
-                  </td>
-                  <td className="py-4 px-6 opacity-70">Locked in database</td>
-                </tr>
-                <tr className="border-b border-accent/10">
-                  <td className="py-4 px-6 font-medium">AI Agent Compatibility</td>
-                  <td className="py-4 px-6 bg-primary/5 font-semibold text-primary">
-                    <div className="flex items-center gap-2">
-                      <Check size={18} /> <span>Native (via ADX)</span>
-                    </div>
-                  </td>
-                  <td className="py-4 px-6 opacity-70">
-                    <div className="flex items-center gap-2">
-                      <X size={16} /> <span>Limited / None</span>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="border-b border-accent/10">
-                  <td className="py-4 px-6 font-medium">SEO Control</td>
-                  <td className="py-4 px-6 bg-primary/5 font-semibold text-primary">
-                    <div className="flex items-center gap-2">
-                      <Check size={18} /> <span>Programmatic & Complete</span>
-                    </div>
-                  </td>
-                  <td className="py-4 px-6 opacity-70">
-                    <div className="flex items-center gap-2">
-                      <X size={16} /> <span>Basic plugin fields</span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-4 px-6 font-medium">Publishing Workflow</td>
-                  <td className="py-4 px-6 bg-primary/5 font-semibold text-primary">
-                    <div className="flex items-center gap-2">
-                      <Check size={18} /> <span>Git-backed diffs</span>
-                    </div>
-                  </td>
-                  <td className="py-4 px-6 opacity-70">Dashboard clicking</td>
-                </tr>
+                {dict.home.section5.table.rows.map((row, i) => (
+                    <tr key={i} className="border-b border-accent/10">
+                        <td className="py-4 px-6 font-medium">{row.cap}</td>
+                        <td className="py-4 px-6 bg-primary/5 font-semibold text-primary">{row.gw}</td>
+                        <td className="py-4 px-6 opacity-70">{row.tb}</td>
+                    </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -294,19 +216,17 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           <div className="p-8 rounded-3xl border border-green-500/20 bg-green-500/5">
             <div className="flex items-center gap-3 mb-6 text-green-600 dark:text-green-500">
               <CheckCircle2 size={28} />
-              <h3 className="text-2xl font-bold">Who it is for</h3>
+              <h3 className="text-2xl font-bold">{dict.home.section6.pros.title}</h3>
             </div>
-            <p className="text-lg opacity-90 leading-relaxed mb-6">
-              This is a specialized <strong className="font-semibold">seo friendly website builder</strong> tailored for developers, indie hackers, and technical marketers who are comfortable working in a code editor and managing git repositories.
-            </p>
+            <p className="text-lg opacity-90 leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: dict.home.section6.pros.desc }} />
           </div>
           <div className="p-8 rounded-3xl border border-red-500/20 bg-red-500/5">
             <div className="flex items-center gap-3 mb-6 text-red-600 dark:text-red-500">
               <XCircle size={28} />
-              <h3 className="text-2xl font-bold">Who it is not for</h3>
+              <h3 className="text-2xl font-bold">{dict.home.section6.cons.title}</h3>
             </div>
             <p className="text-lg opacity-90 leading-relaxed mb-6">
-              If you are looking for a purely visual drag-and-drop editor without touching code, a local website design service, or a turnkey hosted blog where you do not manage any configuration, Good Website is not the right fit.
+              {dict.home.section6.cons.desc}
             </p>
           </div>
         </section>
@@ -315,29 +235,15 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
         <section className="bg-slate-900 rounded-3xl overflow-hidden shadow-xl border border-slate-800 flex flex-col md:flex-row">
           <div className="p-8 md:p-12 flex-1 text-slate-100 flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-6 text-white">
-              How to get started
+              {dict.home.section7.title}
             </h2>
             <ol className="space-y-5 text-slate-300">
-              <li className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold mt-0.5">1</span>
-                <span>Clone the repository from GitHub.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold mt-0.5">2</span>
-                <span>Install dependencies using <code className="text-amber-300 font-mono text-sm bg-black/30 px-1.5 py-0.5 rounded ml-1">pnpm install</code>.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold mt-0.5">3</span>
-                <span>Configure your initial site metadata in <code className="text-green-300 font-mono text-sm bg-black/30 px-1.5 py-0.5 rounded ml-1">config/site-meta.json</code>.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold mt-0.5">4</span>
-                <span>Open the project in Cursor, or use Claude Code/Pi CLI to start building components.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold mt-0.5">5</span>
-                <span>Deploy the codebase directly to platforms like Vercel or Netlify.</span>
-              </li>
+              {dict.home.section7.steps.map((step, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold mt-0.5">{i + 1}</span>
+                    <span>{step}</span>
+                  </li>
+              ))}
             </ol>
           </div>
           <div className="bg-slate-950 p-6 md:p-8 flex-1 border-t md:border-t-0 md:border-l border-slate-800 flex flex-col justify-center font-mono text-sm text-slate-300">
@@ -357,18 +263,15 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
 
         {/* Section 8: FAQ */}
         <section className="pt-8 border-t border-accent/10">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-text-primary">Frequently Asked Questions</h2>
-          </div>
           <div className="bg-background rounded-3xl border border-accent/20 p-6 sm:p-10 shadow-sm">
-            <FAQ items={faqItems} />
+            <FAQ items={dict.faq.items} title={dict.faq.title} />
           </div>
         </section>
 
         {/* CTA */}
         <section className="pb-24 pt-10 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-text-primary">
-            Ready to build faster with an AI CMS platform?
+            {dict.home.cta.title}
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
@@ -377,14 +280,14 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
               variant="primary"
               external
             >
-              Get Started Now
+              {dict.home.cta.btn_start}
             </Button>
             <Button 
-              href="/posts" 
+              href={`/${lang}/posts`} 
               size="lg"
               variant="outline"
             >
-              Explore Blog Demo
+              {dict.home.cta.btn_blog}
             </Button>
           </div>
         </section>

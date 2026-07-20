@@ -5,6 +5,134 @@
   },
   "home": {
     "title": "Build and ship websites with AI agents",
-    "subtitle": "Traditional CMS interfaces slow down development..."
+    "subtitle": "Traditional CMS interfaces slow down development by separating the content from the code. By using Good Website, a purpose-built ai agent cms template, you invite Claude, Pi, and Cursor directly into your project.",
+    "agent_experience": "Agent-Developer Experience",
+    "section1": {
+        "title": "Build and ship websites with AI agents",
+        "p1": "Traditional CMS interfaces slow down development by separating the content from the code. By using Good Website, a purpose-built <strong>ai agent cms template</strong>, you invite Claude, Pi, and Cursor directly into your project.",
+        "p2": "Our strict Agent-Developer Experience (ADX) instructions ensure that when you prompt an agent to build a new feature or layout, it interacts safely with your Next.js components and configuration. The agent generates the code, but you maintain the ability to review, test, and deploy every change securely.",
+        "agent_name": "Pi - agent-prompt",
+        "user_label": "User:",
+        "user_prompt": "Make the navbar floating and rounded, and add a minimalist newsletter section.",
+        "agent_label": "Agent:",
+        "agent_action1": "Reading",
+        "agent_action2": "Updating",
+        "agent_action3": "Creating ",
+        "agent_response": "Done! I have applied the custom theme variables and verified mobile responsiveness."
+    },
+    "section2": {
+      "badge": "Perfect Lighthouse Scores",
+      "title": "SEO is built into the publishing foundation",
+      "subtitle": "When looking for the best website platforms for SEO, you need more than a generic checklist. Good Website bakes technical SEO directly into the architecture.",
+      "features": [
+        {
+          "title": "Automated Metadata",
+          "desc": "Dynamic title tags, descriptions, and Open Graph data generated for every route."
+        },
+        {
+          "title": "Structured Data",
+          "desc": "Built-in JSON-LD schema injection for rich Google results."
+        },
+        {
+          "title": "Core Web Vitals",
+          "desc": "Optimized image handling, zero layout shift, and server-first rendering to ensure lightning-fast LCP."
+        },
+        {
+          "title": "Semantic HTML5",
+          "desc": "Strict heading hierarchies and accessible markup by default."
+        }
+      ]
+    },
+    "section3": {
+      "title": "A Next.js CMS template for code-first teams",
+      "p1": "We have created an <strong>seo optimized nextjs cms</strong> that hands ownership back to the developer. Built on Next.js 15+ with the App Router, React Server Components, and Tailwind CSS, this template is entirely extensible.",
+      "p2": "Because it is a code-first repository, you do not rent your customization from a SaaS dashboard. You own the component logic, the deployment model, and the entire content lifecycle. It is the ultimate Next.js CMS template for teams that want speed without sacrificing technical control.",
+      "cta": "View Architecture"
+    },
+    "section4": {
+      "badge": "Developer Control",
+      "title": "Code-as-Content and the AI CMS workflow",
+      "subtitle": "As a true <strong>code content cms platform</strong>, we bypass the limitations of generic Markdown. Blog posts and pages are free-form HTML files powered by Tailwind utilities. This means your posts aren't just text—they are mini-applications.",
+      "steps": [
+        { "title": "Prompt", "desc": "Ask the agent: 'Create a pricing comparison post using a 3-column feature grid.'" },
+        { "title": "Review", "desc": "The agent generates standard HTML directly in your src/content/posts folder." },
+        { "title": "Validate", "desc": "Automated tools check schema and formatting for perfect SEO scores." },
+        { "title": "Deploy", "desc": "Commit to git and deploy seamlessly via Vercel or Netlify." }
+      ]
+    },
+    "section5": {
+        "title": "Why Good Website instead of a traditional CMS or drag-and-drop builder",
+        "table": {
+            "headers": ["Capability", "Good Website", "Traditional Builders"],
+            "rows": [
+                { "cap": "Code Ownership", "gw": "100% (GitHub repo)", "tb": "Locked in database" },
+                { "cap": "AI Agent Compatibility", "gw": "Native (via ADX)", "tb": "Limited / None" },
+                { "cap": "SEO Control", "gw": "Programmatic & Complete", "tb": "Basic plugin fields" },
+                { "cap": "Publishing Workflow", "gw": "Git-backed diffs", "tb": "Dashboard clicking" }
+            ]
+        }
+    },
+    "section6": {
+        "pros": {
+            "title": "Who it is for",
+            "desc": "This is a specialized <strong>seo friendly website builder</strong> tailored for developers, indie hackers, and technical marketers who are comfortable working in a code editor and managing git repositories."
+        },
+        "cons": {
+            "title": "Who it is not for",
+            "desc": "If you are looking for a purely visual drag-and-drop editor without touching code, a local website design service, or a turnkey hosted blog where you do not manage any configuration, Good Website is not the right fit."
+        }
+    },
+    "section7": {
+        "title": "How to get started",
+        "steps": [
+            "Clone the repository from GitHub.",
+            "Install dependencies using pnpm install.",
+            "Configure your initial site metadata in config/site-meta.json.",
+            "Open the project in Cursor, or use Claude Code/Pi CLI to start building components.",
+            "Deploy the codebase directly to platforms like Vercel or Netlify."
+        ]
+    },
+    "cta": {
+        "title": "Ready to build faster with an AI CMS platform?",
+        "btn_start": "Get Started Now",
+        "btn_blog": "Explore Blog Demo"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "What is an AI CMS platform?",
+        "answer": "An AI CMS platform is a content management system designed specifically to be operated, extended, and maintained by AI agents like Claude, Pi, or Cursor, rather than just humans clicking through a dashboard."
+      },
+      {
+        "question": "Is this a Next.js CMS template?",
+        "answer": "Yes. Good Website is an SEO optimized Next.js CMS template using the latest App Router, React Server Components, and Tailwind CSS. It is built to be a code-first foundation for your site."
+      },
+      {
+        "question": "How does it improve SEO?",
+        "answer": "It bakes technical SEO into the architecture. It automatically implements JSON-LD schema, metadata, canonical tags, and semantic HTML5, ensuring your site is search-ready by default."
+      },
+      {
+        "question": "Can I use Claude, Pi, or Cursor?",
+        "answer": "Absolutely. The repository includes strict AGENTS.md instruction layers so your preferred AI agent understands exactly how to generate components, modify layouts, and create content."
+      },
+      {
+        "question": "Do I need to code?",
+        "answer": "You should be comfortable with a code editor, git, and basic deployment concepts. While AI agents write the code, this is a developer-centric product where you own and review the source code."
+      },
+      {
+        "question": "Can I customize the content model and design?",
+        "answer": "Yes, infinitely. Because it uses a Code-as-Content model, you aren't restricted by predefined dashboard fields. You can ask an agent to build custom React components right into your posts."
+      },
+      {
+        "question": "Does it replace an SEO tool?",
+        "answer": "It replaces the need for technical SEO plugins and manual schema formatting by automating best practices, but you still need to research keywords and plan your content strategy."
+      },
+      {
+        "question": "Who should not use it?",
+        "answer": "If you are looking for a purely visual drag-and-drop editor without touching code, or a turnkey hosted solution where you don't manage a GitHub repository, a traditional no-code website builder is a better fit."
+      }
+    ]
   }
 }

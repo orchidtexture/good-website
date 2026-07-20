@@ -8,7 +8,7 @@ const dictionaries = {
 
 export type Locale = keyof typeof dictionaries;
 
-export type Dictionary = Awaited<ReturnType<typeof dictionaries.ja>>;
+export type Dictionary = Awaited<ReturnType<typeof dictionaries.en>>;
 
 export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
   return dictionaries[locale] ? dictionaries[locale]() : dictionaries.ja();

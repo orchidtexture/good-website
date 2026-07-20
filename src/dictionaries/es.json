@@ -4,7 +4,135 @@
     "blog": "Blog"
   },
   "home": {
-    "title": "Construya y publique sitios web con agentes de IA",
-    "subtitle": "Las interfaces CMS tradicionales..."
+    "title": "Construye y despliega sitios web con agentes de IA",
+    "subtitle": "Las interfaces de CMS tradicionales ralentizan el desarrollo al separar el contenido del código. Al usar Good Website, una plantilla de CMS para agentes de IA diseñada con este propósito, invitas a Claude, Pi y Cursor directamente a tu proyecto.",
+    "agent_experience": "Experiencia Agente-Desarrollador",
+    "section1": {
+        "title": "Construye y despliega sitios web con agentes de IA",
+        "p1": "Las interfaces de CMS tradicionales ralentizan el desarrollo al separar el contenido del código. Al usar Good Website, una plantilla de CMS para agentes de IA diseñada con este propósito, invitas a Claude, Pi y Cursor directamente a tu proyecto.",
+        "p2": "Nuestras estrictas instrucciones de Experiencia Agente-Desarrollador (ADX) garantizan que cuando le pidas a un agente construir una nueva funcionalidad o diseño, interactúe de forma segura con tus componentes y configuración de Next.js. El agente genera el código, pero tú mantienes la capacidad de revisar, probar y desplegar cada cambio de forma segura.",
+        "agent_name": "Pi - prompt del agente",
+        "user_label": "Usuario:",
+        "user_prompt": "Haz que la barra de navegación sea flotante y redondeada, y añade una sección de boletín informativo minimalista.",
+        "agent_label": "Agente:",
+        "agent_action1": "Leyendo",
+        "agent_action2": "Actualizando",
+        "agent_action3": "Creando",
+        "agent_response": "¡Listo! He aplicado las variables de tema personalizadas y verificado la adaptabilidad móvil."
+    },
+    "section2": {
+      "badge": "Puntuaciones perfectas en Lighthouse",
+      "title": "El SEO está integrado en el core del sistema",
+      "subtitle": "Al buscar las mejores plataformas web para SEO, necesitas más que una lista de verificación genérica. Good Website integra el SEO técnico directamente en la arquitectura.",
+      "features": [
+        {
+          "title": "Metadata automatizada",
+          "desc": "Title Tags, descripciones y datos de Open Graph dinámicos generados para cada ruta."
+        },
+        {
+          "title": "Datos estructurados",
+          "desc": "Inyección integrada de esquema JSON-LD para resultados enriquecidos de Google."
+        },
+        {
+          "title": "Core Web Vitals",
+          "desc": "Manejo optimizado de imágenes, cambio de diseño cero y renderizado primero en el servidor para garantizar un LCP ultrarrápido."
+        },
+        {
+          "title": "HTML5 semántico",
+          "desc": "Jerarquías de encabezados estrictas y markup accesible de forma predeterminada."
+        }
+      ]
+    },
+    "section3": {
+      "title": "Una plantilla de CMS en Next.js para equipos que priorizan el código",
+      "p1": "Hemos creado un <strong>CMS de nextjs optimizado para SEO</strong> que le devuelve la propiedad al desarrollador. Construida sobre Next.js 15+ con App Router, React Server Components y Tailwind CSS, esta plantilla es completamente extensible.",
+      "p2": "Al ser un repositorio donde el código es lo primero (code-first), no alquilas tu personalización desde un panel de control de SaaS. Eres dueño de la lógica de los componentes, el modelo de despliegue y todo el ciclo de vida del contenido. Es la plantilla de CMS definitiva de Next.js para equipos que quieren velocidad sin sacrificar el control técnico.",
+      "cta": "Ver arquitectura"
+    },
+    "section4": {
+      "badge": "Control del desarrollador",
+      "title": "El código como contenido y el flujo de trabajo del CMS de IA",
+      "subtitle": "Como una verdadera <strong>plataforma de CMS de código y contenido</strong>, superamos las limitaciones del Markdown genérico. Las publicaciones de blog y las páginas son archivos HTML de formato libre con Tailwind. Esto significa que tus publicaciones no son solo texto; son mini aplicaciones.",
+      "steps": [
+        { "title": "Prompt", "desc": "Pídele al agente: 'Crea una publicación de comparación de precios usando una cuadrícula de características de 3 columnas'." },
+        { "title": "Revisar", "desc": "El agente genera HTML estándar directamente en tu carpeta src/content/posts." },
+        { "title": "Validar", "desc": "Herramientas automatizadas verifican el esquema y el formato para obtener puntuaciones de SEO perfectas." },
+        { "title": "Desplegar", "desc": "Haz commit en git y despliega sin problemas a través de Vercel o Netlify." }
+      ]
+    },
+    "section5": {
+        "title": "Por qué elegir Good Website en lugar de un CMS tradicional o un constructor de arrastrar y soltar",
+        "table": {
+            "headers": ["Capacidad", "Good Website", "Constructores tradicionales"],
+            "rows": [
+                { "cap": "Propiedad del código", "gw": "100% (repositorio de GitHub)", "tb": "Bloqueado en la base de datos" },
+                { "cap": "Compatibilidad con agentes de IA", "gw": "Nativa (a través de ADX)", "tb": "Limitada / Nula" },
+                { "cap": "Control de SEO", "gw": "Programático y completo", "tb": "Campos básicos de plugins" },
+                { "cap": "Flujo de trabajo de publicación", "gw": "Diffs respaldados por Git", "tb": "Clics en el panel de control" }
+            ]
+        }
+    },
+    "section6": {
+        "pros": {
+            "title": "Para quién es",
+            "desc": "Este es un <strong>constructor de sitios web amigable con el SEO</strong> especializado y diseñado para desarrolladores, indie hackers y profesionales del marketing técnico que se sienten cómodos trabajando en un editor de código y gestionando repositorios de git."
+        },
+        "cons": {
+            "title": "Para quién no es",
+            "desc": "Si buscas un editor puramente visual de arrastrar y soltar sin tocar código, un servicio de diseño web local o un blog alojado llave en mano donde no gestiones ninguna configuración, Good Website no es la opción ideal."
+        }
+    },
+    "section7": {
+        "title": "Cómo empezar",
+        "steps": [
+            "Clona el repositorio desde GitHub.",
+            "Instala las dependencias usando pnpm install.",
+            "Configura los metadatos iniciales de tu sitio en config/site-meta.json.",
+            "Abre el proyecto en Cursor o usa Claude Code/Pi CLI para comenzar a construir componentes.",
+            "Despliega la base de código directamente en plataformas como Vercel o Netlify."
+        ]
+    },
+    "cta": {
+        "title": "¿Listo para construir más rápido con una plataforma de CMS para agentes de IA?",
+        "btn_start": "Comenzar ahora",
+        "btn_blog": "Explorar demo del blog"
+    }
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Qué es una plataforma de CMS de IA?",
+        "answer": "Una plataforma de CMS de IA es un sistema de gestión de contenidos diseñado específicamente para ser operado, extendido y mantenido por agentes de IA como Claude, Pi o Cursor, en lugar de solo humanos haciendo clics en un panel de control."
+      },
+      {
+        "question": "¿Es esto una plantilla de CMS de Next.js?",
+        "answer": "Sí. Good Website es una plantilla de CMS de Next.js optimizada para SEO que utiliza lo último de App Router, React Server Components y Tailwind CSS. Está construida para ser una base donde el código es lo primero para tu sitio."
+      },
+      {
+        "question": "¿Cómo mejora el SEO?",
+        "answer": "Integra el SEO técnico directamente en la arquitectura. Implementa automáticamente el esquema JSON-LD, metadatos, etiquetas canónicas y HTML5 semántico, garantizando que tu sitio esté listo para los motores de búsqueda de forma predeterminada."
+      },
+      {
+        "question": "¿Puedo usar Claude, Pi o Cursor?",
+        "answer": "Absolutamente. El repositorio incluye capas de instrucciones estrictas en AGENTS.md para que tu agente de IA preferido entienda exactamente cómo generar componentes, modificar diseños y crear contenido."
+      },
+      {
+        "question": "¿Necesito escribir código?",
+        "answer": "Deberías sentirte cómodo con un editor de código, git y conceptos básicos de despliegue. Aunque los agentes de IA escriben el código, este es un producto centrado en el desarrollador donde tú eres el dueño y revisas el código fuente."
+      },
+      {
+        "question": "¿Puedo personalizar el modelo de contenido y el diseño?",
+        "answer": "Sí, infinitamente. Al utilizar un modelo de código como contenido (Code-as-Content), no estás restringido por campos predefinidos de un panel de control. Puedes pedirle a un agente que construya componentes de React personalizados directamente en tus publicaciones."
+      },
+      {
+        "question": "¿Reemplaza a una herramienta de SEO?",
+        "answer": "Reemplaza la necesidad de complementos (plugins) de SEO técnico y el formateo manual de esquemas al automatizar las mejores prácticas, pero aún necesitas investigar palabras clave y planificar tu estrategia de contenido."
+      },
+      {
+        "question": "¿Quién no debería usarlo?",
+        "answer": "Si buscas un editor puramente visual de arrastrar y soltar sin tocar código, o una solución alojada llave en mano donde no gestiones un repositorio de GitHub, un constructor de sitios web tradicional sin código (no-code) se adaptará mejor."
+      }
+    ]
   }
 }

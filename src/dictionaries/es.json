@@ -47,7 +47,7 @@
       "title": "Una plantilla de CMS en Next.js para equipos que priorizan el código",
       "p1": "Hemos creado un <strong>CMS de nextjs optimizado para SEO</strong> que le devuelve la propiedad al desarrollador. Construida sobre Next.js 15+ con App Router, React Server Components y Tailwind CSS, esta plantilla es completamente extensible.",
       "p2": "Al ser un repositorio donde el código es lo primero (code-first), no alquilas tu personalización desde un panel de control de SaaS. Eres dueño de la lógica de los componentes, el modelo de despliegue y todo el ciclo de vida del contenido. Es la plantilla de CMS definitiva de Next.js para equipos que quieren velocidad sin sacrificar el control técnico.",
-      "cta": "Ver arquitectura"
+      "cta": "Ver en GitHub"
     },
     "section4": {
       "badge": "Control del desarrollador",
@@ -59,6 +59,17 @@
         { "title": "Validar", "desc": "Herramientas automatizadas verifican el esquema y el formato para obtener puntuaciones de SEO perfectas." },
         { "title": "Desplegar", "desc": "Haz commit en git y despliega sin problemas a través de Vercel o Netlify." }
       ]
+    },
+    "section_multilang": {
+      "title": "Soporte multilingüe integrado",
+      "p1": "Nuestra plantilla admite de forma nativa varios idiomas utilizando el enrutamiento i18n de Next.js. Esto significa que puedes expandir fácilmente el alcance de tu sitio sin configuraciones complejas.",
+      "p2": "El contenido se gestiona a través de archivos de diccionario, lo que permite una traducción fluida de los elementos de la interfaz de usuario y del contenido dinámico.",
+      "p3": "También incluimos un componente SmartJapaneseText que utiliza BudouX para insertar saltos de línea semánticos automáticamente, asegurando que el texto en japonés en los encabezados y elementos de la interfaz de usuario esté siempre perfectamente formateado."
+    },
+    "section_contribute": {
+      "title": "Contribuye a Good Website",
+      "p1": "¡Esta plantilla es de código abierto y agradecemos las contribuciones! Ya sea que tengas ideas para nuevas funciones, encuentres un error o quieras mejorar la documentación, no dudes en enviar un issue o un Pull Request en GitHub.",
+      "btn": "Ver en GitHub"
     },
     "section5": {
         "title": "Por qué elegir Good Website en lugar de un CMS tradicional o un constructor de arrastrar y soltar",

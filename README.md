@@ -9,6 +9,8 @@ A high-performance, SEO-first CMS built with Next.js 15+ (App Router), TypeScrip
 - **SEO-First**: Automated JSON-LD, Sitemaps, Robots.txt, and Meta Tags.
 - **Customizable**: Change colors, fonts, and site info from a single `config.md` file.
 - **Mobile-First**: Fully responsive navigation and layout.
+- **Multi-language Support**: Built-in support for multiple languages via dictionary files.
+- **Smart Japanese Typography**: Automatic semantic line breaking for Japanese text using BudouX.
 - **Dark/Light Mode**: Full theme customization for both modes.
 
 ## Quick Start
@@ -57,7 +59,7 @@ Built with **Tailwind CSS 4** and optimized for **ADX**. Use these components to
   ```tsx
   <Button href="/path" variant="primary">Click Me</Button>
   ```
-- **`SmartJapaneseText`**: Essential for Japanese typography. Prevents awkward line breaks.
+- **`SmartJapaneseText`**: Essential for Japanese typography. Prevents awkward line breaks by automatically injecting `<wbr />` tags.
   ```tsx
   <SmartJapaneseText as="h1">日本語のタイトル</SmartJapaneseText>
   ```
@@ -93,6 +95,17 @@ This template uses a **"Code-as-Content"** model for blog posts. Instead of bein
 Deploy to **Vercel** with one click:
 - Add your environment variables in the Vercel dashboard.
 - Set the Build Command to `pnpm build`.
+
+## Contributing
+
+We welcome contributions to the Good Website template!
+
+1. **Fork the repository**.
+2. **Create a new branch** (`git checkout -b feature/your-feature`).
+3. **Make your changes**.
+4. **Submit a Pull Request**.
+
+Please follow the ADX principles outlined in `AGENTS.md` when submitting changes.
 
 ## Project Structure
 - `/src/app`: Next.js App Router pages and routes.

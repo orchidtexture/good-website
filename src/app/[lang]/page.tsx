@@ -7,9 +7,7 @@ import {
   Bot, 
   Search, 
   Code2, 
-  Workflow, 
-  Check, 
-  X, 
+  Workflow,
   Zap, 
   Layout, 
   FileJson,
@@ -183,6 +181,28 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
           </div>
         </section>
 
+        {/* Section: Multi-language */}
+        <section className="bg-primary/5 rounded-3xl p-8 border border-primary/20">
+          <SmartJapaneseText as="h2" className="text-3xl font-bold mb-6 text-text-primary">
+            {dict.home.section_multilang.title}
+          </SmartJapaneseText>
+          <div className="text-lg opacity-80 leading-relaxed space-y-4">
+            <p>
+              {dict.home.section_multilang.p1}
+            </p>
+            <p>
+              {dict.home.section_multilang.p2}
+            </p>
+            <p>
+              {lang === 'ja' ? (
+                <SmartJapaneseText>{dict.home.section_multilang.p3}</SmartJapaneseText>
+              ) : (
+                dict.home.section_multilang.p3
+              )}
+            </p>
+          </div>
+        </section>
+
         {/* Section 5: Comparison */}
         <section>
           <SmartJapaneseText as="h2" className="text-3xl font-bold mb-10 text-center text-text-primary">
@@ -260,6 +280,19 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
             <p className="text-blue-400 mb-1 mt-4">$ <span className="text-slate-100">pnpm run dev</span></p>
             <p className="text-green-400">ready - started server on 0.0.0.0:3000, url: http://localhost:3000</p>
           </div>
+        </section>
+
+        {/* Section: Contribute */}
+        <section className="bg-accent/5 rounded-3xl p-8 border border-accent/20 text-center">
+          <SmartJapaneseText as="h2" className="text-3xl font-bold mb-6 text-text-primary">
+            {dict.home.section_contribute.title}
+          </SmartJapaneseText>
+          <p className="text-lg opacity-80 mb-8 max-w-2xl mx-auto">
+            {dict.home.section_contribute.p1}
+          </p>
+          <Button href="https://github.com/orchidtexture/good-website" variant="primary" size="lg" external>
+            {dict.home.section_contribute.btn}
+          </Button>
         </section>
 
         {/* Section 8: FAQ */}

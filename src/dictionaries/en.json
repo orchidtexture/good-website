@@ -47,7 +47,7 @@
       "title": "A Next.js CMS template for code-first teams",
       "p1": "We have created an <strong>seo optimized nextjs cms</strong> that hands ownership back to the developer. Built on Next.js 15+ with the App Router, React Server Components, and Tailwind CSS, this template is entirely extensible.",
       "p2": "Because it is a code-first repository, you do not rent your customization from a SaaS dashboard. You own the component logic, the deployment model, and the entire content lifecycle. It is the ultimate Next.js CMS template for teams that want speed without sacrificing technical control.",
-      "cta": "View Architecture"
+      "cta": "View on GitHub"
     },
     "section4": {
       "badge": "Developer Control",
@@ -59,6 +59,17 @@
         { "title": "Validate", "desc": "Automated tools check schema and formatting for perfect SEO scores." },
         { "title": "Deploy", "desc": "Commit to git and deploy seamlessly via Vercel or Netlify." }
       ]
+    },
+    "section_multilang": {
+      "title": "Built-in Multi-language Support",
+      "p1": "Our template natively supports multiple languages using Next.js i18n routing. This means you can easily expand your site's reach without complex configuration.",
+      "p2": "Content is managed through dictionary files, allowing for seamless translation of UI elements and dynamic content.",
+      "p3": "We also include a SmartJapaneseText component that uses BudouX to inject semantic line breaks automatically, ensuring Japanese text in headers and UI elements is always perfectly formatted."
+    },
+    "section_contribute": {
+      "title": "Contribute to Good Website",
+      "p1": "This template is open-source, and we welcome contributions! Whether you have ideas for new features, find a bug, or want to improve documentation, feel free to submit an issue or a Pull Request on GitHub.",
+      "btn": "View on GitHub"
     },
     "section5": {
         "title": "Why Good Website instead of a traditional CMS or drag-and-drop builder",
